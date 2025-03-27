@@ -1,0 +1,190 @@
+= Install the OSC operator
+
+Openshift sandboxed containers support for Red Hat Openshift provides you with built-in support for running Kata Containers as an additional optional runtime. The new runtime supports containers in dedicated virtual machines (VMs), providing improved workload isolation. This is particularly useful for performing the following tasks:
+
+* Run privileged or untrusted workloads
+* Ensure isolation for sensitive workloads
+* Ensure kernel isolation for each workload
+* Share the same workload across tenants
+* Ensure proper isolation and sandboxing for testing software
+* Ensure default resource containment through VM boundaries
+
+Please refer to https://docs.redhat.com/en/documentation/openshift_sandboxed_containers[Openshift sandboxed containers official documentation, window=blank] for more information.
+
+When runnig on Openshift cluster deployed on cloud, OSC is capable of deploying containers using the **peer-pods** technology.
+
+The peer-pods solution extends Red Hat Openshift sandboxed containers (OSC) to run on any environment without requiring bare-metal servers or nested virtualization support. It does this by extending Kata containers runtime (which OSC is built on) to handle VM lifecycle management using cloud provider APIs (AWS, Azure, etc...) or third-party hypervisors APIs (such as VMware vSphere). More info on the peer pods solution is available https://www.redhat.com/en/blog/red-hat-openshift-sandboxed-containers-peer-pods-solution-overview[here, window=blank].
+
+Together with its full integration with Trustee, and the support of hardware TEE, the OSC operator is capable of offering the **Confidential Containers (CoCo)** technology on ARO.
+
+To summarize, a Confidential Container on ARO is simply a container running in a Confidential VM backed up by TEE hardware and set up using the peer-pods technology. The Confidential VM runs RHEL and it contains components to automatically connect with Trustee and perform attestation.
+
+After setting up the Trustee operator, in this chapter we are going to set up OSC to enable CoCo.
+
+There are two ways to install the OSC operator:
+
+* xref:01-install-osc.adoc#webui[Install the operator using the web interface]
+* xref:01-install-osc.adoc#cmdline[Install the operator using the command line]
+
+[#webui]
+== Using the web interface
+
+. In the Openshift Container Platform web console, navigate to **Operators > OperatorHub**.
+
+. In the **Filter by keyword field**, type `Openshift sandboxed containers`.
+
+. Click on the **Openshift sandboxed containers Operator** tile.
++
+image::01-operatorhub-ui.png[link=self, window=blank]
+
+. On the **Install Operator** page, select **stable** from the list of available **Update Channel** options.
++
+image::02-install-ui.png[link=self, window=blank]
+
+. Verify that **Operator recommended Namespace** is selected for **Installed Namespace**. This installs the Operator in the mandatory openshift-sandboxed-containers-operator namespace. If this namespace does not yet exist, it is automatically created.
+
+NOTE: Attempting to install the Openshift sandboxed containers Operator in a namespace other than `openshift-sandboxed-containers-operator` causes the installation to fail.
+
+. Verify that **Automatic** is selected for **Update approval**. **Automatic** is the default value, and enables automatic updates to Openshift sandboxed containers when a new z-stream release is available.
+
+. Click **Install**.
++
+image::03-install-ui.png[link=self, window=blank]
+
+The Openshift sandboxed containers Operator is now installed on your cluster.
+
+=== Verification
+
+. Navigate to **Operators > Installed Operators**.
+
+. Verify that the Openshift sandboxed containers Operator is displayed.
++
+image::04-install-ui.png[link=self, window=blank]
+
+[#cmdline]
+== Using the command line
+
+TIP: If you don't want to copy-paste, there is a xref:01-install-osc.adoc#scripts[script] that performs all the steps above automatically.
+
+. Create and apply a `Namespace.yaml` manifest file:
++
+[source,sh,role=execute]
+----
+cat > Namespace.yaml <<EOF
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-sandboxed-containers-operator
+EOF
+----
++
+[source,sh,role=execute]
+----
+oc apply -f Namespace.yaml
+----
+
+. Create and apply a `OperatorGroup.yaml` manifest file:
++
+[source,sh,role=execute]
+----
+cat > OperatorGroup.yaml <<EOF
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-sandboxed-containers-operator
+  namespace: openshift-sandboxed-containers-operator
+spec:
+  targetNamespaces:
+  - openshift-sandboxed-containers-operator
+EOF
+----
++
+[source,sh,role=execute]
+----
+oc apply -f OperatorGroup.yaml
+----
+
+. Create and apply a `Subscription.yaml` manifest file:
++
+[source,sh,role=execute]
+----
+cat > Subscription.yaml <<EOF
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: openshift-sandboxed-containers-operator
+  namespace: openshift-sandboxed-containers-operator
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: sandboxed-containers-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: sandboxed-containers-operator.v1.8.1
+EOF
+----
++
+NOTE: You can change the operator version by changing the `startingCSV` field in the `Subscription.yaml` file.
++
+[source,sh,role=execute]
+----
+oc apply -f Subscription.yaml
+----
+
+=== Verification
+Ensure that the Operator is correctly installed by running the following command and checking that the `PHASE` is in `Succeeded` state:
+[source,sh,role=execute]
+----
+oc get csv -n openshift-sandboxed-containers-operator
+----
+
+**Example output**
+[source,texinfo,subs="attributes"]
+----
+NAME                             DISPLAY                                  VERSION             REPLACES                   PHASE
+openshift-sandboxed-containers   openshift-sandboxed-containers-operator  1.8.1                                          Succeeded
+----
+
+[#scripts]
+=== Scripted way
+Avoid copy-pasting all steps above and do it in one step:
+NOTE: You can change the operator version by changing the `startingCSV` field under the `Subscription` resource type.
+[source,sh,role=execute]
+----
+oc apply -f-<<EOF
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-sandboxed-containers-operator
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-sandboxed-containers-operator
+  namespace: openshift-sandboxed-containers-operator
+spec:
+  targetNamespaces:
+  - openshift-sandboxed-containers-operator
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: openshift-sandboxed-containers-operator
+  namespace: openshift-sandboxed-containers-operator
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: sandboxed-containers-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: sandboxed-containers-operator.v1.8.1
+EOF
+----
+
+=== Verification
+Ensure that the Operator is correctly installed by running the following command and checking that the `PHASE` is in `Succeeded` state:
+[source,sh,role=execute]
+----
+watch oc get csv -n openshift-sandboxed-containers-operator
+----
