@@ -1,0 +1,13 @@
+FROM quay.io/centos/centos:stream9
+
+ARG DCAP_VERSION=1.22
+
+WORKDIR /opt/intel
+RUN curl https://download.01.org/intel-sgx/sgx-dcap/${DCAP_VERSION}/linux/distro/centos-stream9/sgx_rpm_local_repo.tgz | tar zx && \
+    dnf install --assumeyes --setopt=install_weak_deps=False boost-system boost-thread && \
+    dnf config-manager --add-repo file:///opt/intel/sgx_rpm_local_repo && \
+    dnf install --nogpgcheck --assumeyes --setopt=install_weak_deps=False tdx-qgs && \
+    dnf config-manager --disable opt_intel_sgx_rpm_local_repo && \
+    rm -r /opt/intel/sgx_rpm_local_repo
+
+ENTRYPOINT ["/opt/intel/tdx-qgs/qgs", "--no-daemon"]
