@@ -1,0 +1,15 @@
+- base_url: https://mirror.stream.centos.org/SIGs/9-stream/virt/x86_64/tdx-devel/Packages
+  use_subdir: true
+  rpms:
+    - kernel-5.14.0-558.tdx.el9s.x86_64.rpm
+    - kernel-core-5.14.0-558.tdx.el9s.x86_64.rpm
+    - kernel-modules-5.14.0-558.tdx.el9s.x86_64.rpm
+    - kernel-modules-core-5.14.0-558.tdx.el9s.x86_64.rpm
+    - kernel-modules-extra-5.14.0-558.tdx.el9s.x86_64.rpm
+    - qemu-kvm-core-9.1.0-12.el9s.tdx.x86_64.rpm
+    - qemu-kvm-common-9.1.0-12.el9s.tdx.x86_64.rpm
+
+- base_url: https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/Packages
+  use_subdir: false
+  rpms:
+    - libibverbs-54.0-1.el9.x86_64.rpm
