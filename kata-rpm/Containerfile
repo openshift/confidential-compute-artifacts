@@ -1,0 +1,35 @@
+FROM registry.access.redhat.com/ubi9/ubi:latest
+
+# Use subscription-manager to enable codeready-builder-for-rhel-9-x86_64-rpm
+ARG ORG
+ARG ACTIVATIONKEY
+ENV ORG=${ORG}
+ENV ACTIVATIONKEY=${ACTIVATIONKEY}
+RUN subscription-manager register --org ${ORG} --activationkey ${ACTIVATIONKEY}
+RUN subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+
+WORKDIR /
+
+ARG SRPM_IMAGE
+
+# Copy in the srpm
+COPY ${SRPM_IMAGE} /
+
+# Install and setup rpmbuild
+RUN dnf install -y rpm-build  rpmdevtools
+RUN rpmdev-setuptree
+
+# Install the srpm
+RUN  rpm -i ${SRPM_IMAGE}
+
+# Install the prerequsites of the rpm
+RUN dnf builddep /root/rpmbuild/SPECS/kata-containers.spec -y
+
+# Install rustup
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+# Build the rpm
+RUN cd /root/rpmbuild && \
+    . "/root/.cargo/env" && \
+    rpmbuild -bb SPECS/kata-containers.spec && \
+    cp RPMS/x86_64/* /host
