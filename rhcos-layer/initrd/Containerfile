@@ -13,7 +13,8 @@ WORKDIR /
 COPY ${CA_CERTS_FILE} /
 COPY ${REGISTRY_AUTH_FILE} /
 
-RUN if [ ${CA_CERTS_FILE} ]; then \
+RUN rm -f /envfile && \
+    if [ ${CA_CERTS_FILE} ]; then \
         echo "CA_CERTS_FILE=/${CA_CERTS_FILE}" >> /envfile; \
     else \
         echo "CA_CERTS_FILE=" >> /envfile; \
