@@ -1,9 +1,9 @@
-FROM quay.io/centos/centos:stream9
+FROM registry.access.redhat.com/ubi9:latest
 
-ARG DCAP_VERSION=1.22
+ARG DCAP_VERSION=1.23
 
 WORKDIR /opt/intel
-RUN curl https://download.01.org/intel-sgx/sgx-dcap/${DCAP_VERSION}/linux/distro/centos-stream9/sgx_rpm_local_repo.tgz | tar zx && \
+RUN curl https://download.01.org/intel-sgx/sgx-dcap/${DCAP_VERSION}/linux/distro/rhel9.4-server/sgx_rpm_local_repo.tgz | tar zx && \
     dnf install --assumeyes --setopt=install_weak_deps=False boost-system boost-thread && \
     dnf config-manager --add-repo file:///opt/intel/sgx_rpm_local_repo && \
     dnf install --nogpgcheck --assumeyes --setopt=install_weak_deps=False tdx-qgs && \
