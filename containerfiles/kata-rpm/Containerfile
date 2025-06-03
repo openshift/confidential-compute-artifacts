@@ -3,8 +3,6 @@ FROM registry.access.redhat.com/ubi9/ubi:latest
 # Use subscription-manager to enable codeready-builder-for-rhel-9-x86_64-rpm
 ARG ORG
 ARG ACTIVATIONKEY
-ENV ORG=${ORG}
-ENV ACTIVATIONKEY=${ACTIVATIONKEY}
 RUN subscription-manager register --org ${ORG} --activationkey ${ACTIVATIONKEY}
 RUN subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
 
