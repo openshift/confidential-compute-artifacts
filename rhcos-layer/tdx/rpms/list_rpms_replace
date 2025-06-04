@@ -1,6 +1,6 @@
-kernel-5.14.0-558.tdx.el9s.x86_64.rpm
-kernel-core-5.14.0-558.tdx.el9s.x86_64.rpm
-kernel-modules-5.14.0-558.tdx.el9s.x86_64.rpm
-kernel-modules-core-5.14.0-558.tdx.el9s.x86_64.rpm
-kernel-modules-extra-5.14.0-558.tdx.el9s.x86_64.rpm
+kernel-5.14.0-480.el9s.x86_64.rpm
+kernel-core-5.14.0-480.el9s.x86_64.rpm
+kernel-modules-5.14.0-480.el9s.x86_64.rpm
+kernel-modules-core-5.14.0-480.el9s.x86_64.rpm
+kernel-modules-extra-5.14.0-480.el9s.x86_64.rpm
 libibverbs-54.0-1.el9.x86_64.rpm
