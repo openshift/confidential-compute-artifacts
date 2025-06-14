@@ -1,5 +1,5 @@
 # Use 4.18 as the base
-# 4.18.10 release image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:bdaa82a5a1df84ee304cbf842c80278e2286fede509664c5f0cf9c93c0992658
+# 4.18.16 release image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6d80575484a36c877afb9ba79597a0d08de4e046b548215a28bfd143658d723f
 
 ARG OCP_RELEASE_IMAGE
 FROM $OCP_RELEASE_IMAGE
