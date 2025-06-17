@@ -5,7 +5,12 @@ ARG DCAP_VERSION=1.23
 WORKDIR /opt/intel
 RUN curl https://download.01.org/intel-sgx/sgx-dcap/${DCAP_VERSION}/linux/distro/rhel9.4-server/sgx_rpm_local_repo.tgz | tar zx && \
     dnf config-manager --add-repo file:///opt/intel/sgx_rpm_local_repo && \
-    dnf install --nogpgcheck --assumeyes --setopt=install_weak_deps=False sgx-pck-id-retrieval-tool libsgx-urts libsgx-ra-uefi && \
+    dnf install --nogpgcheck --assumeyes --setopt=install_weak_deps=False \
+    sgx-pck-id-retrieval-tool \
+    libsgx-urts \
+    libsgx-ae-pce \
+    libsgx-ae-id-enclave \
+    libsgx-ra-uefi && \
     dnf config-manager --disable opt_intel_sgx_rpm_local_repo && \
     rm -r /opt/intel/sgx_rpm_local_repo
 
