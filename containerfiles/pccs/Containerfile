@@ -1,0 +1,30 @@
+FROM registry.access.redhat.com/ubi9/nodejs-20:latest AS builder
+
+USER root
+
+RUN dnf install -y \
+        file \
+        jq \
+        zip
+
+ARG DCAP_VERSION=DCAP_1.23
+
+RUN git clone -b ${DCAP_VERSION} --depth 1 --recurse-submodules https://github.com/intel/SGXDataCenterAttestationPrimitives.git
+
+WORKDIR SGXDataCenterAttestationPrimitives/tools/PCKCertSelection/
+RUN mkdir -p ../../prebuilt/openssl/inc \
+    && mkdir -p ../../QuoteGeneration/pccs/lib \
+    && make \
+    && cp ./out/libPCKCertSelection.so ../../QuoteGeneration/pccs/lib
+
+WORKDIR /opt/app-root/src/SGXDataCenterAttestationPrimitives/QuoteGeneration/pccs
+RUN npm config set engine-strict true \
+    && npm install \
+    && npm audit fix
+
+FROM registry.access.redhat.com/ubi9/nodejs-20:latest
+
+WORKDIR intel/pccs
+COPY --from=builder --chown=default:1001 /opt/app-root/src/SGXDataCenterAttestationPrimitives/QuoteGeneration/pccs .
+
+ENTRYPOINT ["/usr/bin/node", "pccs_server.js"]
