@@ -1,45 +1,47 @@
-# Use 4.18 as the base
-# 4.18.16 release image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:6d80575484a36c877afb9ba79597a0d08de4e046b548215a28bfd143658d723f
+# Use 4.20 as the base
+# 4.20.0-rc2 release image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:526ac23c49751f306916333ea1e8c8474a99351f2eebfe23a9115dfa4f7e0808
 
-ARG OCP_RELEASE_IMAGE
-FROM $OCP_RELEASE_IMAGE
+ARG PAYLOAD_IMAGE=quay.io/cclaudio/kata-initrds:1.1
+ARG OCP_RELEASE_IMAGE=quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:526ac23c49751f306916333ea1e8c8474a99351f2eebfe23a9115dfa4f7e0808
 
-ARG CA_CERTS_FILE
-ARG REGISTRY_AUTH_FILE
+FROM ${PAYLOAD_IMAGE} as payload
 
-ENV CA_CERTS_FILE=${CA_CERTS_FILE}
-ENV REGISTRY_AUTH_FILE=${REGISTRY_AUTH_FILE}
+FROM ${OCP_RELEASE_IMAGE}
+
+ARG ORG
+ARG ACTIVATIONKEY
+
+RUN subscription-manager register --org ${ORG} --activationkey ${ACTIVATIONKEY}
 
 WORKDIR /
 
 # Install Kernel, Qemu and Kata-containers
 COPY snp/rpms/ /
-RUN  REPLACE_RPMS=$(cat /list_rpms_replace) && \
-     INSTALL_RPMS=$(cat /list_rpms_install) && \
-     rpm-ostree override replace ${REPLACE_RPMS} && \
-     rpm-ostree install ${INSTALL_RPMS}
- 
 
-# [Re]create initrd
-COPY ${CA_CERTS_FILE} /
-COPY ${REGISTRY_AUTH_FILE} /
-RUN if [ ${CA_CERTS_FILE} ]; then \
-        echo "CA_CERTS_FILE=/${CA_CERTS_FILE}" >> /envfile; \
-    else \
-        echo "CA_CERTS_FILE=" >> /envfile; \
-    fi && \
-    if [ ${REGISTRY_AUTH_FILE} ]; then \
-        echo "REGISTRY_AUTH_FILE=/${REGISTRY_AUTH_FILE}" >> /envfile; \
-    else \
-        echo "REGISTRY_AUTH_FILE=" >> /envfile; \
-    fi
-     
-RUN bash -c 'ls /lib/modules/*/vmlinu* | cut -d "/" -f 4 > /tmp/kernel_version' && \
-    KVER=$(cat /tmp/kernel_version) && \
-    . /envfile && \
-    CA_CERTS=${CA_CERTS_FILE} REG_AUTH=${REGISTRY_AUTH_FILE} \
-    CC_GUEST=1 IMAGE_TOPDIR=/usr/share/kata-containers \
-    /usr/libexec/kata-containers/osbuilder/kata-osbuilder.sh -k ${KVER}
+RUN \
+  if [ -s /list_rpms_replace ]; then \
+    echo "--- Replacing RPMs specified in /list_rpms_replace ---" && \
+    rpm-ostree override replace $(cat /list_rpms_replace); \
+  else \
+    echo "--- Skipping RPM replacement: /list_rpms_replace is empty or not found ---"; \
+  fi && \
+  if [ -s /list_rpms_install ]; then \
+    echo "--- Installing RPMs specified in /list_rpms_install ---" && \
+    rpm-ostree install $(cat /list_rpms_install); \
+  else \
+    echo "--- Skipping RPM installation: /list_rpms_install is empty or not found ---"; \
+  fi
+
+# Copy the required tarballs from the payload stage into a temporary directory
+# in the final image stage.
+# It is assumed that these files exist in the root ('/') directory of the payload image.
+COPY --from=payload /kata-configs.tar.gz /tmp/
+COPY --from=payload /kata-initrds.tar.gz /tmp/
+
+# Extract the files
+RUN tar -xzvf /tmp/kata-configs.tar.gz -C / && \
+    tar -xzvf /tmp/kata-initrds.tar.gz -C / && \
+    rm /tmp/kata-configs.tar.gz /tmp/kata-initrds.tar.gz
 
 
 # Selinux adjustments to provide access to sev

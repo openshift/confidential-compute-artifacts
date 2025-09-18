@@ -1,8 +1,8 @@
 # Default variables
 
 REGISTRY_AUTH_FILE := ocp_pull_secret.json
-IMAGE_TDX ?= quay.io/bpradipt/rhcos-layer/ocp-4.18:latest-tdx
-IMAGE_SNP ?= quay.io/bpradipt/rhcos-layer/ocp-4.18:latest-snp
+IMAGE_TDX ?= quay.io/bpradipt/rhcos-layer/ocp-4.20:latest-tdx
+IMAGE_SNP ?= quay.io/bpradipt/rhcos-layer/ocp-4.20:latest-snp
 
 TEE ?= tdx
 
@@ -12,11 +12,9 @@ build: check-podman get-pull-secret get-ocp-release-image ## Default target: Bui
 	@echo "Building RHCOS layer..."
 	if [ "$(TEE)" = "tdx" ]; then \
 		podman build --authfile $(REGISTRY_AUTH_FILE) --build-arg OCP_RELEASE_IMAGE=$(shell cat ./.ocp-release-image) \
-		--build-arg CA_CERTS_FILE=$(CA_CERTS) --build-arg REGISTRY_AUTH_FILE=$(REG_AUTH) \
 		-t $(IMAGE_TDX) -f tdx/Containerfile . ;\
 	elif [ "$(TEE)" = "snp" ]; then \
 		podman build --authfile $(REGISTRY_AUTH_FILE) --build-arg OCP_RELEASE_IMAGE=$(shell cat ./.ocp-release-image) \
-		--build-arg CA_CERTS_FILE=$(CA_CERTS) --build-arg REGISTRY_AUTH_FILE=$(REG_AUTH) \
 		-t $(IMAGE_SNP) -f snp/Containerfile . ;\
 	fi
 
