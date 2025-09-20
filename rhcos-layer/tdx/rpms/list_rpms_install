@@ -1,3 +1,2 @@
-kata-containers-3.15.0-2.rhaos4.19.el9.x86_64.rpm
-qemu-kvm-core-9.0.0-3.el9s.x86_64.rpm
-qemu-kvm-common-9.0.0-3.el9s.x86_64.rpm
+kata-containers-3.19.1-1.rhaos4.20.el9.x86_64.rpm
+qemu-kvm-9.1.0-25.el9s.tdx
