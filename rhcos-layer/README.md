@@ -33,6 +33,13 @@ Copy the downloaded rpms to the `tdx/rpms` folder
 - jq
 - Depending on your build environment, you might have to spawn a root shell using `sudo` before executing
   the build commands
+- Create `org_secret.txt` and `key_secret.txt` file with your
+ORG_ID and ACTIVATION_KEY for subscription
+
+```bash
+echo <ORG_ID> > org_secret.txt
+echo <ACTIVATION_KEY> > key_secret.txt
+```
 
 ### With access to OCP cluster
 
@@ -55,18 +62,13 @@ make TEE=tdx build
 You can also directly build using podman or docker.
 
 - Download the OCP pull secret from console.redhat.com
-- Run the following command:
 
-```bash
-export ORGID=<set>
-export ACTIVATIONKEY=<set>
-```
 
 Build for SNP
 
 ```sh
 podman build --authfile ocp_pull_secret.json \
-   --build-arg ORG=$ORGID --build-arg ACTIVATIONKEY=$ACTIVATIONKEY \
+   --secret id=org,src=org_secret.txt --secret id=key,src=key_secret.txt \
    -t snp-image -f snp/Containerfile .
 ```
 
@@ -74,7 +76,7 @@ Build for TDX
 
 ```sh
 podman build --authfile ocp_pull_secret.json \
-   --build-arg ORG=$ORGID --build-arg ACTIVATIONKEY=$ACTIVATIONKEY \
+   --secret id=org,src=org_secret.txt --secret id=key,src=key_secret.txt \
    -t tdx-image -f tdx/Containerfile .
 ```
 
