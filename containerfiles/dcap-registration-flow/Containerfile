@@ -1,9 +1,10 @@
 FROM registry.access.redhat.com/ubi9:latest
 
 ARG DCAP_VERSION=1.23
+ARG TAR_OPTIONS='--no-same-owner'
 
 WORKDIR /opt/intel
-RUN curl https://download.01.org/intel-sgx/sgx-dcap/${DCAP_VERSION}/linux/distro/rhel9.4-server/sgx_rpm_local_repo.tgz | tar zx && \
+RUN curl https://download.01.org/intel-sgx/sgx-dcap/${DCAP_VERSION}/linux/distro/rhel9.4-server/sgx_rpm_local_repo.tgz | tar zx ${TAR_OPTIONS} && \
     rpm --import https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key && \
     dnf config-manager --add-repo file:///opt/intel/sgx_rpm_local_repo && \
     dnf install --assumeyes sgx-pck-id-retrieval-tool && \
