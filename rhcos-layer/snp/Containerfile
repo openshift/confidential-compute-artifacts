@@ -8,10 +8,12 @@ FROM ${PAYLOAD_IMAGE} as payload
 
 FROM ${OCP_RELEASE_IMAGE}
 
-ARG ORG
-ARG ACTIVATIONKEY
-
-RUN subscription-manager register --org ${ORG} --activationkey ${ACTIVATIONKEY}
+RUN --mount=type=secret,id=org,dst=/run/secrets/org \
+    --mount=type=secret,id=key,dst=/run/secrets/key \
+    set +x && \
+    subscription-manager register \
+      --org=$(cat /run/secrets/org) \
+      --activationkey=$(cat /run/secrets/key)
 
 WORKDIR /
 

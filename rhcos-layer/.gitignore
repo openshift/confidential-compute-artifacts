@@ -1,1 +1,4 @@
 .ocp-release-image
+ocp_pull_secret.json
+key_secret.txt
+org_secret.txt

@@ -12,9 +12,11 @@ build: check-podman get-pull-secret get-ocp-release-image ## Default target: Bui
 	@echo "Building RHCOS layer..."
 	if [ "$(TEE)" = "tdx" ]; then \
 		podman build --authfile $(REGISTRY_AUTH_FILE) --build-arg OCP_RELEASE_IMAGE=$(shell cat ./.ocp-release-image) \
+		--secret id=org,src=org_secret.txt --secret id=key,src=key_secret.txt \
 		-t $(IMAGE_TDX) -f tdx/Containerfile . ;\
 	elif [ "$(TEE)" = "snp" ]; then \
 		podman build --authfile $(REGISTRY_AUTH_FILE) --build-arg OCP_RELEASE_IMAGE=$(shell cat ./.ocp-release-image) \
+		--secret id=org,src=org_secret.txt --secret id=key,src=key_secret.txt \
 		-t $(IMAGE_SNP) -f snp/Containerfile . ;\
 	fi
 
