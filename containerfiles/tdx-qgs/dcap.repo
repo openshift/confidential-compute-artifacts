@@ -1,0 +1,9 @@
+[appstream]
+name=CentOS Stream $releasever - AppStream
+baseurl=https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial-SHA256
+gpgcheck=0
+repo_gpgcheck=0
+metadata_expire=6h
+countme=1
+enabled=1

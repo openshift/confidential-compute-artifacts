@@ -1,14 +1,9 @@
-FROM registry.access.redhat.com/ubi9:latest
+FROM registry.access.redhat.com/ubi10:latest
 
-ARG DCAP_VERSION=1.23
+COPY dcap.repo .
+COPY dcap-registration-flow /usr/bin
 
-WORKDIR /opt/intel
-RUN curl https://download.01.org/intel-sgx/sgx-dcap/${DCAP_VERSION}/linux/distro/rhel9.4-server/sgx_rpm_local_repo.tgz | tar zx && \
-    rpm --import https://download.01.org/intel-sgx/sgx_repo/ubuntu/intel-sgx-deb.key && \
-    dnf install --assumeyes --setopt=install_weak_deps=False boost-system boost-thread && \
-    dnf config-manager --add-repo file:///opt/intel/sgx_rpm_local_repo && \
-    dnf install --assumeyes --setopt=install_weak_deps=False tdx-qgs libsgx-dcap-default-qpl && \
-    dnf config-manager --disable opt_intel_sgx_rpm_local_repo && \
-    rm -r /opt/intel/sgx_rpm_local_repo
+RUN dnf config-manager --add-repo dcap.repo && \
+    dnf install --assumeyes tdx-qgs sgx-pckid-tool
 
 ENTRYPOINT ["/opt/intel/tdx-qgs/qgs", "--no-daemon"]
