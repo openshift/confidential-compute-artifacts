@@ -1,0 +1,4 @@
+packages: [tdx-qgs, sgx-pckid-tool]
+contentOrigin:
+  repofiles: ["./dcap.repo"]
+arches: [x86_64]
