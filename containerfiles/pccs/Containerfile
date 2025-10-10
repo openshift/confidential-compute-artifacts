@@ -1,30 +1,20 @@
 FROM registry.access.redhat.com/ubi9/nodejs-20:latest AS builder
 
-USER root
+RUN unzip /cachi2/output/deps/generic/dcap-source.zip
 
-RUN dnf install -y \
-        file \
-        jq \
-        zip
-
-ARG DCAP_VERSION=DCAP_1.23
-
-RUN git clone -b ${DCAP_VERSION} --depth 1 --recurse-submodules https://github.com/intel/SGXDataCenterAttestationPrimitives.git
-
-WORKDIR SGXDataCenterAttestationPrimitives/tools/PCKCertSelection/
+WORKDIR SGXDataCenterAttestationPrimitives-DCAP_1.23/tools/PCKCertSelection/
 RUN mkdir -p ../../prebuilt/openssl/inc \
     && mkdir -p ../../QuoteGeneration/pccs/lib \
-    && make \
+    && make -C PCKCertSelectionLib \
     && cp ./out/libPCKCertSelection.so ../../QuoteGeneration/pccs/lib
 
-WORKDIR /opt/app-root/src/SGXDataCenterAttestationPrimitives/QuoteGeneration/pccs
-RUN npm config set engine-strict true \
-    && npm install \
-    && npm audit fix
+WORKDIR ../../QuoteGeneration/pccs
+RUN . /cachi2/output/hermeto.env && npm config set engine-strict true \
+    && npm install
 
 FROM registry.access.redhat.com/ubi9/nodejs-20:latest
 
 WORKDIR intel/pccs
-COPY --from=builder --chown=default:1001 /opt/app-root/src/SGXDataCenterAttestationPrimitives/QuoteGeneration/pccs .
+COPY --from=builder --chown=default:1001 /opt/app-root/src/SGXDataCenterAttestationPrimitives-DCAP_1.23/QuoteGeneration/pccs .
 
 ENTRYPOINT ["/usr/bin/node", "pccs_server.js"]

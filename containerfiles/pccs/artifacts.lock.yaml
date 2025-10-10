@@ -1,0 +1,6 @@
+metadata:
+  version: "1.0"
+artifacts:
+  - download_url: "https://github.com/intel/SGXDataCenterAttestationPrimitives/archive/refs/tags/DCAP_1.23.zip"
+    checksum: "sha256:fab19703ccca3b8d73a3dcf544846305bc134ae68358eac6c8f83e751bdaf124"
+    filename: "dcap-source.zip"
