@@ -35,6 +35,8 @@ spec:
     value: Containerfile
   - name: path-context
     value: containerfiles/tdx-qgs
+  - name: prefetch-input
+    value: '[{"type": "rpm", "path": "./containerfiles/tdx-qgs/"}]'
   pipelineSpec:
     description: |
       This pipeline is ideal for building multi-arch container images from a Containerfile while maintaining trust after pipeline customization.
@@ -70,7 +72,7 @@ spec:
       description: Skip checks against built image
       name: skip-checks
       type: string
-    - default: "false"
+    - default: "true"
       description: Execute the build with network isolation
       name: hermetic
       type: string
