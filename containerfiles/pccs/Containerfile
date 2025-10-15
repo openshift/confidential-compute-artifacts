@@ -1,26 +1,21 @@
 FROM registry.access.redhat.com/ubi9/nodejs-20:latest AS builder
 
-USER root
+RUN mkdir -p SGXDataCenterAttestationPrimitives/QuoteVerification/QVL
+WORKDIR SGXDataCenterAttestationPrimitives
+RUN tar xf /cachi2/output/deps/generic/dcap-source.tar.gz --strip-components=1
 
-RUN dnf install -y \
-        file \
-        jq \
-        zip
+WORKDIR QuoteVerification/QVL
+RUN tar xf /cachi2/output/deps/generic/qvl-source.tar.gz --strip-components=1
 
-ARG DCAP_VERSION=DCAP_1.23
-
-RUN git clone -b ${DCAP_VERSION} --depth 1 --recurse-submodules https://github.com/intel/SGXDataCenterAttestationPrimitives.git
-
-WORKDIR SGXDataCenterAttestationPrimitives/tools/PCKCertSelection/
+WORKDIR ../../tools/PCKCertSelection/
 RUN mkdir -p ../../prebuilt/openssl/inc \
     && mkdir -p ../../QuoteGeneration/pccs/lib \
-    && make \
+    && make -C PCKCertSelectionLib \
     && cp ./out/libPCKCertSelection.so ../../QuoteGeneration/pccs/lib
 
-WORKDIR /opt/app-root/src/SGXDataCenterAttestationPrimitives/QuoteGeneration/pccs
+WORKDIR ../../QuoteGeneration/pccs
 RUN npm config set engine-strict true \
-    && npm install \
-    && npm audit fix
+    && npm install
 
 FROM registry.access.redhat.com/ubi9/nodejs-20:latest
 
