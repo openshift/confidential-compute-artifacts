@@ -17,9 +17,12 @@ WORKDIR ../../QuoteGeneration/pccs
 RUN npm config set engine-strict true \
     && npm install
 
-FROM registry.access.redhat.com/ubi9/nodejs-20:latest
+FROM registry.access.redhat.com/ubi9/nodejs-20-minimal:latest
 
-WORKDIR intel/pccs
-COPY --from=builder --chown=default:1001 /opt/app-root/src/SGXDataCenterAttestationPrimitives/QuoteGeneration/pccs .
+WORKDIR /opt/intel/pccs
+
+COPY --from=builder --chown=1001:users /opt/app-root/src/SGXDataCenterAttestationPrimitives/QuoteGeneration/pccs .
+COPY --chown=1001:users default.json config/
+COPY --chown=1001:users custom-environment-variables.json config/
 
 ENTRYPOINT ["/usr/bin/node", "pccs_server.js"]
