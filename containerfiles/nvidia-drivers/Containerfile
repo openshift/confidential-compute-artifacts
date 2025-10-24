@@ -1,0 +1,66 @@
+FROM registry.access.redhat.com/ubi10/ubi:latest AS nvidia-driver
+
+ARG KERNEL_UNAME
+ARG NVIDIA_DRIVER_VERSION
+
+WORKDIR /root/artifacts
+
+COPY default_x509.genkey .
+
+# FIXME: use cuda repository for RHEL 10 when it is available
+RUN --mount=type=secret,id=org,dst=/run/secrets/org \
+      --mount=type=secret,id=key,dst=/run/secrets/key \
+      set +x \
+    && subscription-manager register \
+      --org=$(cat /run/secrets/org) \
+      --activationkey=$(cat /run/secrets/key) \
+    && subscription-manager repos --enable codeready-builder-for-rhel-10-x86_64-rpms \
+    && dnf config-manager --add-repo=https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64/cuda-rhel9.repo \
+    && dnf config-manager --best --nodocs --setopt=install_weak_deps=False --save \
+    && DRIVER_STREAM=$(echo ${NVIDIA_DRIVER_VERSION} | cut -d '.' -f 1) \
+    && dnf -y module enable nvidia-driver:${DRIVER_STREAM}-open/default \
+    && dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
+
+# Install dependencies
+RUN KERNEL_VERSION=$(echo ${KERNEL_UNAME} | rev | cut -d. -f2- | rev) \
+    && dnf install -y --nogpgcheck nvidia-container-toolkit \
+    && dnf install -y \
+        jq policycoreutils openssl \
+        {kernel-core,kernel-devel}-${KERNEL_VERSION} \
+        vulkan-loader \
+        iptables
+
+# Generate key for kernel module signing
+# NOTES:
+# - CONFIG_MODULE_SIG and CONFIG_MODULE_SIG_ALL are both set in RHEL 10 kernel, hence all modules are required to be signed
+# - CONFIG_MODULE_SIG_FORCE is not set, hence modules signed with unknown keys will be loaded but they will taint the kernel
+RUN openssl req -new -nodes -utf8 -sha256 -days 36500 -batch -x509 \
+        -config $PWD/default_x509.genkey -outform PEM \
+        -out $PWD/public_key.pem -keyout $PWD/private_key.priv
+
+# Build and install nvidia drivers
+RUN curl -LO https://us.download.nvidia.com/tesla/${NVIDIA_DRIVER_VERSION}/NVIDIA-Linux-x86_64-${NVIDIA_DRIVER_VERSION}.run \
+    && chmod +x ./NVIDIA-Linux-x86_64-${NVIDIA_DRIVER_VERSION}.run \
+    && ./NVIDIA-Linux-x86_64-${NVIDIA_DRIVER_VERSION}.run -x \
+    && cd ./NVIDIA-Linux-x86_64-${NVIDIA_DRIVER_VERSION} \
+    && ./nvidia-installer \
+        -m=kernel-open \
+        --no-rebuild-initramfs \
+        --no-dkms \
+        --no-systemd \
+        --skip-module-load \
+        --no-install-compat32-libs \
+        --ui=none \
+        --no-questions \
+        --expert \
+        --x-library-path=/usr/lib64 \
+        --module-signing-secret-key=../private_key.priv \
+        --module-signing-public-key=../public_key.pem \
+        --kernel-name=${KERNEL_UNAME} \
+    && echo "${NVIDIA_DRIVER_VERSION}" > /usr/share/nvidia/nvidia_driver_version \
+    && jq -r '.chips[] | .devid' supported-gpus/supported-gpus.json > /usr/share/nvidia/supported-gpu-chips.devid \
+    && rm -f ../private_key.priv
+
+# Clean up
+RUN subscription-manager unregister \
+    && dnf clean all
