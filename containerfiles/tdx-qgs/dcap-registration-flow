@@ -5,7 +5,7 @@ set -u
 echo "Waiting for the PCCS to be ready ..."
 
 if ! curl --retry 20 --retry-delay 30 -k https://pccs-service:8042/sgx/certification/v4/rootcacrl &> /dev/null; then
-	echo "ERROR: PCCS pod didn't become ready after for 20 minutes"
+	echo "ERROR: PCCS pod didn't become ready for 10 minutes"
 	exit 1
 fi
 
@@ -13,7 +13,7 @@ echo "PCCS pod is ready, proceeding ..."
 
 ARGS="-user_token ${USER_TOKEN} -url ${PCCS_URL} -use_secure_cert ${SECURE_CERT}"
 
-echo "Calling PCKIDRetrievalTool ${ARGS} ..."
+echo "Calling PCKIDRetrievalTool ..."
 
 PCKIDRetrievalTool ${ARGS}
 
