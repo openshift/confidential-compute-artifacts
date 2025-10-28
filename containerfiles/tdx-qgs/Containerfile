@@ -4,4 +4,4 @@ COPY dcap-registration-flow /usr/bin
 
 RUN  dnf install --nogpgcheck --assumeyes tdx-qgs sgx-pckid-tool
 
-ENTRYPOINT ["/opt/intel/tdx-qgs/qgs", "--no-daemon"]
+ENTRYPOINT [ "/usr/sbin/qgs", "--no-daemon"]
