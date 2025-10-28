@@ -16,6 +16,7 @@ RUN mkdir -p ../../prebuilt/openssl/inc \
 WORKDIR ../../QuoteGeneration/pccs
 COPY --chown=1001:users package-lock.json .
 COPY --chown=1001:users package.json .
+RUN cat package-lock.json
 RUN npm config set engine-strict true \
     && npm install --loglevel=silly
 
