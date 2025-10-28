@@ -14,6 +14,8 @@ RUN mkdir -p ../../prebuilt/openssl/inc \
     && cp ./out/libPCKCertSelection.so ../../QuoteGeneration/pccs/lib
 
 WORKDIR ../../QuoteGeneration/pccs
+COPY --chown=1001:users package-lock.json .
+COPY --chown=1001:users package.json .
 RUN npm config set engine-strict true \
     && npm install
 
