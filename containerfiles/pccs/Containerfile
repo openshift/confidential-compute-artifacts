@@ -15,7 +15,12 @@ RUN mkdir -p ../../prebuilt/openssl/inc \
 
 WORKDIR ../../QuoteGeneration/pccs
 RUN npm config set engine-strict true \
-    && npm install
+    && npm install --loglevel=silly || ( \
+      echo "=== npm install failed: listing npm log dir ===" && \
+      ls -la /opt/app-root/src/.npm/_logs || true && \
+      echo "=== printing npm logs ===" && \
+      cat /opt/app-root/src/.npm/_logs/*.log || true && \
+      false )
 
 FROM registry.access.redhat.com/ubi9/nodejs-20-minimal:9.6-1760544727
 
