@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/nodejs-20:latest AS builder
+FROM registry.access.redhat.com/ubi9/nodejs-22:9.6-1762763285 AS builder
 
 RUN mkdir -p SGXDataCenterAttestationPrimitives/QuoteVerification/QVL
 WORKDIR SGXDataCenterAttestationPrimitives
@@ -17,7 +17,7 @@ WORKDIR ../../QuoteGeneration/pccs
 RUN npm config set engine-strict true \
     && npm install
 
-FROM registry.access.redhat.com/ubi9/nodejs-20-minimal:latest
+FROM registry.access.redhat.com/ubi9/nodejs-22-minimal:9.6-1760544659
 
 WORKDIR /opt/intel/pccs
 
