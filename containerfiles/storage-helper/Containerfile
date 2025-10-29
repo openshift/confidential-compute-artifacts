@@ -1,0 +1,21 @@
+FROM registry.access.redhat.com/ubi10/ubi:latest
+
+# Uncomment the below instructions when running the build from an 
+# unregistered host
+#RUN --mount=type=secret,id=org,dst=/run/secrets/org \
+#    --mount=type=secret,id=key,dst=/run/secrets/key \
+#    set +x && \
+#    subscription-manager register \
+#      --org=$(cat /run/secrets/org) \
+#      --activationkey=$(cat /run/secrets/key)
+
+RUN dnf install -y \
+   nfs-utils \
+   iscsi-initiator-utils \
+   e2fsprogs \
+   xfsprogs \
+   util-linux-core \
+   cryptsetup
+
+#Uncomment the below line when using subscription-manager explicitly
+#RUN subscription-manager unregister
