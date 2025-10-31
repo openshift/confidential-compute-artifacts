@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/nodejs-20:latest AS builder
+FROM registry.access.redhat.com/ubi9/nodejs-20:9.6-1761625725 AS builder
 
 RUN mkdir -p SGXDataCenterAttestationPrimitives/QuoteVerification/QVL
 WORKDIR SGXDataCenterAttestationPrimitives
@@ -14,10 +14,13 @@ RUN mkdir -p ../../prebuilt/openssl/inc \
     && cp ./out/libPCKCertSelection.so ../../QuoteGeneration/pccs/lib
 
 WORKDIR ../../QuoteGeneration/pccs
+COPY --chown=1001:users package-lock.json .
+COPY --chown=1001:users package.json .
+RUN cat package-lock.json
 RUN npm config set engine-strict true \
-    && npm install
+    && npm install --force --loglevel=silly
 
-FROM registry.access.redhat.com/ubi9/nodejs-20-minimal:latest
+FROM registry.access.redhat.com/ubi9/nodejs-20-minimal:9.6-1760544727
 
 WORKDIR /opt/intel/pccs
 
