@@ -7,3 +7,5 @@ artifacts:
   - download_url: "https://github.com/intel/SGX-TDX-DCAP-QuoteVerificationLibrary/archive/refs/tags/v1.1.7988.tar.gz"
     checksum: "sha256:afc77e3d9ac940ac78eaa03e4e2229e59a82b4f9a5bad28e25b454f1966ac48e"
     filename: "qvl-source.tar.gz"
+  - download_url: "https://github.com/TryGhost/node-sqlite3/releases/download/v5.1.7/sqlite3-v5.1.7-napi-v6-linux-x64.tar.gz"
+    checksum: "sha256:6d1f7a95e5aca90db1fd6a2839380a021d5ee23d46f2d7c520ded094da813fed"
