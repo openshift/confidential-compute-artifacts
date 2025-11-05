@@ -1,5 +1,7 @@
 FROM registry.access.redhat.com/ubi9/nodejs-22:9.6-1762763285 AS builder
 
+USER root
+
 RUN mkdir -p SGXDataCenterAttestationPrimitives/QuoteVerification/QVL
 WORKDIR SGXDataCenterAttestationPrimitives
 RUN tar xf /cachi2/output/deps/generic/dcap-source.tar.gz --strip-components=1
@@ -14,10 +16,11 @@ RUN mkdir -p ../../prebuilt/openssl/inc \
     && cp ./out/libPCKCertSelection.so ../../QuoteGeneration/pccs/lib
 
 WORKDIR ../../QuoteGeneration/pccs
-COPY --chown=1001:users package-lock.json .
-COPY --chown=1001:users package.json .
+COPY package-lock.json .
+COPY package.json .
+RUN dnf module install -y nodejs:22/development && ln -s /usr/include/node/config-x86_64.gypi /usr/include/node/config.gypi
 RUN npm config set engine-strict true \
-    && npm install
+    && npm_config_nodedir=/usr npm install --build-from-source
 
 FROM registry.access.redhat.com/ubi9/nodejs-22-minimal:9.6-1760544659
 

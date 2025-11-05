@@ -1,0 +1,4 @@
+packages: ["@nodejs:22/development", annobin, gcc-plugin-annobin]
+contentOrigin:
+  repofiles: ["./nodejs-devel.repo"]
+arches: [x86_64]
