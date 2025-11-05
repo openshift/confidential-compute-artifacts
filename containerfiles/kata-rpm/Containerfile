@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/ubi:latest
+FROM registry.access.redhat.com/ubi10/ubi:10.1-1762189261
 
 # Use subscription-manager to enable codeready-builder-for-rhel-9-x86_64-rpm
 ARG ORG

@@ -24,7 +24,7 @@ tar czvf tdx-rpms-0.2.0.tar.gz *.rpm
 Following is the Containerfile:
 
 ```sh
-FROM registry.access.redhat.com/ubi9/ubi:latest
+FROM registry.access.redhat.com/ubi10/ubi:latest
 
 COPY tdx-rpms-0.2.0.tar.gz /tdx-rpms-0.2.0.tar.gz
 COPY snp-rpms-0.2.0.tar.gz /snp-rpms-0.2.0.tar.gz
