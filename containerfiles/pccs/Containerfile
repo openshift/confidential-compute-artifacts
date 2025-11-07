@@ -20,7 +20,7 @@ COPY package-lock.json .
 COPY package.json .
 RUN dnf module install -y nodejs:22/development && ln -s /usr/include/node/config-x86_64.gypi /usr/include/node/config.gypi
 RUN npm config set engine-strict true \
-    && npm_config_nodedir=/usr npm install --build-from-source
+    && npm_config_nodedir=/usr npm install --build-from-source --loglevel=silly
 
 FROM registry.access.redhat.com/ubi9/nodejs-22-minimal:9.6-1760544659
 
