@@ -1,4 +1,5 @@
 FROM registry.access.redhat.com/ubi10/nodejs-22:10.1-1762230772 AS builder
+USER root
 
 RUN mkdir -p SGXDataCenterAttestationPrimitives/QuoteVerification/QVL
 WORKDIR SGXDataCenterAttestationPrimitives
@@ -16,8 +17,9 @@ RUN mkdir -p ../../prebuilt/openssl/inc \
 WORKDIR ../../QuoteGeneration/pccs
 COPY package-lock.json .
 COPY package.json .
+RUN dnf install -y nodejs-devel && ln -s /usr/include/node/config-x86_64.gypi /usr/include/node/config.gypi
 RUN npm config set engine-strict true \
-    && npm install
+    && npm_config_nodedir=/usr npm install --build-from-source --loglevel=silly
 
 FROM registry.access.redhat.com/ubi10/nodejs-22-minimal:10.1-1762230105
 
