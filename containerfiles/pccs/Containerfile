@@ -3,7 +3,7 @@ USER root
 
 RUN mkdir -p SGXDataCenterAttestationPrimitives/QuoteVerification/QVL
 WORKDIR SGXDataCenterAttestationPrimitives
-RUN tar xf /cachi2/output/deps/generic/dcap-source.tar.gz --strip-components=1
+COPY DCAP/ ./
 
 RUN dnf install -y nodejs-devel sgx-libs && ln -s /usr/include/node/config-x86_64.gypi /usr/include/node/config.gypi
 
