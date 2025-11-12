@@ -1,4 +1,6 @@
 packages: [tdx-qgs, sgx-pckid-tool]
 contentOrigin:
-  repofiles: ["./dcap.repo"]
+  repofiles: ["./redhat.repo"]
 arches: [x86_64]
+context:
+  containerfile: Containerfile

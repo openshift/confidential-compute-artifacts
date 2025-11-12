@@ -4,89 +4,113 @@ lockfileVendor: redhat
 arches:
 - arch: x86_64
   packages:
-  - url: https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/Packages/boost-system-1.83.0-5.el10.x86_64.rpm
-    repoid: appstream
-    size: 15139
-    checksum: sha256:98e18345d8a63b01ba64ccc029131c122354135e84d3d0dc109bd47790639e4f
-    name: boost-system
-    evr: 1.83.0-5.el10
-    sourcerpm: boost-1.83.0-5.el10.src.rpm
-  - url: https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/Packages/boost-thread-1.83.0-5.el10.x86_64.rpm
-    repoid: appstream
-    size: 63375
-    checksum: sha256:1beaa69e46921963ee8a23ce59ec9250509c082033513ccfa292fe70bd578c43
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/b/boost-thread-1.83.0-5.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 64781
+    checksum: sha256:363d14376351bfc286efce5c3f725f79c5e6a2433129994beb4adfc7ba3bd69a
     name: boost-thread
     evr: 1.83.0-5.el10
     sourcerpm: boost-1.83.0-5.el10.src.rpm
-  - url: https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/Packages/protobuf-3.19.6-11.el10.x86_64.rpm
-    repoid: appstream
-    size: 1066739
-    checksum: sha256:46c5f51c8b9684049685cb6454d8ff51b63061223b715968dc8d984f39c50c8b
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/p/protobuf-3.19.6-11.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 1069271
+    checksum: sha256:8dee7fc8c692cfef1eb66bf4e8afff31a90b607ec8c4305070c6dc22f9448fd4
     name: protobuf
     evr: 3.19.6-11.el10
     sourcerpm: protobuf-3.19.6-11.el10.src.rpm
-  - url: https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/Packages/sgx-common-2.25-6.el10.x86_64.rpm
-    repoid: appstream
-    size: 49787
-    checksum: sha256:4d11bacadf5bdcaeeeaa9bc87de3303aeac3b0c3230f8cc56acd946e74066235
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/s/sgx-common-2.25-6.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 49835
+    checksum: sha256:870c10da5b614cc0ddb8f2ead2de88c07fcd4f088a508fd4a2d5edc26b9e9dc0
     name: sgx-common
     evr: 2.25-6.el10
     sourcerpm: linux-sgx-2.25-6.el10.src.rpm
-  - url: https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/Packages/sgx-enclave-prebuilt-common-2.25-3.el10.x86_64.rpm
-    repoid: appstream
-    size: 36296
-    checksum: sha256:a07326d0e7a03f23916b12f96076741f741d67660f3f0ae2747b8ae12a7ed933
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/s/sgx-enclave-prebuilt-common-2.25-3.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 36352
+    checksum: sha256:f930c23ee6d50a896fc7a8823381945708e65ed83a170608562446e0910bbea5
     name: sgx-enclave-prebuilt-common
     evr: 2.25-3.el10
     sourcerpm: linux-sgx-enclaves-prebuilt-2.25-3.el10.src.rpm
-  - url: https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/Packages/sgx-enclave-prebuilt-ide-signed-2.25-3.el10.x86_64.rpm
-    repoid: appstream
-    size: 93640
-    checksum: sha256:94dea0e95d46007d4ace909a84d7edb81736cd6d5f663044403fe878235936a1
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/s/sgx-enclave-prebuilt-ide-signed-2.25-3.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 93696
+    checksum: sha256:8c77ae0d0a5bab9997530d53a71a0931f76392c03f63bcd3c5fb74a2b4b07d44
     name: sgx-enclave-prebuilt-ide-signed
     evr: 2.25-3.el10
     sourcerpm: linux-sgx-enclaves-prebuilt-2.25-3.el10.src.rpm
-  - url: https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/Packages/sgx-enclave-prebuilt-pce-signed-2.25-3.el10.x86_64.rpm
-    repoid: appstream
-    size: 956013
-    checksum: sha256:9736c9b8c850064fed72e32630e1dc5660c6da7568b02b98ba2aedb08568b226
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/s/sgx-enclave-prebuilt-pce-signed-2.25-3.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 956069
+    checksum: sha256:c50f519f465c5cb45ace09bd4d2684c0811db47f658cc15cc2970478ea7ac068
     name: sgx-enclave-prebuilt-pce-signed
     evr: 2.25-3.el10
     sourcerpm: linux-sgx-enclaves-prebuilt-2.25-3.el10.src.rpm
-  - url: https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/Packages/sgx-enclave-prebuilt-tdqe-signed-2.25-3.el10.x86_64.rpm
-    repoid: appstream
-    size: 903752
-    checksum: sha256:9dd6d455e31fada348992a3f5bcbfd3c186383e45514bb47273973d0cb3b6587
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/s/sgx-enclave-prebuilt-tdqe-signed-2.25-3.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 903808
+    checksum: sha256:c956664cd9022c13f250c49dd9bef181d3d7847781b4876b132798c670f16164
     name: sgx-enclave-prebuilt-tdqe-signed
     evr: 2.25-3.el10
     sourcerpm: linux-sgx-enclaves-prebuilt-2.25-3.el10.src.rpm
-  - url: https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/Packages/sgx-libs-2.25-6.el10.x86_64.rpm
-    repoid: appstream
-    size: 1052441
-    checksum: sha256:bf9d95a56a529b28451c6bc3992b3e6ff3df46b469b34d35d5b65a3f82ba541c
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/s/sgx-libs-2.25-6.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 1052485
+    checksum: sha256:6e85a1a45bf3ae569ac3c942bc1e4f6d312cd7b048e93bd1fc5e103675f0f4c1
     name: sgx-libs
     evr: 2.25-6.el10
     sourcerpm: linux-sgx-2.25-6.el10.src.rpm
-  - url: https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/Packages/sgx-mpa-2.25-6.el10.x86_64.rpm
-    repoid: appstream
-    size: 41104
-    checksum: sha256:8316dc11aa28ea905b5d699eb191afe722ac245213b93a12a43305b4f75741c7
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/s/sgx-mpa-2.25-6.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 41156
+    checksum: sha256:7680f34c7d83084d3ea2b98b500443b299aecd6b10ff17ea261e9cb99689efaf
     name: sgx-mpa
     evr: 2.25-6.el10
     sourcerpm: linux-sgx-2.25-6.el10.src.rpm
-  - url: https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/Packages/sgx-pckid-tool-2.25-6.el10.x86_64.rpm
-    repoid: appstream
-    size: 36353
-    checksum: sha256:5af27ea25eeaf5952f49cc40d4e306ae7fc1531ad4942b524b84b196b6184f18
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/s/sgx-pckid-tool-2.25-6.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 36409
+    checksum: sha256:ad1025d772505ff632a4282132ed880a249ef519264e7a375da23fb6569b2af8
     name: sgx-pckid-tool
     evr: 2.25-6.el10
     sourcerpm: linux-sgx-2.25-6.el10.src.rpm
-  - url: https://mirror.stream.centos.org/10-stream/AppStream/x86_64/os/Packages/tdx-qgs-2.25-6.el10.x86_64.rpm
-    repoid: appstream
-    size: 110308
-    checksum: sha256:c88ae69a6acb78bb393b13d0d5b3cd9802de85c7815044f81cdd48ae6bcd2f5e
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/t/tdx-qgs-2.25-6.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 110360
+    checksum: sha256:0d23ddb173abbe76afaf7f9e804c7cdb49402b73ef0a29115e972411b09a1225
     name: tdx-qgs
     evr: 2.25-6.el10
     sourcerpm: linux-sgx-2.25-6.el10.src.rpm
-  source: []
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/b/boost-system-1.83.0-5.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-baseos-rpms
+    size: 16549
+    checksum: sha256:c32ceffb9951c1ff153159f795a1bdce45c18a08d8c4584a1d764b34a03aa85f
+    name: boost-system
+    evr: 1.83.0-5.el10
+    sourcerpm: boost-1.83.0-5.el10.src.rpm
+  source:
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/linux-sgx-2.25-6.el10.src.rpm
+    repoid: rhel-10-for-x86_64-appstream-source-rpms
+    size: 37836578
+    checksum: sha256:045b266eec5bb4c40189f6e9228cca3187f740fabe9a1c67663fe22e7f654cd5
+    name: linux-sgx
+    evr: 2.25-6.el10
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/linux-sgx-enclaves-prebuilt-2.25-3.el10.src.rpm
+    repoid: rhel-10-for-x86_64-appstream-source-rpms
+    size: 11648614
+    checksum: sha256:6ce950f8c6ebfd98703fc1896589043fd13027aeff53896d7d419f58e5f8a63a
+    name: linux-sgx-enclaves-prebuilt
+    evr: 2.25-3.el10
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/p/protobuf-3.19.6-11.el10.src.rpm
+    repoid: rhel-10-for-x86_64-appstream-source-rpms
+    size: 6294891
+    checksum: sha256:b2517127d2a9fab91c24e961a2eb79f7cdbe10eaa0158e216f455c933b9e7a2f
+    name: protobuf
+    evr: 3.19.6-11.el10
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/b/boost-1.83.0-5.el10.src.rpm
+    repoid: rhel-10-for-x86_64-baseos-source-rpms
+    size: 122722307
+    checksum: sha256:54109ad531c6c068dff7dc3e9be70ce6d42b3efab3f594dea187117a2e38efc0
+    name: boost
+    evr: 1.83.0-5.el10
   module_metadata: []
