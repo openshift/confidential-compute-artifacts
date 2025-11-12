@@ -151,6 +151,13 @@ arches:
     name: perl-srpm-macros
     evr: 1-57.el10
     sourcerpm: perl-srpm-macros-1-57.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/p/protobuf-3.19.6-11.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 1069271
+    checksum: sha256:8dee7fc8c692cfef1eb66bf4e8afff31a90b607ec8c4305070c6dc22f9448fd4
+    name: protobuf
+    evr: 3.19.6-11.el10
+    sourcerpm: protobuf-3.19.6-11.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/p/pyproject-srpm-macros-1.16.2-1.el10.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 15901
@@ -186,6 +193,20 @@ arches:
     name: rust-toolset-srpm-macros
     evr: 1.88.0-1.el10
     sourcerpm: rust-1.88.0-1.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/s/sgx-common-2.25-6.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 49835
+    checksum: sha256:870c10da5b614cc0ddb8f2ead2de88c07fcd4f088a508fd4a2d5edc26b9e9dc0
+    name: sgx-common
+    evr: 2.25-6.el10
+    sourcerpm: linux-sgx-2.25-6.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/s/sgx-libs-2.25-6.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 1052485
+    checksum: sha256:6e85a1a45bf3ae569ac3c942bc1e4f6d312cd7b048e93bd1fc5e103675f0f4c1
+    name: sgx-libs
+    evr: 2.25-6.el10
+    sourcerpm: linux-sgx-2.25-6.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/z/zlib-ng-compat-devel-2.2.3-2.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 39591
@@ -257,6 +278,12 @@ arches:
     checksum: sha256:0072fa207c9bc26de30d81855be9d26dc67f0774df30cd883bc8d19539e0082b
     name: libuv
     evr: 1:1.51.0-1.el10
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/linux-sgx-2.25-6.el10.src.rpm
+    repoid: rhel-10-for-x86_64-appstream-source-rpms
+    size: 37836578
+    checksum: sha256:045b266eec5bb4c40189f6e9228cca3187f740fabe9a1c67663fe22e7f654cd5
+    name: linux-sgx
+    evr: 2.25-6.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/lua-rpm-macros-1-15.el10.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
     size: 15998
@@ -299,6 +326,12 @@ arches:
     checksum: sha256:e5d1cd51c85bbfab9833f2fa5884667227007d2ec157ac036622d6e26581a841
     name: perl-srpm-macros
     evr: 1-57.el10
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/p/protobuf-3.19.6-11.el10.src.rpm
+    repoid: rhel-10-for-x86_64-appstream-source-rpms
+    size: 6294891
+    checksum: sha256:b2517127d2a9fab91c24e961a2eb79f7cdbe10eaa0158e216f455c933b9e7a2f
+    name: protobuf
+    evr: 3.19.6-11.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/p/pyproject-rpm-macros-1.16.2-1.el10.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
     size: 317491

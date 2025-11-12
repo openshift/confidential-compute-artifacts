@@ -4,6 +4,3 @@ artifacts:
   - download_url: "https://github.com/intel/SGXDataCenterAttestationPrimitives/archive/refs/tags/DCAP_1.23.tar.gz"
     checksum: "sha256:c4567e7bc0a2f0dbb70fa2625a9af492e00b96e83d07fa69b9f4f304a9992495"
     filename: "dcap-source.tar.gz"
-  - download_url: "https://github.com/intel/SGX-TDX-DCAP-QuoteVerificationLibrary/archive/refs/tags/v1.1.7988.tar.gz"
-    checksum: "sha256:afc77e3d9ac940ac78eaa03e4e2229e59a82b4f9a5bad28e25b454f1966ac48e"
-    filename: "qvl-source.tar.gz"

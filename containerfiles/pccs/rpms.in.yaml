@@ -1,4 +1,4 @@
-packages: [nodejs-devel] 
+packages: [nodejs-devel, sgx-libs] 
 contentOrigin:
   repofiles: ["./redhat.repo"] 
 arches:

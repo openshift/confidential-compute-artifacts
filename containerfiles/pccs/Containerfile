@@ -5,19 +5,15 @@ RUN mkdir -p SGXDataCenterAttestationPrimitives/QuoteVerification/QVL
 WORKDIR SGXDataCenterAttestationPrimitives
 RUN tar xf /cachi2/output/deps/generic/dcap-source.tar.gz --strip-components=1
 
-WORKDIR QuoteVerification/QVL
-RUN tar xf /cachi2/output/deps/generic/qvl-source.tar.gz --strip-components=1
+RUN dnf install -y nodejs-devel sgx-libs && ln -s /usr/include/node/config-x86_64.gypi /usr/include/node/config.gypi
 
-WORKDIR ../../tools/PCKCertSelection/
-RUN mkdir -p ../../prebuilt/openssl/inc \
-    && mkdir -p ../../QuoteGeneration/pccs/lib \
-    && make -C PCKCertSelectionLib \
-    && cp ./out/libPCKCertSelection.so ../../QuoteGeneration/pccs/lib
+RUN mkdir -p prebuilt/openssl/inc \
+    && mkdir -p QuoteGeneration/pccs/lib \
+    && cp /usr/lib64/libPCKCertSelection.so.1 QuoteGeneration/pccs/lib/libPCKCertSelection.so
 
-WORKDIR ../../QuoteGeneration/pccs
+WORKDIR QuoteGeneration/pccs
 COPY package-lock.json .
 COPY package.json .
-RUN dnf install -y nodejs-devel && ln -s /usr/include/node/config-x86_64.gypi /usr/include/node/config.gypi
 RUN npm config set engine-strict true \
     && npm_config_nodedir=/usr npm install --build-from-source --loglevel=silly
 
