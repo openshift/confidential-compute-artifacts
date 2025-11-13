@@ -17,7 +17,7 @@ COPY package.json .
 RUN npm config set engine-strict true \
     && npm_config_nodedir=/usr npm install --build-from-source --loglevel=silly
 
-FROM registry.access.redhat.com/ubi10/nodejs-22-minimal:10.1-1762230105
+FROM registry.access.redhat.com/ubi10/nodejs-22-minimal:10.1-1763041816
 
 WORKDIR /opt/intel/pccs
 
