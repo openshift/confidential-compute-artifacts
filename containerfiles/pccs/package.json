@@ -25,6 +25,9 @@
   "engines": {
     "node": ">= 18.17.0"
   },
+  "overrides": {
+    "node-gyp": "11.x"
+  },
   "scripts": {
     "start": "node pccs_server.js",
     "test": "NODE_ENV=test mocha ../../../unittests/psw/pccs_ut/test.js --timeout 120000 --exit",

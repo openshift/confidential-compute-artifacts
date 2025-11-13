@@ -1,23 +1,23 @@
-FROM registry.access.redhat.com/ubi9/nodejs-20:latest AS builder
+FROM registry.access.redhat.com/ubi10/nodejs-22:10.1-1762230772 AS builder
+USER root
 
 RUN mkdir -p SGXDataCenterAttestationPrimitives/QuoteVerification/QVL
 WORKDIR SGXDataCenterAttestationPrimitives
-RUN tar xf /cachi2/output/deps/generic/dcap-source.tar.gz --strip-components=1
+COPY DCAP/ ./
 
-WORKDIR QuoteVerification/QVL
-RUN tar xf /cachi2/output/deps/generic/qvl-source.tar.gz --strip-components=1
+RUN dnf install -y nodejs-devel sgx-libs && ln -s /usr/include/node/config-x86_64.gypi /usr/include/node/config.gypi
 
-WORKDIR ../../tools/PCKCertSelection/
-RUN mkdir -p ../../prebuilt/openssl/inc \
-    && mkdir -p ../../QuoteGeneration/pccs/lib \
-    && make -C PCKCertSelectionLib \
-    && cp ./out/libPCKCertSelection.so ../../QuoteGeneration/pccs/lib
+RUN mkdir -p prebuilt/openssl/inc \
+    && mkdir -p QuoteGeneration/pccs/lib \
+    && cp /usr/lib64/libPCKCertSelection.so.1 QuoteGeneration/pccs/lib/libPCKCertSelection.so
 
-WORKDIR ../../QuoteGeneration/pccs
+WORKDIR QuoteGeneration/pccs
+COPY package-lock.json .
+COPY package.json .
 RUN npm config set engine-strict true \
-    && npm install
+    && npm_config_nodedir=/usr npm install --build-from-source --loglevel=silly
 
-FROM registry.access.redhat.com/ubi9/nodejs-20-minimal:latest
+FROM registry.access.redhat.com/ubi10/nodejs-22-minimal:10.1-1762230105
 
 WORKDIR /opt/intel/pccs
 
