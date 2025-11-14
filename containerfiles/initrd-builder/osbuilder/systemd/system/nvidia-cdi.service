@@ -1,0 +1,9 @@
+[Unit]
+Description=Generate NVIDIA CDI Configuration
+Wants=multi-user.target
+Before=kata-agent.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/systemd/systemd-nvidia-cdi.sh
+RemainAfterExit=yes
