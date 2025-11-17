@@ -88,20 +88,20 @@ arches:
     name: kernel-srpm-macros
     evr: 1.0-25.el10
     sourcerpm: kernel-srpm-macros-1.0-25.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/libuv-devel-1.51.0-1.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/libuv-devel-1.51.0-1.el10_0.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 43405
-    checksum: sha256:efa3a8cd5d9489d684207021799931f1d7a607062b48afbcd3203dfde09b2ba7
+    size: 42607
+    checksum: sha256:a28c2611ad22e60dc7c85fff84c65d9b5ab317904b099613a03a9f6affc02bd9
     name: libuv-devel
-    evr: 1:1.51.0-1.el10
-    sourcerpm: libuv-1.51.0-1.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/libuv-static-1.51.0-1.el10.x86_64.rpm
+    evr: 1:1.51.0-1.el10_0
+    sourcerpm: libuv-1.51.0-1.el10_0.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/libuv-static-1.51.0-1.el10_0.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 112730
-    checksum: sha256:89ad8ae100ac93a052416d813426a66b8e34730656bb3291e4b743d98b005484
+    size: 111450
+    checksum: sha256:1719866e5ceeb684ec56bca72dfc26a8f7d969e19b8c89f82fa8ce1653eec923
     name: libuv-static
-    evr: 1:1.51.0-1.el10
-    sourcerpm: libuv-1.51.0-1.el10.src.rpm
+    evr: 1:1.51.0-1.el10_0
+    sourcerpm: libuv-1.51.0-1.el10_0.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/lua-srpm-macros-1-15.el10.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 10752
@@ -272,12 +272,12 @@ arches:
     checksum: sha256:29f867c65272b8f272e82ee0a9f47d155390412b5ba77cb5bc9b405e7a64cd87
     name: kernel-srpm-macros
     evr: 1.0-25.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/libuv-1.51.0-1.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/libuv-1.51.0-1.el10_0.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
-    size: 1388860
-    checksum: sha256:0072fa207c9bc26de30d81855be9d26dc67f0774df30cd883bc8d19539e0082b
+    size: 1387473
+    checksum: sha256:7b9bf8f2800d3c666cadc21b42e8c00966b96db39100c896d7638a2e7be8e4ac
     name: libuv
-    evr: 1:1.51.0-1.el10
+    evr: 1:1.51.0-1.el10_0
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/linux-sgx-2.25-6.el10.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
     size: 37836578
