@@ -25,4 +25,16 @@ COPY --from=builder --chown=1001:users /opt/app-root/src/SGXDataCenterAttestatio
 COPY --chown=1001:users default.json config/
 COPY --chown=1001:users custom-environment-variables.json config/
 
+# Red Hat labels
+LABEL name="openshift-sandboxed-containers/osc-pccs" \
+cpe="cpe:/a:redhat:confidential_compute_attestation:1.11::el9" \
+version="1.11" \
+com.redhat.component="osc-pccs" \
+summary="Intel SGX Provisioning Certificate Caching Service (PCCS)" \
+maintainer="redhat@redhat.com" \
+description="Intel SGX Provisioning Certificate Caching Service (PCCS) for Openshift Sandboxed Containers" \
+io.k8s.display-name="openshift-sandboxed-containers-pccs" \
+io.k8s.description="Intel SGX Provisioning Certificate Caching Service (PCCS) for Openshift Sandboxed Containers" \
+io.openshift.tags=""
+
 ENTRYPOINT ["/usr/bin/node", "pccs_server.js"]

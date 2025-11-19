@@ -17,5 +17,17 @@ RUN dnf install -y \
    util-linux-core \
    cryptsetup
 
+# Red Hat labels
+LABEL name="openshift-sandboxed-containers/osc-storage-helper" \
+cpe="cpe:/a:redhat:confidential_compute_attestation:1.11::el9" \
+version="1.11" \
+com.redhat.component="osc-storage-helper" \
+summary="Openshift Sandboxed Containers Storage Helper" \
+maintainer="redhat@redhat.com" \
+description="Openshift Sandboxed Containers Storage Helper" \
+io.k8s.display-name="openshift-sandboxed-containers-storage-helper" \
+io.k8s.description="Openshift Sandboxed Containers Storage Helper" \
+io.openshift.tags=""
+
 #Uncomment the below line when using subscription-manager explicitly
 #RUN subscription-manager unregister
