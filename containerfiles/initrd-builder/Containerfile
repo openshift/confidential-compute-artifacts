@@ -1,0 +1,195 @@
+# Global args
+ARG PODVM_PAYLOAD_IMAGE
+ARG NVIDIA_DRIVERS_BASE_IMAGE
+ARG NVIDIA_DRIVERS_VERSION
+ARG KERNEL_UNAME
+ARG PRE_BUILD_INITRDS
+
+# RHEL 10 podvm-payload
+FROM ${PODVM_PAYLOAD_IMAGE} AS rhel10-podvm-payload
+
+####################################
+# STAGE 1: Setup the initrd builder
+####################################
+
+FROM ${NVIDIA_DRIVERS_BASE_IMAGE} AS initrd-builder-setup
+
+ARG KERNEL_UNAME
+ARG NVIDIA_DRIVERS_VERSION
+
+WORKDIR /root/artifacts
+
+# Install nvidia drivers
+#
+# Make sure the file /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
+# is removed, otherwise the nvidia drivers will not be added to
+# the initrd when running kata-osbuilder.sh
+RUN --mount=type=secret,id=org,dst=/run/secrets/org \
+      --mount=type=secret,id=key,dst=/run/secrets/key \
+      set +x \
+    && subscription-manager register \
+      --org=$(cat /run/secrets/org) \
+      --activationkey=$(cat /run/secrets/key) \
+    && subscription-manager repos --enable=rhel-10-for-x86_64-supplementary-rpms \
+    && subscription-manager repos --enable=rhel-10-for-x86_64-extensions-rpms \
+    && dnf config-manager --add-repo=https://developer.download.nvidia.com/compute/cuda/repos/rhel10/x86_64/cuda-rhel10.repo \
+    && dnf config-manager --setopt=cuda-rhel10-x86_64.priority=99 --save \
+    && dnf config-manager --setopt=rhel-10-for-x86_64-supplementary-rpms.priority=80 --save \
+    && dnf config-manager --setopt=rhel-10-for-x86_64-extensions-rpms.priority=80 --save \
+    && dnf config-manager --best --nodocs --setopt=install_weak_deps=False --save \
+    && dnf install -y \
+        kernel-{core,modules,headers}-${KERNEL_UNAME} \
+        nvidia-driver-${NVIDIA_DRIVERS_VERSION} \
+        nvidia-driver-cuda-${NVIDIA_DRIVERS_VERSION} \
+        nvidia-driver-libs-${NVIDIA_DRIVERS_VERSION} \
+        nvidia-persistenced-${NVIDIA_DRIVERS_VERSION} \
+        kmod-nvidia \
+        nvidia-container-toolkit \
+        zstd jq policycoreutils dbus-daemon rsync chrony rsyslog \
+        iptables libtirpc git make gcc \
+    && rm -f /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
+
+# Copy pause bundle
+# TODO: fix podvm-payload to create a zst tarball as required by the rootfs.sh
+COPY --from=rhel10-podvm-payload /pause-bundle.tar.gz .
+RUN mkdir -p pause \
+    && tar xf pause-bundle.tar.gz -C pause \
+    && tar --zstd -cvf pause-bundle.tar.zst -C pause .
+
+# Copy and extract podvm-binaries.tar.gz
+COPY --from=rhel10-podvm-payload /podvm-binaries.tar.gz .
+RUN mkdir -p podvm-binaries \
+    && tar -xf podvm-binaries.tar.gz -C podvm-binaries
+
+# Prepare the osbuilder and agent directories with everything we need to build
+# the initrds
+COPY patches/ patches/
+RUN set -o pipefail; \
+    set -e; \
+    git clone https://github.com/openshift/kata-containers -b osc-release \
+    && pushd kata-containers > /dev/null \
+        && echo "Using out kata version $(cat VERSION) from osc-release branch" \
+        && echo "Applying patches" \
+        && git apply --verbose ../patches/0999-osbuilder-Adjust-agent_version-for-our-builds.patch \
+        && echo "Generate kata-agent.service" \
+        && make -C src/agent kata-agent.service 2> /dev/null \
+        && echo "Build nsdax" \
+        && gcc -O2 -g \
+            tools/osbuilder/image-builder/nsdax.gpl.c \
+            -o tools/osbuilder/nsdax \
+    && popd > /dev/null \
+    && OSBUILDER_DIR="kata-containers/tools/osbuilder" \
+    && echo "Copy osbuilder files from upstream kata-containers" \
+    && mkdir -p osbuilder/{kata-opa,dracut/dracut.conf.d,rootfs-builder,image-builder} \
+    && \cp kata-containers/src/kata-opa/allow-all.rego osbuilder/kata-opa/ \
+    && \cp osbuilder/kata-opa/allow-all.rego osbuilder/kata-opa/restricted-policy.rego \
+    && sed -i \
+            -e 's|^default SetPolicyRequest := true|default SetPolicyRequest := false|' \
+            -e 's|^default ReadStreamRequest := true|default ReadStreamRequest := false|' \
+            -e 's|^default ExecProcessRequest := true|default ExecProcessRequest := false|' \
+            osbuilder/kata-opa/restricted-policy.rego \
+    && \cp ${OSBUILDER_DIR}/dracut/dracut.conf.d/05-base.conf osbuilder/dracut/dracut.conf.d/ \
+    && \cp ${OSBUILDER_DIR}/rootfs-builder/{README.md,rootfs.sh} osbuilder/rootfs-builder/ \
+    && \cp ${OSBUILDER_DIR}/image-builder/{README.md,image_builder.sh,nsdax.gpl.c} osbuilder/image-builder/ \
+    && \cp ${OSBUILDER_DIR}/nsdax osbuilder/ \
+    && \cp kata-containers/VERSION osbuilder/ \
+    && \cp -avP ${OSBUILDER_DIR}/initrd-builder osbuilder/ \
+    && \cp -avP ${OSBUILDER_DIR}/scripts osbuilder/ \
+    && KATA_AGENT_DIR="kata-containers/src/agent" \
+    && RPM_AGENT_DIR="usr/libexec/kata-containers/agent" \
+    && echo "Prepare the agent directory" \
+    && mkdir -p agent/${RPM_AGENT_DIR}/usr/lib/systemd/system/ agent/${RPM_AGENT_DIR}/usr/bin/ \
+    && \cp ${KATA_AGENT_DIR}/{kata-agent.service,kata-containers.target} agent/${RPM_AGENT_DIR}/usr/lib/systemd/system/ \
+    && \cp podvm-binaries/usr/local/bin/kata-agent agent/${RPM_AGENT_DIR}/usr/bin/
+
+COPY osbuilder/ osbuilder/
+
+# Create coco-guest-components tarball
+RUN PODVM_DIR=$PWD/podvm-binaries \
+    && mkdir -p coco-guest-components/{usr/local/bin,etc} \
+    && cd coco-guest-components \
+    && cp -fv ${PODVM_DIR}/usr/local/bin/{api-server-rest,attestation-agent,confidential-data-hub,luks-encrypt-storage} usr/local/bin/ \
+    && cp -fv ${PODVM_DIR}/etc/ocicrypt_config.json etc/ \
+    && tar --zstd -cvf ../coco-guest-components.tar.zst .
+
+# Workaround: sudo
+# initrd-builder.sh requires sudo, but enabling it within a container adds some unnecessary complexity
+RUN printf '#!/bin/bash \n $@' > /bin/sudo \
+    && chmod +x /bin/sudo
+
+# Clean up
+RUN subscription-manager unregister \
+    && dnf clean all
+
+#############################
+# Stage 2: Build the initrds
+#############################
+
+FROM initrd-builder-setup AS initrd-builder
+
+ARG KERNEL_UNAME
+ARG PRE_BUILD_INITRDS
+
+WORKDIR /root/artifacts
+
+# Build the initrds
+# If -p is not provided, the restricted-policy.rego is used as default. We ship it with the confidential runtime classes
+# For the kata-nvidia-gpu runtime class, we ship the allow-all.rego policy.
+RUN set -o pipefail; \
+    set -e; \
+    export \
+        DEBUG=1 \
+        AGENT_DIR="$PWD/agent" \
+        AGENT_POLICY="$PWD/osbuilder/kata-opa/restricted-policy.rego" \
+        PAUSE_IMAGE_TARBALL="$PWD/pause-bundle.tar.zst" \
+        GUEST_COMPONENTS_TARBALL="$PWD/coco-guest-components.tar.zst" \
+        OSBUILDER_DIR="$PWD/osbuilder" \
+        KATA_OSBUILDER_SH="$PWD/osbuilder/kata-osbuilder.sh"; \
+    rm -rf logs; \
+    mkdir -p logs; \
+    for class in ${PRE_BUILD_INITRDS}; do \
+            echo "Generating initrd for $class"; \
+            ${KATA_OSBUILDER_SH} \
+                -k "${KERNEL_UNAME}" \
+                -a ${AGENT_DIR} \
+                -e ${PAUSE_IMAGE_TARBALL} \
+                -g ${GUEST_COMPONENTS_TARBALL} \
+                -o ${OSBUILDER_DIR} \
+                -p ${AGENT_POLICY} \
+                -t ${class} 2>&1 \
+            | tee logs/${class}.log; \
+        done; \
+    echo "All initrds generated successfully"
+
+# Remove sudo workaround
+RUN rm -f /bin/sudo
+
+# Create tarballs
+RUN rm -rf initrds \
+    && mkdir -p initrds/usr/share/kata-containers \
+    && cp -avP /usr/share/kata-containers/osbuilder-images initrds/usr/share/kata-containers/ \
+    && cp -v kata-containers/VERSION / \
+    && tar -czvf /kata-initrds.tar.gz -C initrds . \
+    && tar -czvf /kata-logs.tar.gz -C logs . \
+    && rm -f osbuilder/nsdax \
+    && tar -czvf /kata-osbuilder.tar.gz osbuilder
+
+###################################
+# Stage 3: Compose the final image
+###################################
+
+FROM ${NVIDIA_DRIVERS_BASE_IMAGE} AS rhel10-kata-initrds
+
+ARG NVIDIA_DRIVERS_VERSION
+
+COPY --from=initrd-builder /kata-initrds.tar.gz /kata-logs.tar.gz /kata-osbuilder.tar.gz /VERSION /
+
+RUN set -e; \
+    export KATA_VERSION=$(cat /VERSION); \
+    echo "Copying kata ${KATA_VERSION} artifacts to /host"; \
+    if [ -e /host ]; then \
+        \cp /kata-initrds.tar.gz /host/kata-initrds-${KATA_VERSION}-nvidia-${NVIDIA_DRIVERS_VERSION}-$(arch).tar.gz; \
+        \cp /kata-osbuilder.tar.gz /host/kata-osbuilder-${KATA_VERSION}.tar.gz; \
+        \cp /kata-logs.tar.gz /host/kata-logs-${KATA_VERSION}.tar.gz; \
+    fi; \
+    echo "All done!";
