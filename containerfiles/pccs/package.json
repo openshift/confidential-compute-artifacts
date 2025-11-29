@@ -26,7 +26,7 @@
     "node": ">= 18.17.0"
   },
   "overrides": {
-    "node-gyp": "11.x"
+    "node-gyp": "12.x"
   },
   "scripts": {
     "start": "node pccs_server.js",
