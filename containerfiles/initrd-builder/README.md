@@ -10,7 +10,7 @@ echo <ACTIVATION_KEY> > key_secret.txt
    The tarballs will be stored in both locations: within the container image and in $PWD
 ```
 podman build . --no-cache \
-    -v $PWD:/host \
+    -v $PWD:/host:z \
     --build-arg-file=./argfile.conf \
     --secret id=org,src=org_secret.txt \
     --secret id=key,src=key_secret.txt \
@@ -29,6 +29,6 @@ podman build . --no-cache \
     --secret id=key,src=key_secret.txt \
     --target initrd-builder-setup \
     -t initrd-builder-setup:1.0
-podman run -ti -v $PWD:/host localhost/initrd-builder-setup:1.0 /bin/bash
+podman run -ti -v $PWD:/host:z localhost/initrd-builder-setup:1.0 /bin/bash
 # then run osbuilder/kata-osbuilder.sh as desired
 ```
