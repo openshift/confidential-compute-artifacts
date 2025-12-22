@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi10/nodejs-22:10.1-1763382639 AS builder
+FROM registry.access.redhat.com/ubi10/nodejs-22:10.1-1766363943 AS builder
 USER root
 
 RUN mkdir -p SGXDataCenterAttestationPrimitives/QuoteVerification/QVL
