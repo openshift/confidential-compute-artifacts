@@ -14,6 +14,12 @@ FROM ${PODVM_PAYLOAD_IMAGE} AS rhel10-podvm-payload
 
 FROM ${NVIDIA_DRIVERS_BASE_IMAGE} AS initrd-builder-setup
 
+# --- DRACUT FIX ---
+# This variable prevents dracut-install from attempting to copy xattrs,
+# which fail on many container storage drivers (like overlayfs).
+ENV DRACUT_NO_XATTR=1
+# ------------------
+
 ARG KERNEL_UNAME
 ARG NVIDIA_DRIVERS_VERSION
 
