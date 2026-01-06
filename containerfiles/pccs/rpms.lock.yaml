@@ -116,13 +116,13 @@ arches:
     name: nodejs-devel
     evr: 1:22.19.0-2.el10_0
     sourcerpm: nodejs22-22.19.0-2.el10_0.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-packaging-2023.10-11.el10_1.noarch.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-packaging-2023.10-12.el10_1.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 20687
-    checksum: sha256:0a41ccc6def5c4fed742889f6fcf1625a1b97a8a093226ee7fbc965170369228
+    size: 20624
+    checksum: sha256:0615323f24a5b603b580418c48db0013bc9a7bb98f5cf0cbc6e3d9e1cb58d72d
     name: nodejs-packaging
-    evr: 2023.10-11.el10_1
-    sourcerpm: nodejs-packaging-2023.10-11.el10_1.src.rpm
+    evr: 2023.10-12.el10_1
+    sourcerpm: nodejs-packaging-2023.10-12.el10_1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/o/ocaml-srpm-macros-10-4.el10.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 10638
@@ -290,12 +290,12 @@ arches:
     checksum: sha256:3fcae38f3a092a8e3feef2f7a06181ba81d01c26a36e4c33ad3e8da648ae5449
     name: lua-rpm-macros
     evr: 1-15.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/n/nodejs-packaging-2023.10-11.el10_1.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/n/nodejs-packaging-2023.10-12.el10_1.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
-    size: 41082
-    checksum: sha256:220240b705fd8ba647beb2d33d0e8139645b79310aaf4580352838f803571747
+    size: 41194
+    checksum: sha256:477fdb1954f80dafb8ee2cbfbb452271baecc583ea7bfc13555810632fae60f5
     name: nodejs-packaging
-    evr: 2023.10-11.el10_1
+    evr: 2023.10-12.el10_1
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/n/nodejs22-22.19.0-2.el10_0.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
     size: 95132642

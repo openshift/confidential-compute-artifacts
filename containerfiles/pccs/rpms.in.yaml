@@ -4,4 +4,4 @@ contentOrigin:
 arches:
   - x86_64
 context:
-  image: registry.access.redhat.com/ubi10/nodejs-22:10.1-1763382639
+  image: registry.access.redhat.com/ubi10/nodejs-22:10.1-1766363943
