@@ -8,14 +8,14 @@ metadata:
     pipelinesascode.tekton.dev/cancel-in-progress: "false"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "main" && ( "containerfiles/storage-helper/***".pathChanged() || ".tekton/osc-storage-helper-push.yaml".pathChanged()
+      == "osc-release-v1.11" && ( "containerfiles/storage-helper/***".pathChanged() || ".tekton/osc-storage-helper-push.yaml".pathChanged()
       )
   creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: openshift-sandboxed-containers
-    appstudio.openshift.io/component: osc-storage-helper
+    appstudio.openshift.io/application: openshift-sandboxed-containers-v1-11
+    appstudio.openshift.io/component: osc-storage-helper-v1-11
     pipelines.appstudio.openshift.io/type: build
-  name: osc-storage-helper-on-push
+  name: osc-storage-helper-v1-11-on-push
   namespace: ose-osc-tenant
 spec:
   params:
@@ -24,7 +24,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/ose-osc-tenant/osc-storage-helper:{{revision}}
+    value: quay.io/redhat-user-workloads/ose-osc-tenant/osc-storage-helper-v1-11:{{revision}}
   - name: build-platforms
     value:
     - linux/x86_64
@@ -630,7 +630,7 @@ spec:
     - name: netrc
       optional: true
   taskRunTemplate:
-    serviceAccountName: build-pipeline-osc-storage-helper
+    serviceAccountName: build-pipeline-osc-storage-helper-v1-11
   workspaces:
   - name: git-auth
     secret:
