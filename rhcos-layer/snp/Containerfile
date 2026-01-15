@@ -1,7 +1,7 @@
 # Use 4.20 as the base
 # 4.20.0-rc2 release image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:526ac23c49751f306916333ea1e8c8474a99351f2eebfe23a9115dfa4f7e0808
 
-ARG PAYLOAD_IMAGE=quay.io/cclaudio/kata-initrds:1.1
+ARG PAYLOAD_IMAGE=quay.io/cclaudio/kata-initrds:1.2
 ARG OCP_RELEASE_IMAGE=quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:526ac23c49751f306916333ea1e8c8474a99351f2eebfe23a9115dfa4f7e0808
 
 FROM ${PAYLOAD_IMAGE} as payload
