@@ -5,5 +5,8 @@
     ],
     "nodenv": {
         "enabled": false
+    },
+    "nvm": {
+        "enabled": false
     }
 }
