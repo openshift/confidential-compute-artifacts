@@ -33,7 +33,6 @@ HOST_KERNEL_PATH=""
 KATA_LIBEXEC_DIR="/usr/libexec/kata-containers"
 
 ARG_AGENT_DIR_PREFIX=""
-ARG_AGENT_POLICY="${KATA_LIBEXEC_DIR}/osbuilder/kata-opa/restricted-policy.rego"
 ARG_EXIT_IF_IMAGES_INSTALLED=""
 ARG_GENERATE_IMAGE=""
 ARG_GUEST_COMPONENTS_TARBALL="${DEFAULT_KATA_ARG_DIR}/coco-guest-components.tar.xz"
@@ -118,9 +117,6 @@ Options:
                 To a git checkout if you want to use upstream osbuilder.
                 Default: ${ARG_OSBUILDER_DIR}
 
-  -p PATH       kata-agent policy
-                Default: ${ARG_AGENT_POLICY}
-
   -t RT_CLASS   Generate initrd/image for the RT_CLASS runtime class.
                 Default: ${ARG_RUNTIME_CLASS}
                 Options: ${RUNTIME_CLASSES[@]}
@@ -135,7 +131,7 @@ EOT
 
 parse_args()
 {
-    while getopts "a:ce:g:hik:o:p:t:u" opt
+    while getopts "a:ce:g:hik:o:t:u" opt
     do
         case $opt in
             a) ARG_AGENT_DIR_PREFIX="${OPTARG}" ;;
@@ -146,7 +142,6 @@ parse_args()
             i) ARG_GENERATE_IMAGE=1 ;;
             k) ARG_KVERSION="${OPTARG}" ;;
             o) ARG_OSBUILDER_DIR="${OPTARG}" ;;
-            p) ARG_AGENT_POLICY="${OPTARG}" ;;
             t) ARG_RUNTIME_CLASS="${OPTARG}" ;;
             u) ARG_REMOVE_INSTALLED_IMAGES=1 ;;
             *) usage 1 ;;
@@ -307,6 +302,11 @@ make_kata_adjustments_to_dracut_rootfs()
     local agent_dir="${ARG_AGENT_DIR_PREFIX}${KATA_LIBEXEC_DIR}/agent"
     local agent_source_bin="${agent_dir}/usr/bin/kata-agent"
     local osbuilder_version="${DISTRO}-${ARG_RUNTIME_CLASS}-osbuilder-version-unknown"
+    # Pre-built initrds get their agent policy rules from the location where the container file puts them.
+    # https://github.com/openshift/confidential-compute-artifacts/blob/main/containerfiles/initrd-builder/Containerfile#L89-L96
+    local agent_policy_dir="${ARG_OSBUILDER_DIR}/kata-opa"
+    local restricted_agent_policy="${agent_policy_dir}/restricted-policy.rego"
+    local permissive_agent_policy="${agent_policy_dir}/allow-all.rego"
 
     info "Copying agent directory tree into place"
     \cp -ar ${agent_dir}/* ${DRACUT_ROOTFS}
@@ -324,7 +324,7 @@ make_kata_adjustments_to_dracut_rootfs()
         "kata-cc")
             AGENT_SOURCE_BIN="${agent_source_bin}" \
             AGENT_POLICY="yes" \
-            AGENT_POLICY_FILE="${ARG_AGENT_POLICY}" \
+            AGENT_POLICY_FILE="${restricted_agent_policy}" \
             COCO_GUEST_COMPONENTS_TARBALL="${ARG_GUEST_COMPONENTS_TARBALL}" \
             PAUSE_IMAGE_TARBALL="${ARG_PAUSE_IMAGE_TARBALL}" \
             CONFIDENTIAL_GUEST="yes" \
@@ -360,7 +360,7 @@ make_kata_adjustments_to_dracut_rootfs()
 
                 AGENT_SOURCE_BIN="${agent_source_bin}" \
                 AGENT_POLICY="yes" \
-                AGENT_POLICY_FILE="${ARG_AGENT_POLICY}" \
+                AGENT_POLICY_FILE="${permissive_agent_policy}" \
                 COCO_GUEST_COMPONENTS_TARBALL="${ARG_GUEST_COMPONENTS_TARBALL}" \
                 PAUSE_IMAGE_TARBALL="${ARG_PAUSE_IMAGE_TARBALL}" \
                     ${ARG_OSBUILDER_DIR}/rootfs-builder/rootfs.sh \
@@ -369,7 +369,7 @@ make_kata_adjustments_to_dracut_rootfs()
             else
                 AGENT_SOURCE_BIN="${agent_source_bin}" \
                 AGENT_POLICY="yes" \
-                AGENT_POLICY_FILE="${ARG_AGENT_POLICY}" \
+                AGENT_POLICY_FILE="${restricted_agent_policy}" \
                 COCO_GUEST_COMPONENTS_TARBALL="${ARG_GUEST_COMPONENTS_TARBALL}" \
                 PAUSE_IMAGE_TARBALL="${ARG_PAUSE_IMAGE_TARBALL}" \
                 CONFIDENTIAL_GUEST="yes" \

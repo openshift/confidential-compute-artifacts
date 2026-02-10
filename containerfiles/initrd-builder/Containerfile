@@ -139,14 +139,11 @@ ARG PRE_BUILD_INITRDS
 WORKDIR /root/artifacts
 
 # Build the initrds
-# If -p is not provided, the restricted-policy.rego is used as default. We ship it with the confidential runtime classes
-# For the kata-nvidia-gpu runtime class, we ship the allow-all.rego policy.
 RUN set -o pipefail; \
     set -e; \
     export \
         DEBUG=1 \
         AGENT_DIR="$PWD/agent" \
-        AGENT_POLICY="$PWD/osbuilder/kata-opa/restricted-policy.rego" \
         PAUSE_IMAGE_TARBALL="$PWD/pause-bundle.tar.zst" \
         GUEST_COMPONENTS_TARBALL="$PWD/coco-guest-components.tar.zst" \
         OSBUILDER_DIR="$PWD/osbuilder" \
@@ -154,7 +151,6 @@ RUN set -o pipefail; \
     rm -rf logs; \
     mkdir -p logs; \
     for class in ${PRE_BUILD_INITRDS}; do \
-            [[ "${class}" = kata-nvidia-gpu ]] && AGENT_POLICY="$PWD/osbuilder/kata-opa/allow-all.rego" \
             echo "Generating initrd for $class"; \
             ${KATA_OSBUILDER_SH} \
                 -k "${KERNEL_UNAME}" \
@@ -162,7 +158,6 @@ RUN set -o pipefail; \
                 -e ${PAUSE_IMAGE_TARBALL} \
                 -g ${GUEST_COMPONENTS_TARBALL} \
                 -o ${OSBUILDER_DIR} \
-                -p ${AGENT_POLICY} \
                 -t ${class} 2>&1 \
             | tee logs/${class}.log; \
         done; \
