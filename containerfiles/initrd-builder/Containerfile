@@ -154,6 +154,7 @@ RUN set -o pipefail; \
     rm -rf logs; \
     mkdir -p logs; \
     for class in ${PRE_BUILD_INITRDS}; do \
+            [[ "${class}" = kata-nvidia-gpu ]] && AGENT_POLICY="$PWD/osbuilder/kata-opa/allow-all.rego" \
             echo "Generating initrd for $class"; \
             ${KATA_OSBUILDER_SH} \
                 -k "${KERNEL_UNAME}" \
