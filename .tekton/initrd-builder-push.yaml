@@ -29,6 +29,8 @@ spec:
     value: Containerfile
   - name: path-context
     value: containerfiles/initrd-builder
+  - name: build-args-file
+    value: 'containerfiles/initrd-builder/argfile.conf'
   pipelineSpec:
     description: |
       This pipeline is ideal for building container images from a Containerfile while maintaining trust after pipeline customization.
