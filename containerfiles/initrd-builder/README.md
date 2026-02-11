@@ -17,6 +17,11 @@ podman build . --no-cache \
     -t kata-initrds:1.0
 ```
 
+5. Tarballs can also be extracted from the container image
+```
+podman run --rm -v $PWD:/host kata-initrds:1.0
+```
+
 ## Debugging the kata-osbuilder.sh script
 
 There are multiple ways, one of them is to generate an image building only the first two stages (i.e. `initrd-builder-setup`)
