@@ -30,8 +30,6 @@ WORKDIR /root/artifacts
 # Make sure the file /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
 # is removed, otherwise the nvidia drivers will not be added to
 # the initrd when running kata-osbuilder.sh
-#RUN --mount=type=secret,id=org,dst=/run/secrets/org \
-#      --mount=type=secret,id=key,dst=/run/secrets/key \
 RUN      set +x \
     && subscription-manager register \
       --org=$(cat /activation-key/org) \
