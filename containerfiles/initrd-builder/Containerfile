@@ -30,12 +30,12 @@ WORKDIR /root/artifacts
 # Make sure the file /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
 # is removed, otherwise the nvidia drivers will not be added to
 # the initrd when running kata-osbuilder.sh
-RUN --mount=type=secret,id=org,dst=/run/secrets/org \
-      --mount=type=secret,id=key,dst=/run/secrets/key \
-      set +x \
+#RUN --mount=type=secret,id=org,dst=/run/secrets/org \
+#      --mount=type=secret,id=key,dst=/run/secrets/key \
+RUN      set +x \
     && subscription-manager register \
-      --org=$(cat /run/secrets/org) \
-      --activationkey=$(cat /run/secrets/key) \
+      --org=$(cat /activation-key/org) \
+      --activationkey=$(cat /activation-key/activationkey) \
     && subscription-manager repos --enable=rhel-10-for-x86_64-supplementary-rpms \
     && subscription-manager repos --enable=rhel-10-for-x86_64-extensions-rpms \
     && dnf config-manager --add-repo=https://developer.download.nvidia.com/compute/cuda/repos/rhel10/x86_64/cuda-rhel10.repo \
