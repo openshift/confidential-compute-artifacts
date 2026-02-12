@@ -30,12 +30,10 @@ WORKDIR /root/artifacts
 # Make sure the file /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
 # is removed, otherwise the nvidia drivers will not be added to
 # the initrd when running kata-osbuilder.sh
-RUN --mount=type=secret,id=org,dst=/run/secrets/org \
-      --mount=type=secret,id=key,dst=/run/secrets/key \
-      set +x \
+RUN      set +x \
     && subscription-manager register \
-      --org=$(cat /run/secrets/org) \
-      --activationkey=$(cat /run/secrets/key) \
+      --org=$(cat /activation-key/org) \
+      --activationkey=$(cat /activation-key/activationkey) \
     && subscription-manager repos --enable=rhel-10-for-x86_64-supplementary-rpms \
     && subscription-manager repos --enable=rhel-10-for-x86_64-extensions-rpms \
     && dnf config-manager --add-repo=https://developer.download.nvidia.com/compute/cuda/repos/rhel10/x86_64/cuda-rhel10.repo \
@@ -53,7 +51,8 @@ RUN --mount=type=secret,id=org,dst=/run/secrets/org \
         nvidia-container-toolkit \
         zstd jq policycoreutils dbus-daemon rsync chrony rsyslog \
         iptables libtirpc git make gcc \
-    && rm -f /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
+    && rm -f /usr/lib/dracut/dracut.conf.d/99-nvidia.conf \
+    && echo ${NVIDIA_DRIVERS_VERSION} > /NVIDIA-VERSION
 
 # Copy pause bundle
 # TODO: fix podvm-payload to create a zst tarball as required by the rootfs.sh
@@ -186,16 +185,10 @@ RUN rm -rf initrds \
 
 FROM ${NVIDIA_DRIVERS_BASE_IMAGE} AS rhel10-kata-initrds
 
-ARG NVIDIA_DRIVERS_VERSION
+COPY --from=initrd-builder /kata-initrds.tar.gz /kata-logs.tar.gz /kata-osbuilder.tar.gz /VERSION /NVIDIA-VERSION /
 
-COPY --from=initrd-builder /kata-initrds.tar.gz /kata-logs.tar.gz /kata-osbuilder.tar.gz /VERSION /
+COPY extract-artifacts.sh /usr/local/bin/extract-artifacts.sh
+ENTRYPOINT ["/usr/local/bin/extract-artifacts.sh"]
 
-RUN set -e; \
-    export KATA_VERSION=$(cat /VERSION); \
-    echo "Copying kata ${KATA_VERSION} artifacts to /host"; \
-    if [ -e /host ]; then \
-        \cp /kata-initrds.tar.gz /host/kata-initrds-${KATA_VERSION}-nvidia-${NVIDIA_DRIVERS_VERSION}-$(arch).tar.gz; \
-        \cp /kata-osbuilder.tar.gz /host/kata-osbuilder-${KATA_VERSION}.tar.gz; \
-        \cp /kata-logs.tar.gz /host/kata-logs-${KATA_VERSION}.tar.gz; \
-    fi; \
-    echo "All done!";
+# Fast-path for local manual builds
+RUN if [ -d /host ]; then /usr/local/bin/extract-artifacts.sh; fi

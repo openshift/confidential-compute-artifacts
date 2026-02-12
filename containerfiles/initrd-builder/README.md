@@ -12,9 +12,14 @@ echo <ACTIVATION_KEY> > key_secret.txt
 podman build . --no-cache \
     -v $PWD:/host:z \
     --build-arg-file=./argfile.conf \
-    --secret id=org,src=org_secret.txt \
-    --secret id=key,src=key_secret.txt \
+    -v $PWD/org_secret.txt:/activation-key/org \
+    -v $PWD/key_secret.txt:/activation-key/activationkey \
     -t kata-initrds:1.0
+```
+
+5. Tarballs can also be extracted from the container image
+```
+podman run --rm -v $PWD:/host kata-initrds:1.0
 ```
 
 ## Debugging the kata-osbuilder.sh script
