@@ -18,20 +18,20 @@ arches:
     name: annobin-plugin-gcc
     evr: 12.99-1.el10
     sourcerpm: annobin-12.99-1.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/b/brotli-1.1.0-6.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/b/brotli-1.1.0-7.el10_1.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 22567
-    checksum: sha256:80c7bdc73838dd3f90ffe44d7d53c1f01743cb7853e92e474ea934e82f38137c
+    size: 20021
+    checksum: sha256:33e0882009f96bdc4e1b9aaa4ed72a121e4486c256e4ffce343d27da11dffb25
     name: brotli
-    evr: 1.1.0-6.el10
-    sourcerpm: brotli-1.1.0-6.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/b/brotli-devel-1.1.0-6.el10.x86_64.rpm
+    evr: 1.1.0-7.el10_1
+    sourcerpm: brotli-1.1.0-7.el10_1.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/b/brotli-devel-1.1.0-7.el10_1.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 39447
-    checksum: sha256:8adc593adb293e36f9ab8c6877b706311c9691633feae527c3cadd2f9f2b7361
+    size: 34401
+    checksum: sha256:3105e04c4f520ba21ffe151550bf2a178ca26d966124cdce5e02eee12d02a0b4
     name: brotli-devel
-    evr: 1.1.0-6.el10
-    sourcerpm: brotli-1.1.0-6.el10.src.rpm
+    evr: 1.1.0-7.el10_1
+    sourcerpm: brotli-1.1.0-7.el10_1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/c/cmake-filesystem-3.30.5-3.el10_0.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 24113
@@ -109,13 +109,13 @@ arches:
     name: lua-srpm-macros
     evr: 1-15.el10
     sourcerpm: lua-rpm-macros-1-15.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-devel-22.19.0-2.el10_0.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-devel-22.22.0-3.el10_1.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 249400
-    checksum: sha256:d05b58234d40b54b7559f88cb3b4e47bc900b27852a12a0862afb684cc0fccd9
+    size: 257220
+    checksum: sha256:8c8b05d23d4e7e1d586d9808dac0be1bbb3d156e82ac4ca8e397acb4472060f5
     name: nodejs-devel
-    evr: 1:22.19.0-2.el10_0
-    sourcerpm: nodejs22-22.19.0-2.el10_0.src.rpm
+    evr: 1:22.22.0-3.el10_1
+    sourcerpm: nodejs22-22.22.0-3.el10_1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-packaging-2023.10-12.el10_1.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 20624
@@ -207,13 +207,13 @@ arches:
     name: sgx-libs
     evr: 2.25-6.el10
     sourcerpm: linux-sgx-2.25-6.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/z/zlib-ng-compat-devel-2.2.3-2.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/z/zlib-ng-compat-devel-2.2.3-3.el10_1.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 39591
-    checksum: sha256:093bd7dc0cac33cdf447e9543631f4da215552a1c232c39a4cd3bb5abaab8d58
+    size: 36965
+    checksum: sha256:2ea2be81a34e8cc0d8d131f8e87fe4680f4c7b9f2b2625f26745935c5ab60ec8
     name: zlib-ng-compat-devel
-    evr: 2.2.3-2.el10
-    sourcerpm: zlib-ng-2.2.3-2.el10.src.rpm
+    evr: 2.2.3-3.el10_1
+    sourcerpm: zlib-ng-2.2.3-3.el10_1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/f/file-5.45-8.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 50295
@@ -221,13 +221,13 @@ arches:
     name: file
     evr: 5.45-8.el10
     sourcerpm: file-5.45-8.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/g/glibc-gconv-extra-2.39-58.el10_1.2.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/g/glibc-gconv-extra-2.39-58.el10_1.7.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 1762954
-    checksum: sha256:472f1e40e800afe117dfbeb15d6479be08c98ee5ae7afb28e59a02cf209519ae
+    size: 1749959
+    checksum: sha256:b643d083c6459fff47d74311c4faa67a711a29ada39fb781448cffac90ea11ff
     name: glibc-gconv-extra
-    evr: 2.39-58.el10_1.2
-    sourcerpm: glibc-2.39-58.el10_1.2.src.rpm
+    evr: 2.39-58.el10_1.7
+    sourcerpm: glibc-2.39-58.el10_1.7.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/z/zip-3.0-45.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 276591
@@ -296,12 +296,12 @@ arches:
     checksum: sha256:477fdb1954f80dafb8ee2cbfbb452271baecc583ea7bfc13555810632fae60f5
     name: nodejs-packaging
     evr: 2023.10-12.el10_1
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/n/nodejs22-22.19.0-2.el10_0.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/n/nodejs22-22.22.0-3.el10_1.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
-    size: 95132642
-    checksum: sha256:b365c3aaa21d3b7fcd823c40fbd3b2476fa5afe4eba1c25fdb6c704cbd0651d0
+    size: 94964161
+    checksum: sha256:a1461e0ede6b229b2f9fd0c41735d099735b3e8440c89100c1b3a2be5b913466
     name: nodejs22
-    evr: 1:22.19.0-2.el10_0
+    evr: 1:22.22.0-3.el10_1
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/o/ocaml-srpm-macros-10-4.el10.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
     size: 16581
@@ -362,12 +362,12 @@ arches:
     checksum: sha256:9cfc7ee33702b5c2bb39265f1eeb9226331dcdd7bafcf3f63ed394f2a7cd4833
     name: rust
     evr: 1.88.0-1.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/b/brotli-1.1.0-6.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/b/brotli-1.1.0-7.el10_1.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 534633
-    checksum: sha256:300f85345dbbe80e7703d7a03b9c45c4837d85cc186567d069b32127bc10563a
+    size: 541502
+    checksum: sha256:3c06552ab1d70705a78107ccc980ce9043793c4bb0fd945962e023f1c6e41141
     name: brotli
-    evr: 1.1.0-6.el10
+    evr: 1.1.0-7.el10_1
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/e/efi-rpm-macros-6-6.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 33983
@@ -392,22 +392,22 @@ arches:
     checksum: sha256:fc90092ff82ff4e4359b89035392894b014631c4cbba8a51ac8e4f602ca4b0b9
     name: gcc
     evr: 14.3.1-2.1.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/g/glibc-2.39-58.el10_1.2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/g/glibc-2.39-58.el10_1.7.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 19960777
-    checksum: sha256:4cf3f1c3538487fe0ef23fd92d00d1fd169541cdd8855df4ae1a734a387b15c4
+    size: 20318950
+    checksum: sha256:a3719e5564a944ca286a359f7fc20e7befb5912fe4b3179d1aa0fd5f07bf1240
     name: glibc
-    evr: 2.39-58.el10_1.2
+    evr: 2.39-58.el10_1.7
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/z/zip-3.0-45.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 1152589
     checksum: sha256:1659a821cd9f0022ffbe5b2c86d63f31e567067dfce8cce74e2659e9de872c66
     name: zip
     evr: 3.0-45.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/z/zlib-ng-2.2.3-2.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/z/zlib-ng-2.2.3-3.el10_1.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 2420338
-    checksum: sha256:bffcce72571e1b454a48ee8cfb273d67d483aee506a771d3e04f86996374571c
+    size: 2424174
+    checksum: sha256:c86216ceed786604248d99596162801aa7b074172036e5e172651ced5655907f
     name: zlib-ng
-    evr: 2.2.3-2.el10
+    evr: 2.2.3-3.el10_1
   module_metadata: []
