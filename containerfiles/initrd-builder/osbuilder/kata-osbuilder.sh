@@ -25,7 +25,7 @@ readonly RUNTIME_CLASSES=( \
   "kata" \
   "kata-cc" \
   "kata-nvidia-gpu" \
-  "kata-nvidia-gpu-cc" \
+  "kata-cc-nvidia-gpu" \
 )
 
 DEFAULT_KATA_ARG_DIR="/tmp/kata-containers"
@@ -348,7 +348,7 @@ make_kata_adjustments_to_dracut_rootfs()
             install_trusted_ca_bundle_to_rootfs
             ;;
 
-        "kata-nvidia-gpu" | "kata-nvidia-gpu-cc")
+        "kata-nvidia-gpu" | "kata-cc-nvidia-gpu")
             # systemd-nvidia-cdi
             cp ${ARG_OSBUILDER_DIR}/systemd/system/nvidia-cdi.service ${DRACUT_ROOTFS}/usr/lib/systemd/system/
             cp ${ARG_OSBUILDER_DIR}/systemd/systemd-nvidia-cdi.sh ${DRACUT_ROOTFS}/usr/lib/systemd/
@@ -453,7 +453,7 @@ install_osbuilder_images()
     local artifact_suffix="";
     # Add the nvidia driver version to the artifact name to easily
     # determine the included driver version
-    if [[ "${ARG_RUNTIME_CLASS}" == "kata-nvidia-gpu"* ]]; then
+    if [[ "${ARG_RUNTIME_CLASS}" == "kata-nvidia-gpu" || "${ARG_RUNTIME_CLASS}" == "kata-cc-nvidia-gpu" ]]; then
         artifact_suffix="-$(modinfo --field version -m nvidia -k ${ARG_KVERSION})"
     fi
     local kernel_dest_path="${ARG_KVERSION}/$(basename ${HOST_KERNEL_PATH})"
