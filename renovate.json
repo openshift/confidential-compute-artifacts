@@ -8,5 +8,16 @@
     },
     "nvm": {
         "enabled": false
-    }
+    },
+    "customManagers": [
+	{
+	    "customType": "regex",
+	    "managerFilePatterns": ["(^|/)argfile\\.conf$"],
+	    "matchStrings": [
+		"NVIDIA_DRIVERS_BASE_IMAGE=(?<depName>[^:@\\s]+):(?<currentValue>[^\\s]+)"
+	    ],
+	    "datasourceTemplate": "docker",
+	    "registryUrlTemplate": "https://registry.access.redhat.com"
+	}
+    ]
 }
