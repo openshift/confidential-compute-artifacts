@@ -9,6 +9,9 @@
     "nvm": {
         "enabled": false
     },
+    "rpm-lockfile": {
+        "enabled": false
+    },
     "customManagers": [
 	{
 	    "customType": "regex",
