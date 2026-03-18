@@ -1,4 +1,4 @@
 [submodule "containerfiles/pccs/DCAP"]
 	path = containerfiles/pccs/DCAP
-	url = https://github.com/intel/SGXDataCenterAttestationPrimitives
-	branch = DCAP_1.23
+	url = https://github.com/intel/confidential-computing.tee.dcap.pccs/
+	branch = DCAP_1.25
