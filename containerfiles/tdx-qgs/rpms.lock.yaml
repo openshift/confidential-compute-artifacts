@@ -4,6 +4,13 @@ lockfileVendor: redhat
 arches:
 - arch: x86_64
   packages:
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/b/boost-system-1.83.0-5.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 16549
+    checksum: sha256:c32ceffb9951c1ff153159f795a1bdce45c18a08d8c4584a1d764b34a03aa85f
+    name: boost-system
+    evr: 1.83.0-5.el10
+    sourcerpm: boost-1.83.0-5.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/b/boost-thread-1.83.0-5.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 64781
@@ -11,13 +18,13 @@ arches:
     name: boost-thread
     evr: 1.83.0-5.el10
     sourcerpm: boost-1.83.0-5.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/p/protobuf-3.19.6-11.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/p/protobuf-3.19.6-15.el10_1.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 1069271
-    checksum: sha256:8dee7fc8c692cfef1eb66bf4e8afff31a90b607ec8c4305070c6dc22f9448fd4
+    size: 1067867
+    checksum: sha256:767e6afe6dc5ee72ab46a0bca423e6a091111f8c4f2cbb0705952c6794cff454
     name: protobuf
-    evr: 3.19.6-11.el10
-    sourcerpm: protobuf-3.19.6-11.el10.src.rpm
+    evr: 3.19.6-15.el10_1
+    sourcerpm: protobuf-3.19.6-15.el10_1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/s/sgx-common-2.25-6.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 49835
@@ -81,13 +88,6 @@ arches:
     name: tdx-qgs
     evr: 2.25-6.el10
     sourcerpm: linux-sgx-2.25-6.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/b/boost-system-1.83.0-5.el10.x86_64.rpm
-    repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 16549
-    checksum: sha256:c32ceffb9951c1ff153159f795a1bdce45c18a08d8c4584a1d764b34a03aa85f
-    name: boost-system
-    evr: 1.83.0-5.el10
-    sourcerpm: boost-1.83.0-5.el10.src.rpm
   source:
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/linux-sgx-2.25-6.el10.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
@@ -101,14 +101,14 @@ arches:
     checksum: sha256:6ce950f8c6ebfd98703fc1896589043fd13027aeff53896d7d419f58e5f8a63a
     name: linux-sgx-enclaves-prebuilt
     evr: 2.25-3.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/p/protobuf-3.19.6-11.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/p/protobuf-3.19.6-15.el10_1.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
-    size: 6294891
-    checksum: sha256:b2517127d2a9fab91c24e961a2eb79f7cdbe10eaa0158e216f455c933b9e7a2f
+    size: 6300929
+    checksum: sha256:3d807717254fce83b9a0a83b8789e5b36268031aa3eb86c9722b96b5134fde51
     name: protobuf
-    evr: 3.19.6-11.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/b/boost-1.83.0-5.el10.src.rpm
-    repoid: rhel-10-for-x86_64-baseos-source-rpms
+    evr: 3.19.6-15.el10_1
+  - url: https://cdn.redhat.com/content/dist/rhel10/rhui/10/x86_64/baseos/source/SRPMS/Packages/b/boost-1.83.0-5.el10.src.rpm
+    repoid: rhel-10-for-x86_64-baseos-rhui-source-rpms
     size: 122722307
     checksum: sha256:54109ad531c6c068dff7dc3e9be70ce6d42b3efab3f594dea187117a2e38efc0
     name: boost
