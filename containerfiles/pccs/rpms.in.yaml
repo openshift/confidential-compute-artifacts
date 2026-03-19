@@ -1,7 +1,7 @@
-packages: [nodejs-devel, sgx-libs] 
+packages: [nodejs-devel]
 contentOrigin:
   repofiles: ["./redhat.repo"] 
 arches:
   - x86_64
 context:
-  image: registry.access.redhat.com/ubi10/nodejs-22:10.1-1771303085
+  image: registry.access.redhat.com/ubi10/nodejs-22:10.1-1772512434

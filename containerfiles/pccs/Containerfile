@@ -1,17 +1,12 @@
 FROM registry.access.redhat.com/ubi10/nodejs-22:10.1-1773881718 AS builder
 USER root
 
-RUN mkdir -p SGXDataCenterAttestationPrimitives/QuoteVerification/QVL
-WORKDIR SGXDataCenterAttestationPrimitives
+WORKDIR pccs
 COPY DCAP/ ./
 
-RUN dnf install -y nodejs-devel sgx-libs && ln -s /usr/include/node/config-x86_64.gypi /usr/include/node/config.gypi
+RUN dnf install -y nodejs-devel && ln -s /usr/include/node/config-x86_64.gypi /usr/include/node/config.gypi
 
-RUN mkdir -p prebuilt/openssl/inc \
-    && mkdir -p QuoteGeneration/pccs/lib \
-    && cp /usr/lib64/libPCKCertSelection.so.1 QuoteGeneration/pccs/lib/libPCKCertSelection.so
-
-WORKDIR QuoteGeneration/pccs
+WORKDIR service
 COPY package-lock.json .
 COPY package.json .
 RUN npm config set engine-strict true \
@@ -21,7 +16,7 @@ FROM registry.access.redhat.com/ubi10/nodejs-22-minimal:10.1-1772469240
 
 WORKDIR /opt/intel/pccs
 
-COPY --from=builder --chown=1001:users /opt/app-root/src/SGXDataCenterAttestationPrimitives/QuoteGeneration/pccs .
+COPY --from=builder --chown=1001:users /opt/app-root/src/pccs/service .
 COPY --chown=1001:users default.json config/
 COPY --chown=1001:users custom-environment-variables.json config/
 

@@ -1,37 +1,44 @@
 {
   "name": "PCCS",
   "description": "Provisioning Certificate Caching Service",
-  "version": "1.23.0",
+  "version": "1.25.0",
   "type": "module",
   "dependencies": {
     "@fidm/x509": "^1.2.1",
-    "ajv": "^8.12.0",
+    "ajv": "^8.18.0",
     "ajv-formats": "^2.1.1",
-    "body-parser": "^1.20.3",
+    "body-parser": "^1.20.4",
     "caw": "^2.0.1",
     "cls-hooked": "^4.2.2",
-    "config": "^3.3.9",
-    "express": "^4.21.2",
-    "ffi-rs": "^1.0.64",
+    "config": "^3.3.12",
+    "cross-env": "^7.0.3",
+    "express": "^4.22.1",
     "got": "^11.8.6",
-    "morgan": "^1.10.0",
-    "mysql2": "^3.10.1",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.15.3",
     "node-schedule": "^2.1.1",
-    "sequelize": "^6.37.3",
+    "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7",
-    "umzug": "^3.8.0",
-    "winston": "^3.10.0"
+    "umzug": "^3.8.2",
+    "winston": "^3.18.3"
+  },
+  "devDependencies": {
+    "chai": "^6.2.1",
+    "mocha": "^11.7.5",
+    "sinon": "^21.0.0"
   },
   "engines": {
     "node": ">= 18.17.0"
   },
   "overrides": {
-    "node-gyp": "11.x"
+    "node-gyp": "11.x",
+    "tar": "^7.5.9",
+    "diff": "^8.0.3",
+    "ajv": "^8.18.0",
+    "minimatch": "^10.2.4"
   },
   "scripts": {
-    "start": "node pccs_server.js",
-    "test": "NODE_ENV=test mocha ../../../unittests/psw/pccs_ut/test.js --timeout 120000 --exit",
-    "offline": "NODE_ENV=test_offline mocha ../../../unittests/psw/pccs_ut/test_offline.js --timeout 120000 --exit",
-    "req": "NODE_ENV=test_req mocha ../../../unittests/psw/pccs_ut/test_req.js --timeout 120000 --exit"
+    "start": "cross-env NODE_ENV=production node pccs_server.js",
+    "test": "mocha"
   }
 }
