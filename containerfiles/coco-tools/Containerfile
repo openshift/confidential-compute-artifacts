@@ -1,0 +1,133 @@
+FROM registry.access.redhat.com/ubi10:10.1-1772441712 AS build-container
+
+# Register with Red Hat subscription-manager.
+# Pass secrets when building on an unregistered host:
+#   podman build \
+#     --secret id=org,src=./org.txt \
+#     --secret id=key,src=./activation-key.txt \
+#     -f Containerfile.ubi .
+#RUN --mount=type=secret,id=org,dst=/run/secrets/org \
+#    --mount=type=secret,id=key,dst=/run/secrets/key \
+#    set +x && \
+#    subscription-manager register \
+#      --org=$(cat /run/secrets/org) \
+#      --activationkey=$(cat /run/secrets/key) \
+#    && subscription-manager repos --enable=rhel-10-for-x86_64-supplementary-rpms \
+#    && subscription-manager repos --enable=rhel-10-for-x86_64-extensions-rpms  \
+#    && subscription-manager repos --enable=rhel-10-for-x86_64-appstream-rpms  \
+#    && subscription-manager repos --enable=codeready-builder-for-rhel-10-x86_64-rpms  
+
+RUN dnf install -y \
+    git \
+    tpm2-tss-devel \
+    protobuf-compiler \
+    perl-core \
+    cmake \
+    clang
+
+#RUN subscription-manager unregister
+
+
+## Install Rust toolchains
+# COCO_RUST_VERSION: used as the default; matches guest-components and trustee
+#   rust-toolchain.toml, and satisfies snpguest (MSRV 1.86) and snphost (MSRV 1.85)
+# KATA_RUST_VERSION: pre-installed for genpolicy; kata's rust-toolchain.toml
+#   auto-selects it when cargo runs inside the kata source tree
+ARG COCO_RUST_VERSION=1.90.0
+ENV COCO_RUST_VERSION=${COCO_RUST_VERSION}
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain ${COCO_RUST_VERSION}
+ENV PATH=$PATH:/root/.cargo/bin
+
+ARG KATA_RUST_VERSION=1.91.0
+ENV KATA_RUST_VERSION=${KATA_RUST_VERSION}
+RUN rustup toolchain install ${KATA_RUST_VERSION}
+
+# Directory to keep all the tools
+RUN mkdir /tools
+
+# Build different binaries
+
+# Build snpguest
+ARG SNPGUEST_REF=v0.10.0
+ENV SNPGUEST_REF=${SNPGUEST_REF}
+
+RUN git clone --single-branch --branch ${SNPGUEST_REF} https://github.com/virtee/snpguest.git
+RUN cd /snpguest/ && \
+    cargo build -r
+# Copy snpguest
+RUN cp /snpguest/target/release/snpguest /tools/snpguest
+
+# Build snphost
+ARG SNPHOST_REF=v0.7.0
+ENV SNPHOST_REF=${SNPHOST_REF}
+
+RUN git clone --single-branch --branch ${SNPHOST_REF} https://github.com/virtee/snphost.git
+RUN cd /snphost/ && \
+    cargo build -r
+# Copy snphost
+RUN cp /snphost/target/release/snphost /tools/snphost
+
+
+# Build trustee-attester
+ARG GUEST_COMPONENTS_REF=v0.17.0
+ENV GUEST_COMPONENTS_REF=${GUEST_COMPONENTS_REF}
+RUN git clone --single-branch --branch ${GUEST_COMPONENTS_REF} https://github.com/confidential-containers/guest-components.git
+RUN cd /guest-components/attestation-agent/kbs_protocol/ && \
+    cargo build -p kbs_protocol --bin trustee-attester --locked --release --no-default-features --features background_check,passport,openssl,all-attesters,bin
+# Copy trustee-attester
+RUN cp /guest-components/target/release/trustee-attester /tools/trustee-attester
+
+# oneshot CDH
+RUN cd /guest-components/confidential-data-hub/hub && \
+    cargo build --release --no-default-features --features "bin,ttrpc,kbs,sev" --bin ttrpc-cdh
+# Copy oneshot CDH
+RUN cp /guest-components/target/release/ttrpc-cdh /tools/ttrpc-cdh
+
+# sealed secret client
+RUN cd /guest-components/confidential-data-hub/hub && \
+    cargo build --release --no-default-features --features "bin,cli" --bin secret
+# Copy sealed secret client
+RUN cp /guest-components/target/release/secret /tools/secret
+
+
+# Build kbs-client
+ARG TRUSTEE_REF=v0.17.0
+ENV TRUSTEE_REF=${TRUSTEE_REF}
+
+RUN git clone --single-branch --branch ${TRUSTEE_REF} https://github.com/confidential-containers/trustee.git
+RUN cd /trustee/tools/kbs-client/ && \
+    cargo build -p kbs-client --locked --release --no-default-features --features "all-attesters"
+# Copy kbs-client
+RUN cp /trustee/target/release/kbs-client /tools/kbs-client
+
+
+# genpolicy — kata's rust-toolchain.toml (channel = "1.91") auto-selects the
+# pre-installed KATA_RUST_VERSION toolchain when cargo is invoked by make
+ARG KATA_REF=3.25.0
+ENV KATA_REF=${KATA_REF}
+RUN git clone --single-branch --branch ${KATA_REF} https://github.com/kata-containers/kata-containers.git
+RUN cd /kata-containers/src/tools/genpolicy && make LIBC=gnu
+# Copy genpolicy
+RUN cp /kata-containers/src/tools/genpolicy/target/$(uname -m)-unknown-linux-gnu/release/genpolicy /tools/genpolicy
+
+
+FROM registry.access.redhat.com/ubi10:10.1-1772441712 AS tools-container
+
+#RUN --mount=type=secret,id=org,dst=/run/secrets/org \
+#    --mount=type=secret,id=key,dst=/run/secrets/key \
+#    set +x && \
+#    subscription-manager register \
+#      --org=$(cat /run/secrets/org) \
+#      --activationkey=$(cat /run/secrets/key) \
+#    && subscription-manager repos --enable=rhel-10-for-x86_64-supplementary-rpms \
+#    && subscription-manager repos --enable=rhel-10-for-x86_64-extensions-rpms  \
+#    && subscription-manager repos --enable=rhel-10-for-x86_64-appstream-rpms  \
+#    && subscription-manager repos --enable=codeready-builder-for-rhel-10-x86_64-rpms  
+
+
+RUN dnf install -y tpm2-tss openssl-libs libgcc zlib
+
+#RUN subscription-manager unregister
+
+COPY --from=build-container /tools /tools
+ENV PATH="/tools:${PATH}"
