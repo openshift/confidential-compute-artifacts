@@ -1,0 +1,164 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# LUKS-encrypted block storage for OpenShift Sandboxed Containers (Kata CC)
+#
+# Flow:
+#   1. format-disk (native sidecar) starts first.
+#      - If the block device already has a LUKS header → open it with PASS.
+#      - If not → format it with LUKS, then open it.
+#      Either way: mkfs.xfs (idempotent), mount, write PID to shared memory,
+#      touch .ready marker, then loop forever to keep the mount alive.
+#
+#   2. check-ready (init container) reads the PID file from shared memory,
+#      resolves /proc/<pid>/root/mnt/storage/.ready via the shared PID
+#      namespace, and exits 0 only when the ready marker exists.
+#      This gates the main container from starting before storage is ready.
+#
+#   3. Main container reads the same PID file and symlinks its DATA_DIR to
+#      /proc/<pid>/root/mnt/storage, giving it transparent access to the
+#      LUKS-decrypted volume without needing its own mount.
+#
+# Requirements:
+#   - runtimeClassName: kata-cc (OpenShift Sandboxed Containers)
+#   - shareProcessNamespace: true  (shared /proc between all containers)
+#   - A CSI StorageClass that supports volumeMode: Block
+#   - A Secret containing the LUKS passphrase (see below)
+# ──────────────────────────────────────────────────────────────────────────────
+
+# Secret: LUKS passphrase
+# In production, replace this with a SealedSecret, Vault injection, or
+# external-secrets operator. Never commit a plaintext Secret to git.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: luks-passphrase
+type: Opaque
+stringData:
+  passphrase: "REPLACE_ME"   # ← set this to your actual passphrase
+
+---
+
+# PersistentVolumeClaim: raw block device for LUKS
+# volumeMode: Block is required — LUKS operates on a raw block device,
+# not a pre-formatted filesystem. Set storageClassName to a CSI class
+# that supports block mode (e.g. ocs-storagecluster-ceph-rbd on ODF).
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: luks-block-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Block            # raw block — do not change
+  storageClassName: ""         # ← set to your block-capable StorageClass
+  resources:
+    requests:
+      storage: 10Gi            # ← adjust to your needs
+
+---
+
+# Pod: main workload with LUKS-encrypted sidecar storage
+apiVersion: v1
+kind: Pod
+metadata:
+  name: storage-encrypted
+  labels:
+    app: storage-encrypted
+spec:
+  runtimeClassName: kata-cc        # Kata Containers confidential compute VM
+  shareProcessNamespace: true      # All containers share one PID namespace.
+                                   # Required so containers can access each
+                                   # other's filesystems via /proc/<pid>/root.
+
+  # ── Init containers ──────────────────────────────────────────────────────
+  # Init containers run in order. format-disk has restartPolicy: Always which
+  # makes it a "native sidecar" — it starts before all others and stays alive
+  # for the lifetime of the pod, keeping the LUKS mount alive.
+  initContainers:
+
+  - name: format-disk
+    image: registry.redhat.io/openshift-sandboxed-containers/osc-storage-helper:1.11.0
+    command: ["/usr/local/bin/luks-helper", "format-disk"]
+    # Optional flags (all have defaults matching the values below):
+    #   --device        /dev/block-device
+    #   --mapper-name   mapper
+    #   --mapper-path   /dev/mapper/mapper
+    #   --mount-target  /mnt/storage
+    #   --pid-file      /dev/shm/luks-helper.pid
+    securityContext:
+      privileged: true             # Required for cryptsetup and mount syscall.
+                                   # Privilege is confined inside the Kata VM.
+    restartPolicy: Always          # Native sidecar: stays alive, keeps mount.
+    env:
+      - name: PASS
+        valueFrom:
+          secretKeyRef:
+            name: luks-passphrase
+            key: passphrase
+    volumeMounts:
+      - name: storage-ipc          # Shared tmpfs for PID file handoff.
+        mountPath: /dev/shm
+    volumeDevices:
+      - name: luks-block
+        devicePath: /dev/block-device   # Raw block device path inside the VM.
+                                        # Must match --device flag if overridden.
+
+  - name: check-ready
+    # Polls /proc/<pid>/root/mnt/storage/.ready via the shared PID namespace.
+    # Exits 0 when the ready marker exists, unblocking the main container.
+    # Exits 1 after --max-wait seconds (default 3600), failing the pod.
+    image: registry.redhat.io/openshift-sandboxed-containers/osc-storage-helper:1.11.0
+    command: ["/usr/local/bin/luks-helper", "wait-ready"]
+    # Optional flags:
+    #   --mount-target  /mnt/storage
+    #   --pid-file      /dev/shm/luks-helper.pid
+    #   --max-wait      3600
+    securityContext:
+      privileged: true             # Required to read /proc/<pid>/root paths.
+    volumeMounts:
+      - name: storage-ipc
+        mountPath: /dev/shm
+
+  # ── Main container ────────────────────────────────────────────────────────
+  containers:
+
+  - name: hello-openshift          # ← replace with your actual workload image
+    image: quay.io/openshift/origin-hello-openshift
+    ports:
+      - containerPort: 8888
+    env:
+      - name: DATA_DIR             # Mount point inside this container.
+        value: /data               # ← change to suit your application.
+    lifecycle:
+      postStart:
+        exec:
+          command:
+            - /bin/sh
+            - -c
+            - |
+              # Read the sidecar's PID from the shared tmpfs, then symlink
+              # DATA_DIR to the sidecar's mounted LUKS volume via /proc.
+              # By the time postStart runs, check-ready has already confirmed
+              # the .ready marker exists, so the PID file is guaranteed present.
+              PID=$(cat /dev/shm/luks-helper.pid)
+              chmod ug+w "$(dirname "$DATA_DIR")"
+              ln -sfn "/proc/$PID/root/mnt/storage" "$DATA_DIR"
+    securityContext:
+      privileged: true             # Required to traverse /proc/<pid>/root.
+                                   # Privilege is confined inside the Kata VM.
+    volumeMounts:
+      - name: storage-ipc          # Needed to read the PID file in postStart.
+        mountPath: /dev/shm
+
+  # ── Volumes ───────────────────────────────────────────────────────────────
+  volumes:
+
+  - name: luks-block
+    persistentVolumeClaim:
+      claimName: luks-block-pvc
+
+  - name: storage-ipc
+    # Memory-backed tmpfs shared between format-disk, check-ready, and the
+    # main container. Used only to pass the sidecar PID at startup.
+    # Content is lost when the pod terminates — this is intentional.
+    emptyDir:
+      medium: Memory
