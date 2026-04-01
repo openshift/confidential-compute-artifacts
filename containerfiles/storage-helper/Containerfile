@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi10:10.1-1774545609
+FROM registry.access.redhat.com/ubi10:10.1-1775011151
 
 # Uncomment the below instructions when running the build from an 
 # unregistered host
