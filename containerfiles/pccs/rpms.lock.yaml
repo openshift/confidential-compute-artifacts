@@ -74,13 +74,13 @@ arches:
     name: gcc-plugin-annobin
     evr: 14.3.1-2.1.el10
     sourcerpm: gcc-14.3.1-2.1.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/g/go-srpm-macros-3.6.0-7.el10_1.noarch.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/g/go-srpm-macros-3.6.0-8.el10_1.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 33540
-    checksum: sha256:d609a59ea6e39d160ac859599dc4361c5342613fb7b5cc2666f245bee5127fc9
+    size: 33610
+    checksum: sha256:1ceb98ddccc244e3e32ab79325967e3244e98d4a5d57512a0ae5186071c43289
     name: go-srpm-macros
-    evr: 3.6.0-7.el10_1
-    sourcerpm: go-rpm-macros-3.6.0-7.el10_1.src.rpm
+    evr: 3.6.0-8.el10_1
+    sourcerpm: go-rpm-macros-3.6.0-8.el10_1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/k/kernel-srpm-macros-1.0-25.el10.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 11534
@@ -109,13 +109,13 @@ arches:
     name: lua-srpm-macros
     evr: 1-15.el10
     sourcerpm: lua-rpm-macros-1-15.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-devel-22.22.0-3.el10_1.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-devel-22.22.2-1.el10_1.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 257220
-    checksum: sha256:8c8b05d23d4e7e1d586d9808dac0be1bbb3d156e82ac4ca8e397acb4472060f5
+    size: 257445
+    checksum: sha256:9815f0fa24fd1bee10ee50513bdc73b85360c390c3ccabe18c062c435b9a071e
     name: nodejs-devel
-    evr: 1:22.22.0-3.el10_1
-    sourcerpm: nodejs22-22.22.0-3.el10_1.src.rpm
+    evr: 1:22.22.2-1.el10_1
+    sourcerpm: nodejs22-22.22.2-1.el10_1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-packaging-2023.10-12.el10_1.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 20624
@@ -239,12 +239,12 @@ arches:
     checksum: sha256:f4bff3dcd86ad2b43ec710703359a2e427dccea15df2a9cc5ae2f2048f9cf07a
     name: forge-srpm-macros
     evr: 0.4.0-6.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/g/go-rpm-macros-3.6.0-7.el10_1.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/g/go-rpm-macros-3.6.0-8.el10_1.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
-    size: 150047
-    checksum: sha256:1a2a9e7632320947f9bf69a505fe3c25bd5337fef359a0c03c3a3aac3e0aa1f8
+    size: 150216
+    checksum: sha256:b811e8b9bebc0c7b562b46b458a6654861121a3035ee02446a02b04cad7399c0
     name: go-rpm-macros
-    evr: 3.6.0-7.el10_1
+    evr: 3.6.0-8.el10_1
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/k/kernel-srpm-macros-1.0-25.el10.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
     size: 40621
@@ -269,12 +269,12 @@ arches:
     checksum: sha256:477fdb1954f80dafb8ee2cbfbb452271baecc583ea7bfc13555810632fae60f5
     name: nodejs-packaging
     evr: 2023.10-12.el10_1
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/n/nodejs22-22.22.0-3.el10_1.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/n/nodejs22-22.22.2-1.el10_1.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
-    size: 94964161
-    checksum: sha256:a1461e0ede6b229b2f9fd0c41735d099735b3e8440c89100c1b3a2be5b913466
+    size: 96320840
+    checksum: sha256:0fbadd833d5465e9542457d43692d6b39803f44ccd7865c7aa81f90332f7077a
     name: nodejs22
-    evr: 1:22.22.0-3.el10_1
+    evr: 1:22.22.2-1.el10_1
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/o/ocaml-srpm-macros-10-4.el10.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
     size: 16581
