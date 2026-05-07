@@ -86,13 +86,8 @@ RUN set -o pipefail; \
     && OSBUILDER_DIR="kata-containers/tools/osbuilder" \
     && echo "Copy osbuilder files from upstream kata-containers" \
     && mkdir -p osbuilder/{kata-opa,dracut/dracut.conf.d,rootfs-builder,image-builder} \
-    && \cp kata-containers/src/kata-opa/allow-all.rego osbuilder/kata-opa/ \
-    && \cp osbuilder/kata-opa/allow-all.rego osbuilder/kata-opa/restricted-policy.rego \
-    && sed -i \
-            -e 's|^default SetPolicyRequest := true|default SetPolicyRequest := false|' \
-            -e 's|^default ReadStreamRequest := true|default ReadStreamRequest := false|' \
-            -e 's|^default ExecProcessRequest := true|default ExecProcessRequest := false|' \
-            osbuilder/kata-opa/restricted-policy.rego \
+    && \cp podvm-binaries/etc/kata-opa/allow-all.rego osbuilder/kata-opa/ \
+    && \cp podvm-binaries/etc/kata-opa/osc-agent-policy.rego osbuilder/kata-opa/restricted-policy.rego \
     && \cp ${OSBUILDER_DIR}/dracut/dracut.conf.d/05-base.conf osbuilder/dracut/dracut.conf.d/ \
     && \cp ${OSBUILDER_DIR}/rootfs-builder/{README.md,rootfs.sh} osbuilder/rootfs-builder/ \
     && \cp ${OSBUILDER_DIR}/image-builder/{README.md,image_builder.sh,nsdax.gpl.c} osbuilder/image-builder/ \
