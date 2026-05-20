@@ -4,20 +4,20 @@ lockfileVendor: redhat
 arches:
 - arch: s390x
   packages:
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/c/cryptsetup-2.7.5-2.el10.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/c/cryptsetup-2.8.1-2.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 346266
-    checksum: sha256:f2ed51563fa69ae0e2c0005767f2966e1ef3d8190cc9796d056ccf66769e35a9
+    size: 367809
+    checksum: sha256:f98ccc740aea56dc1473dcb5ff1c5b16324f856693859e63cbceb10022492fd7
     name: cryptsetup
-    evr: 2.7.5-2.el10
-    sourcerpm: cryptsetup-2.7.5-2.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/c/cryptsetup-libs-2.7.5-2.el10.s390x.rpm
+    evr: 2.8.1-2.el10
+    sourcerpm: cryptsetup-2.8.1-2.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/c/cryptsetup-libs-2.8.1-2.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 544273
-    checksum: sha256:88500dc8bfcccd7049e53821dea6dc24da0fa1147be211fe5d0ee4cbd72a6ee4
+    size: 590564
+    checksum: sha256:e7d9d651e72c474330d406e9f9c2fff629d2dcc51586b42f7bd178ed4d1d36fa
     name: cryptsetup-libs
-    evr: 2.7.5-2.el10
-    sourcerpm: cryptsetup-2.7.5-2.el10.src.rpm
+    evr: 2.8.1-2.el10
+    sourcerpm: cryptsetup-2.8.1-2.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/c/cyrus-sasl-lib-2.1.28-29.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
     size: 112791
@@ -25,34 +25,34 @@ arches:
     name: cyrus-sasl-lib
     evr: 2.1.28-29.el10
     sourcerpm: cyrus-sasl-2.1.28-29.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/d/device-mapper-1.02.206-3.el10.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/d/device-mapper-1.02.210-2.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 145599
-    checksum: sha256:7a6657ddd6fd8575c48b7e191071c2d506b5c8dfa2f28b74facad8303c4c289c
+    size: 152246
+    checksum: sha256:95503c82867715f74164057853eac2350fa87d22db3ad5ebd24c835e83e40387
     name: device-mapper
-    evr: 10:1.02.206-3.el10
-    sourcerpm: lvm2-2.03.32-3.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/d/device-mapper-libs-1.02.206-3.el10.s390x.rpm
+    evr: 10:1.02.210-2.el10
+    sourcerpm: lvm2-2.03.36-2.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/d/device-mapper-libs-1.02.210-2.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 189164
-    checksum: sha256:c3517b6f02b6729e55cbf05564ed05655f1b4039ef43aec0ac377ada3915c9ae
+    size: 194466
+    checksum: sha256:bb7731c2e620cedd40684a7e3a13ab8e5b1ab11bf23ff92f7c7afad266d473e3
     name: device-mapper-libs
-    evr: 10:1.02.206-3.el10
-    sourcerpm: lvm2-2.03.32-3.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/e/e2fsprogs-1.47.1-4.el10.s390x.rpm
+    evr: 10:1.02.210-2.el10
+    sourcerpm: lvm2-2.03.36-2.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/e/e2fsprogs-1.47.1-5.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 1121668
-    checksum: sha256:59e11761bb46813e70897230408f41ae64da7f91ce9ccd9108b0cb949d6f0b20
+    size: 1121130
+    checksum: sha256:f2f678d28eb0106b460e5f2bf6e27b043315b46f1d16709af959f36ee98086e9
     name: e2fsprogs
-    evr: 1.47.1-4.el10
-    sourcerpm: e2fsprogs-1.47.1-4.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/e/e2fsprogs-libs-1.47.1-4.el10.s390x.rpm
+    evr: 1.47.1-5.el10
+    sourcerpm: e2fsprogs-1.47.1-5.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/e/e2fsprogs-libs-1.47.1-5.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 243102
-    checksum: sha256:369b1781b84e43fe988beb96cfe5236f451596d1e225b2bfe9e921deae1d9a00
+    size: 241898
+    checksum: sha256:eaf4b55d19fd89919eadd82fccb523b8f573893864ef13ae5193c952162ab00e
     name: e2fsprogs-libs
-    evr: 1.47.1-4.el10
-    sourcerpm: e2fsprogs-1.47.1-4.el10.src.rpm
+    evr: 1.47.1-5.el10
+    sourcerpm: e2fsprogs-1.47.1-5.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/f/fuse3-libs-3.16.2-5.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
     size: 97943
@@ -95,20 +95,20 @@ arches:
     name: isns-utils-libs
     evr: 0.103-1.el10
     sourcerpm: isns-utils-0.103-1.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/k/kmod-31-12.el10.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/k/kmod-31-13.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 143744
-    checksum: sha256:32feeaa492ee070e64694faf714ba7990fe5ec1ccefec20f0bdecb47923e4c69
+    size: 150453
+    checksum: sha256:71799034ad8b2de9eb94d0ac37efff65ed8b11b71d7d471d5826aeeceaad48ed
     name: kmod
-    evr: 31-12.el10
-    sourcerpm: kmod-31-12.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/k/kmod-libs-31-12.el10.s390x.rpm
+    evr: 31-13.el10
+    sourcerpm: kmod-31-13.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/k/kmod-libs-31-13.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 73597
-    checksum: sha256:d551ff793bf3a755e18d482f668ebb74127eaba56b41d433a47a9d37ae9d8484
+    size: 79673
+    checksum: sha256:7faf536348d58af3b632a427a68b0c271db8e5c5cd089d4483d3193603ff169d
     name: kmod-libs
-    evr: 31-12.el10
-    sourcerpm: kmod-31-12.el10.src.rpm
+    evr: 31-13.el10
+    sourcerpm: kmod-31-13.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/l/libbasicobjects-0.1.1-58.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
     size: 28888
@@ -130,13 +130,13 @@ arches:
     name: libedit
     evr: 3.1-52.20230828cvs.el10
     sourcerpm: libedit-3.1-52.20230828cvs.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/l/libev-4.33-14.el10.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/l/libev-4.33-15.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 57282
-    checksum: sha256:6724bf15d87ad8234ee8d7bd9f5fdec221eed3044c4ca7c8b54d001f67d0dd46
+    size: 53739
+    checksum: sha256:59834a7d138f9a1ab2b9f956e6273ac2293be46efe0b26f61b0bf20e08f27c54
     name: libev
-    evr: 4.33-14.el10
-    sourcerpm: libev-4.33-14.el10.src.rpm
+    evr: 4.33-15.el10
+    sourcerpm: libev-4.33-15.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/l/libevent-2.1.12-16.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
     size: 274117
@@ -151,13 +151,13 @@ arches:
     name: libini_config
     evr: 1.3.1-58.el10
     sourcerpm: ding-libs-0.6.2-58.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/l/libnfsidmap-2.8.3-0.el10.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/l/libnfsidmap-2.8.3-5.el10_2.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 66083
-    checksum: sha256:d82ad6b58ef188810f9da1534a140c8026ca99eb31ebbb17441d5f6ce04d5325
+    size: 72523
+    checksum: sha256:29f9ba90b831799e4a818e7823ed5def369c5e21c2f8884d33bfcfe24d13dff2
     name: libnfsidmap
-    evr: 1:2.8.3-0.el10
-    sourcerpm: nfs-utils-2.8.3-0.el10.src.rpm
+    evr: 1:2.8.3-5.el10_2
+    sourcerpm: nfs-utils-2.8.3-5.el10_2.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/l/libnl3-3.11.0-1.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
     size: 380284
@@ -179,13 +179,13 @@ arches:
     name: libref_array
     evr: 0.1.5-58.el10
     sourcerpm: ding-libs-0.6.2-58.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/l/libss-1.47.1-4.el10.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/l/libss-1.47.1-5.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 33384
-    checksum: sha256:a40b4da0cc9b63b52c3ca0d9f1965fb2d68bbdad782191a2b2645b548b0b61c5
+    size: 32264
+    checksum: sha256:1189b7f6ec466b3854c1f5c5944ebb4d8f57497478ceffa074ac664267d8a666
     name: libss
-    evr: 1.47.1-4.el10
-    sourcerpm: e2fsprogs-1.47.1-4.el10.src.rpm
+    evr: 1.47.1-5.el10
+    sourcerpm: e2fsprogs-1.47.1-5.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/l/libtirpc-1.3.5-1.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
     size: 102528
@@ -200,34 +200,34 @@ arches:
     name: libverto-libev
     evr: 0.3.2-10.el10
     sourcerpm: libverto-0.3.2-10.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/n/nfs-utils-2.8.3-0.el10.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/n/nfs-utils-2.8.3-5.el10_2.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 503198
-    checksum: sha256:726f417b27091906dad643763507026779c4da5b64abe5f7224bb495acfaa5e0
+    size: 513919
+    checksum: sha256:bfd77dec8c3ab3d6a3bd74d6ab58541c6dd4ed8431748897a5ff38aea5bc999d
     name: nfs-utils
-    evr: 1:2.8.3-0.el10
-    sourcerpm: nfs-utils-2.8.3-0.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/o/openldap-2.6.9-1.el10.s390x.rpm
+    evr: 1:2.8.3-5.el10_2
+    sourcerpm: nfs-utils-2.8.3-5.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/o/openldap-2.6.10-1.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 249912
-    checksum: sha256:6ee361d5869310735b6293e011418ac050ab334cef3699ef2d39edd742abdc10
+    size: 250319
+    checksum: sha256:6b107b7aaba59fdb64116bd58f0ba6843779eea601c55d139940b0d4fe32e063
     name: openldap
-    evr: 2.6.9-1.el10
-    sourcerpm: openldap-2.6.9-1.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/q/quota-4.09-9.el10.s390x.rpm
+    evr: 2.6.10-1.el10
+    sourcerpm: openldap-2.6.10-1.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/q/quota-4.09-10.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 216422
-    checksum: sha256:1fddb36809872dfc47c64d05cd21191587cbb2c085195451ec42ef5fbf47552d
+    size: 211891
+    checksum: sha256:a21f5a6d61332d4e11cee41dd4de2b7fbb639c5487e8d1dc0b2e765bc4baffb7
     name: quota
-    evr: 1:4.09-9.el10
-    sourcerpm: quota-4.09-9.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/q/quota-nls-4.09-9.el10.noarch.rpm
+    evr: 1:4.09-10.el10
+    sourcerpm: quota-4.09-10.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/q/quota-nls-4.09-10.el10.noarch.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 81280
-    checksum: sha256:e4d15257ce8b5bb1e5d5f31f103078603a7ba2984099e1a392a11bc79a715b78
+    size: 78220
+    checksum: sha256:702de96ef43525aede6f9e3c3274ef760267b339dc24a28c84c27e3c92811e7a
     name: quota-nls
-    evr: 1:4.09-9.el10
-    sourcerpm: quota-4.09-9.el10.src.rpm
+    evr: 1:4.09-10.el10
+    sourcerpm: quota-4.09-10.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/r/rpcbind-1.2.7-3.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
     size: 64492
@@ -242,20 +242,20 @@ arches:
     name: userspace-rcu
     evr: 0.14.0-7.el10
     sourcerpm: userspace-rcu-0.14.0-7.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/x/xfsprogs-6.11.0-2.el10.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/x/xfsprogs-6.16.0-1.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 1254364
-    checksum: sha256:44c3453fb671e69de3f8743a6d00075bd93c1dd0c6a3fdf288b04d30a86fde3f
+    size: 1376280
+    checksum: sha256:86dcb99771654f733f6adac52378036b144893652c4b240ebcb9538b81a4bd5e
     name: xfsprogs
-    evr: 6.11.0-2.el10
-    sourcerpm: xfsprogs-6.11.0-2.el10.src.rpm
+    evr: 6.16.0-1.el10
+    sourcerpm: xfsprogs-6.16.0-1.el10.src.rpm
   source:
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/c/cryptsetup-2.7.5-2.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/c/cryptsetup-2.8.1-2.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 11752375
-    checksum: sha256:21465cbb93f8968609590274d7610a0ebc9eeae5c78ef89686b5ab37ad4ec7da
+    size: 11889564
+    checksum: sha256:efbbc4469d78600ad9f7b9a3191cf3197f65286b544fb96e68453a27aeebf005
     name: cryptsetup
-    evr: 2.7.5-2.el10
+    evr: 2.8.1-2.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/c/cyrus-sasl-2.1.28-29.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
     size: 3988047
@@ -268,12 +268,12 @@ arches:
     checksum: sha256:732e2da374f055c36ccbe28422df11af7a34b577524ca367cc627791e78d4596
     name: ding-libs
     evr: 0.6.2-58.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/e/e2fsprogs-1.47.1-4.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/e/e2fsprogs-1.47.1-5.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 7689808
-    checksum: sha256:4b79a5bac5f7825392ff9e8fd5ca438e8b93b1eeba43d79f9a16dcda0a895bd1
+    size: 7688922
+    checksum: sha256:b51f4917b9e8771736531544c96013d5ce8bb393a6001af153df33fcb59761c3
     name: e2fsprogs
-    evr: 1.47.1-4.el10
+    evr: 1.47.1-5.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/f/fuse3-3.16.2-5.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
     size: 14168039
@@ -304,24 +304,24 @@ arches:
     checksum: sha256:d087dac833a31cfa50ad902044eab935c874c3a97deb614788b775543b2ee6a7
     name: isns-utils
     evr: 0.103-1.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/k/kmod-31-12.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/k/kmod-31-13.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 623740
-    checksum: sha256:16e7cda5be95899fb50254bf38ec349f0d2e7ab15900ee970193cd408e48df90
+    size: 631418
+    checksum: sha256:08e952e61bcb9144b51c1d4fa572e6aeaaa6f0b24117d11e1d6cb8607fc4db46
     name: kmod
-    evr: 31-12.el10
+    evr: 31-13.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/l/libedit-3.1-52.20230828cvs.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
     size: 565695
     checksum: sha256:3ae3bffbac4d27d6b41deede6c1246391f0174e1f06f2afceac5c041bf92a8ec
     name: libedit
     evr: 3.1-52.20230828cvs.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/l/libev-4.33-14.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/l/libev-4.33-15.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 600611
-    checksum: sha256:b5c846c2d0fe8a5ac8bcd87be725a78885e651e9b78bdbc692866c3578f906c5
+    size: 598941
+    checksum: sha256:7e0d8d76776e0a1bf44e483440601f1744fccafaa3bf710ed354829d0a4d4a22
     name: libev
-    evr: 4.33-14.el10
+    evr: 4.33-15.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/l/libevent-2.1.12-16.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
     size: 1144998
@@ -346,30 +346,30 @@ arches:
     checksum: sha256:f2c4fb59a37d33ab6bd4ca9d2f4d0dccf9a1e47bcd66816c0b437dbb67553496
     name: libverto
     evr: 0.3.2-10.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/l/lvm2-2.03.32-3.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/l/lvm2-2.03.36-2.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 3279655
-    checksum: sha256:99ee01534d388e5f705064b005a7303da0a104907a8a9132f3765e62e17b87a6
+    size: 3379060
+    checksum: sha256:0e7277381da04604ca7789740e226392963d20cec9dbea102513055119b38939
     name: lvm2
-    evr: 10:2.03.32-3.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/n/nfs-utils-2.8.3-0.el10.src.rpm
+    evr: 10:2.03.36-2.el10
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/n/nfs-utils-2.8.3-5.el10_2.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 895535
-    checksum: sha256:a1886cb745bf52553960fc2847547317c418e7e6010c33a17f0ef0fe87fe6c53
+    size: 919545
+    checksum: sha256:e9710c5183fa8d25face2c3b00ee9b5906d3fa93308fdfa8b56fab47262853b7
     name: nfs-utils
-    evr: 1:2.8.3-0.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/o/openldap-2.6.9-1.el10.src.rpm
+    evr: 1:2.8.3-5.el10_2
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/o/openldap-2.6.10-1.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 6642175
-    checksum: sha256:c51a5a6eefb4b94a5bd377e140710df620a6ffd7373e96e32f0afae9bec8d8ea
+    size: 6644492
+    checksum: sha256:14808cf2224c23002ecb0d3df48a474916d37230ba9b14dcc9d20f434eb351a9
     name: openldap
-    evr: 2.6.9-1.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/q/quota-4.09-9.el10.src.rpm
+    evr: 2.6.10-1.el10
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/q/quota-4.09-10.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 601625
-    checksum: sha256:7b3b45b2bb6eaa90f3eeba069469de5495b351d8b5154a686c34d69cebc9caf4
+    size: 598855
+    checksum: sha256:0bd2e982d656d9d74c075739e342bab7ceb576f9ab211b09bc1a4b4609c47ab1
     name: quota
-    evr: 1:4.09-9.el10
+    evr: 1:4.09-10.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/r/rpcbind-1.2.7-3.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
     size: 175262
@@ -382,29 +382,29 @@ arches:
     checksum: sha256:85f020b13a5c9c24a0110c6ce3ad44a3d98e32ec671956a767cc4272a7cbbfd8
     name: userspace-rcu
     evr: 0.14.0-7.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/x/xfsprogs-6.11.0-2.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/x/xfsprogs-6.16.0-1.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 1507075
-    checksum: sha256:389e95b6d9a08297465bce730aec6db98ab03fd59a5cfec6e8d26aa45754149b
+    size: 1607255
+    checksum: sha256:e0faaad7fd575b3022276af552eebbf219b1112c1f6029abc7f7088c1cc21d0f
     name: xfsprogs
-    evr: 6.11.0-2.el10
+    evr: 6.16.0-1.el10
   module_metadata: []
 - arch: x86_64
   packages:
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/c/cryptsetup-2.7.5-2.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/c/cryptsetup-2.8.1-2.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 344352
-    checksum: sha256:e81d3c035e1cebb0d8b69675d2e2b099792a4175ea043f964c3d9199a386a577
+    size: 366497
+    checksum: sha256:c435be58c9ad81b5e9053d5ab44aa06bf336c188a7e03d648912a7197dc18dca
     name: cryptsetup
-    evr: 2.7.5-2.el10
-    sourcerpm: cryptsetup-2.7.5-2.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/c/cryptsetup-libs-2.7.5-2.el10.x86_64.rpm
+    evr: 2.8.1-2.el10
+    sourcerpm: cryptsetup-2.8.1-2.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/c/cryptsetup-libs-2.8.1-2.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 552188
-    checksum: sha256:0faaad16d8ff77144bd9bef889b4048491914ad75526987e6606b92f0a2f1589
+    size: 599593
+    checksum: sha256:bdbd7eaebb3cc3e1c00150b19e779066adf704c28a98fdfc11df04980400e742
     name: cryptsetup-libs
-    evr: 2.7.5-2.el10
-    sourcerpm: cryptsetup-2.7.5-2.el10.src.rpm
+    evr: 2.8.1-2.el10
+    sourcerpm: cryptsetup-2.8.1-2.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/c/cyrus-sasl-lib-2.1.28-29.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 108545
@@ -412,34 +412,34 @@ arches:
     name: cyrus-sasl-lib
     evr: 2.1.28-29.el10
     sourcerpm: cyrus-sasl-2.1.28-29.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/d/device-mapper-1.02.206-3.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/d/device-mapper-1.02.210-2.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 143516
-    checksum: sha256:5c474b5f1c6d3d639299a560c1a437f7370bc9480ba07718b5f638bb6a8b90dd
+    size: 150286
+    checksum: sha256:4b91ea309f354b8903dbde96b37f31075a4d8431fa09b86e3c142fb97660bc28
     name: device-mapper
-    evr: 10:1.02.206-3.el10
-    sourcerpm: lvm2-2.03.32-3.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/d/device-mapper-libs-1.02.206-3.el10.x86_64.rpm
+    evr: 10:1.02.210-2.el10
+    sourcerpm: lvm2-2.03.36-2.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/d/device-mapper-libs-1.02.210-2.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 186267
-    checksum: sha256:1899f480df3e7c8460760a8f6207b0e6f773dacd000bc4fcf3d025f2d3adc07d
+    size: 191487
+    checksum: sha256:5471f1881ff34d68a495240a9af218b1a4f8249894c36b9f816e01f30feb3526
     name: device-mapper-libs
-    evr: 10:1.02.206-3.el10
-    sourcerpm: lvm2-2.03.32-3.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/e/e2fsprogs-1.47.1-4.el10.x86_64.rpm
+    evr: 10:1.02.210-2.el10
+    sourcerpm: lvm2-2.03.36-2.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/e/e2fsprogs-1.47.1-5.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 1109332
-    checksum: sha256:24f5934aa52c3297d7fd0e8d56a6fd2c1c974aaa0766690f7120b9826bc0185d
+    size: 1109410
+    checksum: sha256:6b32a50187aeb0d25717a250fa1cd8aa76559e517d055228fe493a3731853a49
     name: e2fsprogs
-    evr: 1.47.1-4.el10
-    sourcerpm: e2fsprogs-1.47.1-4.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/e/e2fsprogs-libs-1.47.1-4.el10.x86_64.rpm
+    evr: 1.47.1-5.el10
+    sourcerpm: e2fsprogs-1.47.1-5.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/e/e2fsprogs-libs-1.47.1-5.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 231574
-    checksum: sha256:d5a42e491cede41d4c13b513ccad580cade510b9e15db87123c25a1ce22e1dea
+    size: 230428
+    checksum: sha256:cd1135a54e569bc5a7eed7b9093354f432e6ac3e58ed0d94ddc1da3bb861590b
     name: e2fsprogs-libs
-    evr: 1.47.1-4.el10
-    sourcerpm: e2fsprogs-1.47.1-4.el10.src.rpm
+    evr: 1.47.1-5.el10
+    sourcerpm: e2fsprogs-1.47.1-5.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/f/fuse3-libs-3.16.2-5.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 99163
@@ -482,20 +482,20 @@ arches:
     name: isns-utils-libs
     evr: 0.103-1.el10
     sourcerpm: isns-utils-0.103-1.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/k/kmod-31-12.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/k/kmod-31-13.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 139642
-    checksum: sha256:be0647f612d1c19c89c9124b51e1057eaa8fa85d3b2dd8feaaa34b3bb89188a6
+    size: 146454
+    checksum: sha256:e547606b488e1ab7e7e43dc4b217b1de614d46cc3e47c0bf162f0a311a3b732b
     name: kmod
-    evr: 31-12.el10
-    sourcerpm: kmod-31-12.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/k/kmod-libs-31-12.el10.x86_64.rpm
+    evr: 31-13.el10
+    sourcerpm: kmod-31-13.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/k/kmod-libs-31-13.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 71144
-    checksum: sha256:62f568e862e577e3b9f0b1c0f505fdc9fc1fcbab3b5c587b9e40d97d2289df81
+    size: 77198
+    checksum: sha256:95a460fe1216d2e27af8e5f1ac5cb11b1e14877837798dacb0fe2adf63ef31fd
     name: kmod-libs
-    evr: 31-12.el10
-    sourcerpm: kmod-31-12.el10.src.rpm
+    evr: 31-13.el10
+    sourcerpm: kmod-31-13.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/l/libbasicobjects-0.1.1-58.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 29127
@@ -517,13 +517,13 @@ arches:
     name: libedit
     evr: 3.1-52.20230828cvs.el10
     sourcerpm: libedit-3.1-52.20230828cvs.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/l/libev-4.33-14.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/l/libev-4.33-15.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 57016
-    checksum: sha256:cf17732ff8cc32308ef598243e90d981a57d203388812c896a3fe2d19e6c68b7
+    size: 53580
+    checksum: sha256:69c5c4342484056e6acd5086e1a3f9f5a00e82cd59e9a06d7d346e99b036695a
     name: libev
-    evr: 4.33-14.el10
-    sourcerpm: libev-4.33-14.el10.src.rpm
+    evr: 4.33-15.el10
+    sourcerpm: libev-4.33-15.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/l/libevent-2.1.12-16.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 271480
@@ -538,13 +538,13 @@ arches:
     name: libini_config
     evr: 1.3.1-58.el10
     sourcerpm: ding-libs-0.6.2-58.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/l/libnfsidmap-2.8.3-0.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/l/libnfsidmap-2.8.3-5.el10_2.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 64929
-    checksum: sha256:a66b545c33b4176283b912cabd879be9dbe95fe2de341cbdcef8da2c0b65197b
+    size: 71325
+    checksum: sha256:7d316694a957ae4f26e47d5fbff457541ef34a7b887c06464e110a16f8045b7a
     name: libnfsidmap
-    evr: 1:2.8.3-0.el10
-    sourcerpm: nfs-utils-2.8.3-0.el10.src.rpm
+    evr: 1:2.8.3-5.el10_2
+    sourcerpm: nfs-utils-2.8.3-5.el10_2.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/l/libnl3-3.11.0-1.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 374208
@@ -566,13 +566,13 @@ arches:
     name: libref_array
     evr: 0.1.5-58.el10
     sourcerpm: ding-libs-0.6.2-58.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/l/libss-1.47.1-4.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/l/libss-1.47.1-5.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 33273
-    checksum: sha256:bdcfbb5ab79c23d6b84e26ddaa496443b338ddca0c36f95028cf29d4b75c313e
+    size: 32072
+    checksum: sha256:de1e1af78a32b7ddfdebf18f4a147fcf47bcf8e5c6e39cf896c0099b8d3ad71f
     name: libss
-    evr: 1.47.1-4.el10
-    sourcerpm: e2fsprogs-1.47.1-4.el10.src.rpm
+    evr: 1.47.1-5.el10
+    sourcerpm: e2fsprogs-1.47.1-5.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/l/libtirpc-1.3.5-1.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 100203
@@ -587,34 +587,34 @@ arches:
     name: libverto-libev
     evr: 0.3.2-10.el10
     sourcerpm: libverto-0.3.2-10.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/n/nfs-utils-2.8.3-0.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/n/nfs-utils-2.8.3-5.el10_2.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 496933
-    checksum: sha256:6693fcf063cfdd1deecbc80748048af0345eaaa6984ae058c59e2cd98561129e
+    size: 506226
+    checksum: sha256:3c10d20ce9ab3e1b1c7f029406f05b1fd6c74bbf9e9180269aabdecf6065d053
     name: nfs-utils
-    evr: 1:2.8.3-0.el10
-    sourcerpm: nfs-utils-2.8.3-0.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/o/openldap-2.6.9-1.el10.x86_64.rpm
+    evr: 1:2.8.3-5.el10_2
+    sourcerpm: nfs-utils-2.8.3-5.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/o/openldap-2.6.10-1.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 245450
-    checksum: sha256:f88148da9e577523ebf32b7f53f9a83ae75a76c75a9a011d6d9fc76c3005a2e8
+    size: 244928
+    checksum: sha256:83235a7a5ff9d500f0ff34cc9bac1922f78429f6b584d30afdbf8988c2ef18b2
     name: openldap
-    evr: 2.6.9-1.el10
-    sourcerpm: openldap-2.6.9-1.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/q/quota-4.09-9.el10.x86_64.rpm
+    evr: 2.6.10-1.el10
+    sourcerpm: openldap-2.6.10-1.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/q/quota-4.09-10.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 206200
-    checksum: sha256:0ce2ca06ffa6da76fb2be42391de66c320503ef105a1efa410c795e9ca68d4ee
+    size: 202326
+    checksum: sha256:5022108731133c72d88fe4fa3fb5b5021646cad543c700d1657def309d1aec48
     name: quota
-    evr: 1:4.09-9.el10
-    sourcerpm: quota-4.09-9.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/q/quota-nls-4.09-9.el10.noarch.rpm
+    evr: 1:4.09-10.el10
+    sourcerpm: quota-4.09-10.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/q/quota-nls-4.09-10.el10.noarch.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 81280
-    checksum: sha256:e4d15257ce8b5bb1e5d5f31f103078603a7ba2984099e1a392a11bc79a715b78
+    size: 78220
+    checksum: sha256:702de96ef43525aede6f9e3c3274ef760267b339dc24a28c84c27e3c92811e7a
     name: quota-nls
-    evr: 1:4.09-9.el10
-    sourcerpm: quota-4.09-9.el10.src.rpm
+    evr: 1:4.09-10.el10
+    sourcerpm: quota-4.09-10.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/r/rpcbind-1.2.7-3.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 64011
@@ -629,20 +629,20 @@ arches:
     name: userspace-rcu
     evr: 0.14.0-7.el10
     sourcerpm: userspace-rcu-0.14.0-7.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/x/xfsprogs-6.11.0-2.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/x/xfsprogs-6.16.0-1.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 1228827
-    checksum: sha256:eaa809bdc67c62cf0d2f2fd1fb496d384e582e31605a5f22c80ed7b060efc3d8
+    size: 1348599
+    checksum: sha256:55e3041d81d446c0f795a0040fb92b48ed8c4fc47008143fffa5519ef3d326ab
     name: xfsprogs
-    evr: 6.11.0-2.el10
-    sourcerpm: xfsprogs-6.11.0-2.el10.src.rpm
+    evr: 6.16.0-1.el10
+    sourcerpm: xfsprogs-6.16.0-1.el10.src.rpm
   source:
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/c/cryptsetup-2.7.5-2.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/c/cryptsetup-2.8.1-2.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 11752375
-    checksum: sha256:21465cbb93f8968609590274d7610a0ebc9eeae5c78ef89686b5ab37ad4ec7da
+    size: 11889564
+    checksum: sha256:efbbc4469d78600ad9f7b9a3191cf3197f65286b544fb96e68453a27aeebf005
     name: cryptsetup
-    evr: 2.7.5-2.el10
+    evr: 2.8.1-2.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/c/cyrus-sasl-2.1.28-29.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 3988047
@@ -655,12 +655,12 @@ arches:
     checksum: sha256:732e2da374f055c36ccbe28422df11af7a34b577524ca367cc627791e78d4596
     name: ding-libs
     evr: 0.6.2-58.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/e/e2fsprogs-1.47.1-4.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/e/e2fsprogs-1.47.1-5.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 7689808
-    checksum: sha256:4b79a5bac5f7825392ff9e8fd5ca438e8b93b1eeba43d79f9a16dcda0a895bd1
+    size: 7688922
+    checksum: sha256:b51f4917b9e8771736531544c96013d5ce8bb393a6001af153df33fcb59761c3
     name: e2fsprogs
-    evr: 1.47.1-4.el10
+    evr: 1.47.1-5.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/f/fuse3-3.16.2-5.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 14168039
@@ -691,24 +691,24 @@ arches:
     checksum: sha256:d087dac833a31cfa50ad902044eab935c874c3a97deb614788b775543b2ee6a7
     name: isns-utils
     evr: 0.103-1.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/k/kmod-31-12.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/k/kmod-31-13.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 623740
-    checksum: sha256:16e7cda5be95899fb50254bf38ec349f0d2e7ab15900ee970193cd408e48df90
+    size: 631418
+    checksum: sha256:08e952e61bcb9144b51c1d4fa572e6aeaaa6f0b24117d11e1d6cb8607fc4db46
     name: kmod
-    evr: 31-12.el10
+    evr: 31-13.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/l/libedit-3.1-52.20230828cvs.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 565695
     checksum: sha256:3ae3bffbac4d27d6b41deede6c1246391f0174e1f06f2afceac5c041bf92a8ec
     name: libedit
     evr: 3.1-52.20230828cvs.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/l/libev-4.33-14.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/l/libev-4.33-15.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 600611
-    checksum: sha256:b5c846c2d0fe8a5ac8bcd87be725a78885e651e9b78bdbc692866c3578f906c5
+    size: 598941
+    checksum: sha256:7e0d8d76776e0a1bf44e483440601f1744fccafaa3bf710ed354829d0a4d4a22
     name: libev
-    evr: 4.33-14.el10
+    evr: 4.33-15.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/l/libevent-2.1.12-16.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 1144998
@@ -733,30 +733,30 @@ arches:
     checksum: sha256:f2c4fb59a37d33ab6bd4ca9d2f4d0dccf9a1e47bcd66816c0b437dbb67553496
     name: libverto
     evr: 0.3.2-10.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/l/lvm2-2.03.32-3.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/l/lvm2-2.03.36-2.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 3279655
-    checksum: sha256:99ee01534d388e5f705064b005a7303da0a104907a8a9132f3765e62e17b87a6
+    size: 3379060
+    checksum: sha256:0e7277381da04604ca7789740e226392963d20cec9dbea102513055119b38939
     name: lvm2
-    evr: 10:2.03.32-3.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/n/nfs-utils-2.8.3-0.el10.src.rpm
+    evr: 10:2.03.36-2.el10
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/n/nfs-utils-2.8.3-5.el10_2.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 895535
-    checksum: sha256:a1886cb745bf52553960fc2847547317c418e7e6010c33a17f0ef0fe87fe6c53
+    size: 919545
+    checksum: sha256:e9710c5183fa8d25face2c3b00ee9b5906d3fa93308fdfa8b56fab47262853b7
     name: nfs-utils
-    evr: 1:2.8.3-0.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/o/openldap-2.6.9-1.el10.src.rpm
+    evr: 1:2.8.3-5.el10_2
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/o/openldap-2.6.10-1.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 6642175
-    checksum: sha256:c51a5a6eefb4b94a5bd377e140710df620a6ffd7373e96e32f0afae9bec8d8ea
+    size: 6644492
+    checksum: sha256:14808cf2224c23002ecb0d3df48a474916d37230ba9b14dcc9d20f434eb351a9
     name: openldap
-    evr: 2.6.9-1.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/q/quota-4.09-9.el10.src.rpm
+    evr: 2.6.10-1.el10
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/q/quota-4.09-10.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 601625
-    checksum: sha256:7b3b45b2bb6eaa90f3eeba069469de5495b351d8b5154a686c34d69cebc9caf4
+    size: 598855
+    checksum: sha256:0bd2e982d656d9d74c075739e342bab7ceb576f9ab211b09bc1a4b4609c47ab1
     name: quota
-    evr: 1:4.09-9.el10
+    evr: 1:4.09-10.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/r/rpcbind-1.2.7-3.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 175262
@@ -769,10 +769,10 @@ arches:
     checksum: sha256:85f020b13a5c9c24a0110c6ce3ad44a3d98e32ec671956a767cc4272a7cbbfd8
     name: userspace-rcu
     evr: 0.14.0-7.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/x/xfsprogs-6.11.0-2.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/x/xfsprogs-6.16.0-1.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 1507075
-    checksum: sha256:389e95b6d9a08297465bce730aec6db98ab03fd59a5cfec6e8d26aa45754149b
+    size: 1607255
+    checksum: sha256:e0faaad7fd575b3022276af552eebbf219b1112c1f6029abc7f7088c1cc21d0f
     name: xfsprogs
-    evr: 6.11.0-2.el10
+    evr: 6.16.0-1.el10
   module_metadata: []
