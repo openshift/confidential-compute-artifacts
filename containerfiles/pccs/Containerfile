@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi10/nodejs-22:10.1-1778647874 AS builder
+FROM registry.access.redhat.com/ubi10/nodejs-22:10.2-1777538589 AS builder
 USER root
 
 WORKDIR pccs
