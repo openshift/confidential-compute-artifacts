@@ -88,20 +88,20 @@ arches:
     name: kernel-srpm-macros
     evr: 1.0-27.el10
     sourcerpm: kernel-srpm-macros-1.0-27.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/libuv-devel-1.51.0-1.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/libuv-devel-1.51.0-1.el10_0.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 43405
-    checksum: sha256:efa3a8cd5d9489d684207021799931f1d7a607062b48afbcd3203dfde09b2ba7
+    size: 42607
+    checksum: sha256:a28c2611ad22e60dc7c85fff84c65d9b5ab317904b099613a03a9f6affc02bd9
     name: libuv-devel
-    evr: 1:1.51.0-1.el10
-    sourcerpm: libuv-1.51.0-1.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/libuv-static-1.51.0-1.el10.x86_64.rpm
+    evr: 1:1.51.0-1.el10_0
+    sourcerpm: libuv-1.51.0-1.el10_0.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/libuv-static-1.51.0-1.el10_0.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 112730
-    checksum: sha256:89ad8ae100ac93a052416d813426a66b8e34730656bb3291e4b743d98b005484
+    size: 111450
+    checksum: sha256:1719866e5ceeb684ec56bca72dfc26a8f7d969e19b8c89f82fa8ce1653eec923
     name: libuv-static
-    evr: 1:1.51.0-1.el10
-    sourcerpm: libuv-1.51.0-1.el10.src.rpm
+    evr: 1:1.51.0-1.el10_0
+    sourcerpm: libuv-1.51.0-1.el10_0.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/lua-srpm-macros-1-15.el10.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 10752
@@ -200,13 +200,13 @@ arches:
     name: file
     evr: 5.45-9.el10
     sourcerpm: file-5.45-9.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/g/glibc-gconv-extra-2.39-121.el10_2.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/g/glibc-gconv-extra-2.39-124.el10_2.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 1751108
-    checksum: sha256:302365dc36ec1f0e51af86bbdcd360724bb6eee15fb506a10f3a343978f4be11
+    size: 1750884
+    checksum: sha256:599f7c5c8da8f18489e06758c1932419199776e6f21cc24c5a7f61b26fd57b13
     name: glibc-gconv-extra
-    evr: 2.39-121.el10_2
-    sourcerpm: glibc-2.39-121.el10_2.src.rpm
+    evr: 2.39-124.el10_2
+    sourcerpm: glibc-2.39-124.el10_2.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/z/zip-3.0-45.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 276591
@@ -251,12 +251,12 @@ arches:
     checksum: sha256:efec9f2ca5214b532ee3579dc077a13719ebed0e1ab69f11679cf01a04427c45
     name: kernel-srpm-macros
     evr: 1.0-27.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/libuv-1.51.0-1.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/libuv-1.51.0-1.el10_0.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
-    size: 1388860
-    checksum: sha256:0072fa207c9bc26de30d81855be9d26dc67f0774df30cd883bc8d19539e0082b
+    size: 1387473
+    checksum: sha256:7b9bf8f2800d3c666cadc21b42e8c00966b96db39100c896d7638a2e7be8e4ac
     name: libuv
-    evr: 1:1.51.0-1.el10
+    evr: 1:1.51.0-1.el10_0
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/lua-rpm-macros-1-15.el10.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
     size: 15998
@@ -359,12 +359,12 @@ arches:
     checksum: sha256:57b9c819079c6ee835f87d3e8d3a25e314d5ca54ffe1868f09a52b37a923155d
     name: gcc
     evr: 14.3.1-4.4.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/g/glibc-2.39-121.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/g/glibc-2.39-124.el10_2.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 21621520
-    checksum: sha256:198428adeeea9445bd416461a6bffa6ad8d37973f06e004ee8bd056409a23957
+    size: 21641776
+    checksum: sha256:1a539afa8fdd8372e1fc21b1ca3426da11dde1d2e8c7064e7f5530026c8e89b5
     name: glibc
-    evr: 2.39-121.el10_2
+    evr: 2.39-124.el10_2
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/z/zip-3.0-45.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 1152589
