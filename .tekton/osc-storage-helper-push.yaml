@@ -7,13 +7,13 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/cancel-in-progress: "false"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "main" && ( "containerfiles/storage-helper/***".pathChanged() || ".tekton/osc-storage-helper-push.yaml".pathChanged() )
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "osc-release-v1.12" && ( "containerfiles/storage-helper/***".pathChanged() || ".tekton/osc-storage-helper-push.yaml".pathChanged() )
   creationTimestamp:
   labels:
-    appstudio.openshift.io/application: openshift-sandboxed-containers
-    appstudio.openshift.io/component: osc-storage-helper
+    appstudio.openshift.io/application: openshift-sandboxed-containers-v1-12
+    appstudio.openshift.io/component: osc-storage-helper-v1-12
     pipelines.appstudio.openshift.io/type: build
-  name: osc-storage-helper-on-push
+  name: osc-storage-helper-v1-12-on-push
   namespace: ose-osc-tenant
 spec:
   params:
@@ -22,7 +22,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/ose-osc-tenant/osc-storage-helper:{{revision}}
+    value: quay.io/redhat-user-workloads/ose-osc-tenant/osc-storage-helper-v1-12:{{revision}}
   - name: build-platforms
     value:
     - linux/x86_64
@@ -606,7 +606,7 @@ spec:
     - name: netrc
       optional: true
   taskRunTemplate:
-    serviceAccountName: build-pipeline-osc-storage-helper
+    serviceAccountName: build-pipeline-osc-storage-helper-v1-12
   workspaces:
   - name: git-auth
     secret:

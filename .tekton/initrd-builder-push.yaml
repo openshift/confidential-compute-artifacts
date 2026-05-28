@@ -8,14 +8,14 @@ metadata:
     pipelinesascode.tekton.dev/cancel-in-progress: "false"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch
-      == "main" && ( "containerfiles/initrd-builder/***".pathChanged() || ".tekton/initrd-builder-push.yaml".pathChanged()
+      == "osc-release-v1.12" && ( "containerfiles/initrd-builder/***".pathChanged() || ".tekton/initrd-builder-push.yaml".pathChanged()
       )
   creationTimestamp: null
   labels:
-    appstudio.openshift.io/application: build-initrds
-    appstudio.openshift.io/component: initrd-builder
+    appstudio.openshift.io/application: build-initrds-v1-12
+    appstudio.openshift.io/component: initrd-builder-v1-12
     pipelines.appstudio.openshift.io/type: build
-  name: initrd-builder-on-push
+  name: initrd-builder-v1-12-on-push
   namespace: ose-osc-tenant
 spec:
   params:
@@ -24,7 +24,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/ose-osc-tenant/initrd-builder:{{revision}}
+    value: quay.io/redhat-user-workloads/ose-osc-tenant/initrd-builder-v1-12:{{revision}}
   - name: dockerfile
     value: Containerfile
   - name: path-context
@@ -591,7 +591,7 @@ spec:
     - name: netrc
       optional: true
   taskRunTemplate:
-    serviceAccountName: build-pipeline-initrd-builder
+    serviceAccountName: build-pipeline-initrd-builder-v1-12
   workspaces:
   - name: git-auth
     secret:
