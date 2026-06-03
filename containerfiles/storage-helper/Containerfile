@@ -1,13 +1,18 @@
 FROM registry.access.redhat.com/ubi9/go-toolset:1.26.2-1779886993 as builder
+
+# Required by the ubi based go-toolset image
+USER root
+
 WORKDIR /app
 COPY luks_main.go .
 RUN go mod init luks-helper && go build -o luks-helper .
 
-FROM registry.access.redhat.com/ubi10:10.2-1779861559
+FROM registry.access.redhat.com/ubi10/ubi-minimal:10.2-1779862102
 COPY --from=builder /app/luks-helper /usr/local/bin/luks-helper
 
 # Uncomment the below instructions when running the build from an 
 # unregistered host
+#RUN microdnf install -y subscription-manager
 #RUN --mount=type=secret,id=org,dst=/run/secrets/org \
 #    --mount=type=secret,id=key,dst=/run/secrets/key \
 #    set +x && \
@@ -15,13 +20,18 @@ COPY --from=builder /app/luks-helper /usr/local/bin/luks-helper
 #      --org=$(cat /run/secrets/org) \
 #      --activationkey=$(cat /run/secrets/key)
 
-RUN dnf install -y \
+RUN microdnf install -y \
    nfs-utils \
    iscsi-initiator-utils \
    e2fsprogs \
    xfsprogs \
    util-linux-core \
    cryptsetup
+# Uncomment the below instructions when running the build from an
+# unregistered host
+#RUN microdnf remove -y subscription-manager
+
+RUN microdnf clean all
 
 # Red Hat labels
 LABEL name="openshift-sandboxed-containers/osc-storage-helper" \
