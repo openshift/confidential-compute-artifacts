@@ -298,6 +298,7 @@ install_trusted_ca_bundle_to_rootfs() {
 
 
 copy_dynamic_libraries() {
+    export LD_LIBRARY_PATH=${DRACUT_ROOTFS}/usr/lib64
     for exe in \
         /usr/local/bin/api-server-rest \
         /usr/local/bin/attestation-agent \
@@ -306,6 +307,7 @@ copy_dynamic_libraries() {
     do
         ldd ${DRACUT_ROOTFS}${exe} | perl -lne 'print $1 if /=>\s+\/lib64\/(\S+)/o' | xargs -i rsync -vaL /lib64/{} ${DRACUT_ROOTFS}/lib64/
     done
+    unset LD_LIBRARY_PATH
 }
 
 make_kata_adjustments_to_dracut_rootfs()
