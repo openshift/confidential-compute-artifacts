@@ -47,7 +47,7 @@ RUN      set +x \
         nvidia-driver-cuda-${NVIDIA_DRIVERS_VERSION} \
         nvidia-driver-libs-${NVIDIA_DRIVERS_VERSION} \
         nvidia-persistenced-${NVIDIA_DRIVERS_VERSION} \
-        kmod-nvidia \
+        nvidia-kmod-common-${NVIDIA_DRIVERS_VERSION} \
         nvidia-container-toolkit \
         zstd jq policycoreutils dbus-daemon rsync chrony rsyslog \
         iptables libtirpc git make gcc \
