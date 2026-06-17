@@ -71,15 +71,12 @@ COPY --from=rhel10-podvm-payload /kata-vcs-ref .
 
 # Prepare the osbuilder and agent directories with everything we need to build
 # the initrds
-COPY patches/ patches/
 RUN set -o pipefail; \
     set -e; \
     git clone https://github.com/openshift/kata-containers \
     && pushd kata-containers > /dev/null \
         && git reset --hard $(cat ../kata-vcs-ref) \
         && echo "Using out kata version $(cat VERSION) from osc-release branch" \
-        && echo "Applying patches" \
-        && git apply --verbose ../patches/0999-osbuilder-Adjust-agent_version-for-our-builds.patch \
         && echo "Generate kata-agent.service" \
         && make -C src/agent kata-agent.service 2> /dev/null \
         && echo "Build nsdax" \
