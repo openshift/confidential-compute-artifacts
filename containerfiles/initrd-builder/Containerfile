@@ -66,13 +66,17 @@ COPY --from=rhel10-podvm-payload /podvm-binaries.tar.gz .
 RUN mkdir -p podvm-binaries \
     && tar -xf podvm-binaries.tar.gz -C podvm-binaries
 
+# Copy the kata-containers git ref to be used
+COPY --from=rhel10-podvm-payload /kata-vcs-ref .
+
 # Prepare the osbuilder and agent directories with everything we need to build
 # the initrds
 COPY patches/ patches/
 RUN set -o pipefail; \
     set -e; \
-    git clone https://github.com/openshift/kata-containers -b osc-release \
+    git clone https://github.com/openshift/kata-containers \
     && pushd kata-containers > /dev/null \
+        && git reset --hard $(cat ../kata-vcs-ref) \
         && echo "Using out kata version $(cat VERSION) from osc-release branch" \
         && echo "Applying patches" \
         && git apply --verbose ../patches/0999-osbuilder-Adjust-agent_version-for-our-builds.patch \
