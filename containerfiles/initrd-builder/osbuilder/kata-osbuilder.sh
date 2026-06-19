@@ -297,6 +297,19 @@ install_trusted_ca_bundle_to_rootfs() {
 }
 
 
+copy_dynamic_libraries() {
+    export LD_LIBRARY_PATH=${DRACUT_ROOTFS}/usr/lib64
+    for exe in \
+        /usr/local/bin/api-server-rest \
+        /usr/local/bin/attestation-agent \
+        /usr/local/bin/confidential-data-hub \
+        /usr/bin/kata-agent
+    do
+        ldd ${DRACUT_ROOTFS}${exe} | perl -lne 'print $1 if /=>\s+\/lib64\/(\S+)/o' | xargs -i rsync -vaL /lib64/{} ${DRACUT_ROOTFS}/lib64/
+    done
+    unset LD_LIBRARY_PATH
+}
+
 make_kata_adjustments_to_dracut_rootfs()
 {
     local agent_dir="${ARG_AGENT_DIR_PREFIX}${KATA_LIBEXEC_DIR}/agent"
@@ -332,11 +345,7 @@ make_kata_adjustments_to_dracut_rootfs()
                 -o ${osbuilder_version} \
                 -r ${DRACUT_ROOTFS}
 
-            # Copy dynamic libraries
-            ldd ${DRACUT_ROOTFS}/usr/local/bin/api-server-rest | perl -lne 'print $1 if /=>\s+\/lib64\/(\S+)/o' | xargs -i rsync -aL /lib64/{} ${DRACUT_ROOTFS}/lib64/
-            ldd ${DRACUT_ROOTFS}/usr/local/bin/attestation-agent | perl -lne 'print $1 if /=>\s+\/lib64\/(\S+)/o' | xargs -i rsync -aL /lib64/{} ${DRACUT_ROOTFS}/lib64/
-            ldd ${DRACUT_ROOTFS}/usr/local/bin/confidential-data-hub | perl -lne 'print $1 if /=>\s+\/lib64\/(\S+)/o' | xargs -i rsync -aL /lib64/{} ${DRACUT_ROOTFS}/lib64/
-            ldd ${DRACUT_ROOTFS}/usr/bin/kata-agent | perl -lne 'print $1 if /=>\s+\/lib64\/(\S+)/o' | xargs -i rsync -aL /lib64/{} ${DRACUT_ROOTFS}/lib64/
+            copy_dynamic_libraries
 
             info "Copy the systemd-remount-fs.service"
             cp /usr/lib/systemd/system/systemd-remount-fs.service ${DRACUT_ROOTFS}/usr/lib/systemd/system/
@@ -381,11 +390,7 @@ make_kata_adjustments_to_dracut_rootfs()
                 systemctl add-wants --root=${DRACUT_ROOTFS} sysinit.target sys-kernel-config.mount
             fi
 
-            # Copy dynamic libraries
-            ldd ${DRACUT_ROOTFS}/usr/local/bin/api-server-rest | perl -lne 'print $1 if /=>\s+\/lib64\/(\S+)/o' | xargs -i rsync -aL /lib64/{} ${DRACUT_ROOTFS}/lib64/
-            ldd ${DRACUT_ROOTFS}/usr/local/bin/attestation-agent | perl -lne 'print $1 if /=>\s+\/lib64\/(\S+)/o' | xargs -i rsync -aL /lib64/{} ${DRACUT_ROOTFS}/lib64/
-            ldd ${DRACUT_ROOTFS}/usr/local/bin/confidential-data-hub | perl -lne 'print $1 if /=>\s+\/lib64\/(\S+)/o' | xargs -i rsync -aL /lib64/{} ${DRACUT_ROOTFS}/lib64/
-            ldd ${DRACUT_ROOTFS}/usr/bin/kata-agent | perl -lne 'print $1 if /=>\s+\/lib64\/(\S+)/o' | xargs -i rsync -aL /lib64/{} ${DRACUT_ROOTFS}/lib64/
+            copy_dynamic_libraries
 
             info "Copy the systemd-remount-fs.service"
             cp /usr/lib/systemd/system/systemd-remount-fs.service ${DRACUT_ROOTFS}/usr/lib/systemd/system/
