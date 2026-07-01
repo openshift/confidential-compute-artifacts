@@ -1,6 +1,0 @@
-packages: [tdx-qgs, sgx-pckid-tool]
-contentOrigin:
-  repofiles: ["./redhat.repo"]
-arches: [x86_64]
-context:
-  containerfile: Containerfile
