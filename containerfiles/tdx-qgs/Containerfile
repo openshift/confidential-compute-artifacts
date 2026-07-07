@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi10:10.2-1781510001
+FROM registry.access.redhat.com/ubi10:10.2-1782798722
 
 COPY dcap-registration-flow /usr/bin
 
