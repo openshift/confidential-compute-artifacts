@@ -88,20 +88,20 @@ arches:
     name: kernel-srpm-macros
     evr: 1.0-27.el10
     sourcerpm: kernel-srpm-macros-1.0-27.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/libuv-devel-1.51.0-1.el10_0.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/libuv-devel-1.52.1-1.el10_2.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 42607
-    checksum: sha256:a28c2611ad22e60dc7c85fff84c65d9b5ab317904b099613a03a9f6affc02bd9
+    size: 49637
+    checksum: sha256:3c5d44d9fb63b01b3487d8dc7407d118ae78dc4a2e847a7131444b89fc91194a
     name: libuv-devel
-    evr: 1:1.51.0-1.el10_0
-    sourcerpm: libuv-1.51.0-1.el10_0.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/libuv-static-1.51.0-1.el10_0.x86_64.rpm
+    evr: 1:1.52.1-1.el10_2
+    sourcerpm: libuv-1.52.1-1.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/libuv-static-1.52.1-1.el10_2.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 111450
-    checksum: sha256:1719866e5ceeb684ec56bca72dfc26a8f7d969e19b8c89f82fa8ce1653eec923
+    size: 117749
+    checksum: sha256:9c4aab39c6dc1f5c12a70d3dbc169351d87d7883a84552b537b64643631c89c5
     name: libuv-static
-    evr: 1:1.51.0-1.el10_0
-    sourcerpm: libuv-1.51.0-1.el10_0.src.rpm
+    evr: 1:1.52.1-1.el10_2
+    sourcerpm: libuv-1.52.1-1.el10_2.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/l/lua-srpm-macros-1-15.el10.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 10752
@@ -109,13 +109,48 @@ arches:
     name: lua-srpm-macros
     evr: 1-15.el10
     sourcerpm: lua-rpm-macros-1-15.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-devel-22.22.2-1.el10_1.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-22.23.1-2.el10_2.x86_64.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 257445
-    checksum: sha256:9815f0fa24fd1bee10ee50513bdc73b85360c390c3ccabe18c062c435b9a071e
+    size: 59994
+    checksum: sha256:f33e48c9101142190fe42423dbb465b0ad11cfa19c6d57c7264604a970178835
+    name: nodejs
+    evr: 1:22.23.1-2.el10_2
+    sourcerpm: nodejs22-22.23.1-2.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-devel-22.23.1-2.el10_2.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 257739
+    checksum: sha256:781e85edf4e823baf2be19d09d568ee4638eabfb7e35fefbe246360e124a6ec5
     name: nodejs-devel
-    evr: 1:22.22.2-1.el10_1
-    sourcerpm: nodejs22-22.22.2-1.el10_1.src.rpm
+    evr: 1:22.23.1-2.el10_2
+    sourcerpm: nodejs22-22.23.1-2.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-docs-22.23.1-2.el10_2.noarch.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 9709975
+    checksum: sha256:8810c54e11a2f2cd44fd7f11c2db966c856bd792c5a1219345fedd0f91180883
+    name: nodejs-docs
+    evr: 1:22.23.1-2.el10_2
+    sourcerpm: nodejs22-22.23.1-2.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-full-i18n-22.23.1-2.el10_2.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 9308880
+    checksum: sha256:9654222e42c1bbe35a69e0a9c3b0c4952f00ae862be8ab889deb090437123f38
+    name: nodejs-full-i18n
+    evr: 1:22.23.1-2.el10_2
+    sourcerpm: nodejs22-22.23.1-2.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-libs-22.23.1-2.el10_2.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 20717160
+    checksum: sha256:d9c98ec69c19d5a6cbdfe4636ce7d9330d5b9761576ffb4e8734ab94e67c4b56
+    name: nodejs-libs
+    evr: 1:22.23.1-2.el10_2
+    sourcerpm: nodejs22-22.23.1-2.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-npm-10.9.8-1.22.23.1.2.el10_2.x86_64.rpm
+    repoid: rhel-10-for-x86_64-appstream-rpms
+    size: 2615286
+    checksum: sha256:b678dcac31d756fb973e94c02c8925270153f9f850167d85fa297c7206a50ca0
+    name: nodejs-npm
+    evr: 1:10.9.8-1.22.23.1.2.el10_2
+    sourcerpm: nodejs22-22.23.1-2.el10_2.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/n/nodejs-packaging-2023.10-12.el10_1.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 20624
@@ -193,6 +228,13 @@ arches:
     name: zlib-ng-compat-devel
     evr: 2.2.3-3.el10_1
     sourcerpm: zlib-ng-2.2.3-3.el10_1.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/c/c-ares-1.34.6-1.el10.x86_64.rpm
+    repoid: rhel-10-for-x86_64-baseos-rpms
+    size: 119708
+    checksum: sha256:94fbbc4388159174b51e73ffe52000fa4b7c91e6ec6535fda59dddc861a06ee2
+    name: c-ares
+    evr: 1.34.6-1.el10
+    sourcerpm: c-ares-1.34.6-1.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/f/file-5.45-9.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 55041
@@ -200,13 +242,13 @@ arches:
     name: file
     evr: 5.45-9.el10
     sourcerpm: file-5.45-9.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/g/glibc-gconv-extra-2.39-124.el10_2.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/g/glibc-gconv-extra-2.39-126.el10_2.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 1750884
-    checksum: sha256:599f7c5c8da8f18489e06758c1932419199776e6f21cc24c5a7f61b26fd57b13
+    size: 1747905
+    checksum: sha256:eb59630aef4136fee602e65d04c56b6b4c97d43138c1aec06bbedf7f2128e21c
     name: glibc-gconv-extra
-    evr: 2.39-124.el10_2
-    sourcerpm: glibc-2.39-124.el10_2.src.rpm
+    evr: 2.39-126.el10_2
+    sourcerpm: glibc-2.39-126.el10_2.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/z/zip-3.0-45.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 276591
@@ -251,12 +293,12 @@ arches:
     checksum: sha256:efec9f2ca5214b532ee3579dc077a13719ebed0e1ab69f11679cf01a04427c45
     name: kernel-srpm-macros
     evr: 1.0-27.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/libuv-1.51.0-1.el10_0.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/libuv-1.52.1-1.el10_2.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
-    size: 1387473
-    checksum: sha256:7b9bf8f2800d3c666cadc21b42e8c00966b96db39100c896d7638a2e7be8e4ac
+    size: 1406515
+    checksum: sha256:b78892dbd7a6320c6771c457d9b023900ba27d5b111a9061b9231bcc2b128375
     name: libuv
-    evr: 1:1.51.0-1.el10_0
+    evr: 1:1.52.1-1.el10_2
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/l/lua-rpm-macros-1-15.el10.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
     size: 15998
@@ -269,12 +311,12 @@ arches:
     checksum: sha256:477fdb1954f80dafb8ee2cbfbb452271baecc583ea7bfc13555810632fae60f5
     name: nodejs-packaging
     evr: 2023.10-12.el10_1
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/n/nodejs22-22.22.2-1.el10_1.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/n/nodejs22-22.23.1-2.el10_2.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
-    size: 96320840
-    checksum: sha256:0fbadd833d5465e9542457d43692d6b39803f44ccd7865c7aa81f90332f7077a
+    size: 96612351
+    checksum: sha256:79e9aa452184bd21827ad5f46d02ab7186a37181f3442732b73ea4bcde787e31
     name: nodejs22
-    evr: 1:22.22.2-1.el10_1
+    evr: 1:22.23.1-2.el10_2
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/source/SRPMS/Packages/o/ocaml-srpm-macros-10-4.el10.src.rpm
     repoid: rhel-10-for-x86_64-appstream-source-rpms
     size: 16581
@@ -335,6 +377,12 @@ arches:
     checksum: sha256:3c06552ab1d70705a78107ccc980ce9043793c4bb0fd945962e023f1c6e41141
     name: brotli
     evr: 1.1.0-7.el10_1
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/c/c-ares-1.34.6-1.el10.src.rpm
+    repoid: rhel-10-for-x86_64-baseos-source-rpms
+    size: 1044003
+    checksum: sha256:2b715b0369bfd2214c41f89a16b4c81be70de2b3d0ed769d9b51bf2fa1b80bb2
+    name: c-ares
+    evr: 1.34.6-1.el10
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/e/efi-rpm-macros-6-6.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 33983
@@ -359,12 +407,12 @@ arches:
     checksum: sha256:57b9c819079c6ee835f87d3e8d3a25e314d5ca54ffe1868f09a52b37a923155d
     name: gcc
     evr: 14.3.1-4.4.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/g/glibc-2.39-124.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/g/glibc-2.39-126.el10_2.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 21641776
-    checksum: sha256:1a539afa8fdd8372e1fc21b1ca3426da11dde1d2e8c7064e7f5530026c8e89b5
+    size: 21656137
+    checksum: sha256:b6f9dae29dd93bec0debc26e7fc243f9a0b47696d840d70d739447e12e1e226f
     name: glibc
-    evr: 2.39-124.el10_2
+    evr: 2.39-126.el10_2
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/z/zip-3.0-45.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 1152589
