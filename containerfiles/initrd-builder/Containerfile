@@ -71,9 +71,9 @@ RUN mkdir -p podvm-binaries \
 COPY patches/ patches/
 RUN set -o pipefail; \
     set -e; \
-    git clone https://github.com/openshift/kata-containers -b osc-release \
+    git clone https://github.com/openshift/kata-containers -b osc-release-v1.12 \
     && pushd kata-containers > /dev/null \
-        && echo "Using out kata version $(cat VERSION) from osc-release branch" \
+        && echo "Using out kata version $(cat VERSION) from osc-release-v1.12 branch" \
         && echo "Applying patches" \
         && git apply --verbose ../patches/0999-osbuilder-Adjust-agent_version-for-our-builds.patch \
         && echo "Generate kata-agent.service" \
