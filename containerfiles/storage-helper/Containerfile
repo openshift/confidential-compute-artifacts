@@ -7,7 +7,7 @@ WORKDIR /app
 COPY luks_main.go .
 RUN go mod init luks-helper && go build -o luks-helper .
 
-FROM registry.access.redhat.com/ubi10/ubi-minimal:10.2-1782798957
+FROM registry.access.redhat.com/ubi10/ubi-minimal:10.2-1784669047
 COPY --from=builder /app/luks-helper /usr/local/bin/luks-helper
 
 # Uncomment the below instructions when running the build from an 
