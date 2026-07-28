@@ -68,14 +68,11 @@ RUN mkdir -p podvm-binaries \
 
 # Prepare the osbuilder and agent directories with everything we need to build
 # the initrds
-COPY patches/ patches/
 RUN set -o pipefail; \
     set -e; \
     git clone https://github.com/openshift/kata-containers -b osc-release \
     && pushd kata-containers > /dev/null \
         && echo "Using out kata version $(cat VERSION) from osc-release branch" \
-        && echo "Applying patches" \
-        && git apply --verbose ../patches/0999-osbuilder-Adjust-agent_version-for-our-builds.patch \
         && echo "Generate kata-agent.service" \
         && make -C src/agent kata-agent.service 2> /dev/null \
         && echo "Build nsdax" \
