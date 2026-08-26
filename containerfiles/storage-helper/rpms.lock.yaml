@@ -11,13 +11,13 @@ arches:
     name: libxkbcommon
     evr: 1.7.0-4.el10
     sourcerpm: libxkbcommon-1.7.0-4.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/appstream/os/Packages/p/python-unversioned-command-3.12.13-2.el10_2.noarch.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/appstream/os/Packages/p/python-unversioned-command-3.12.14-1.el10_2.noarch.rpm
     repoid: rhel-10-for-s390x-appstream-rpms
-    size: 17852
-    checksum: sha256:8694819e4040b7542ed9f330e2aee5e8d77e2438535cc23bc6477aa94ebf7de2
+    size: 16735
+    checksum: sha256:7406223eae376d8219e52f183248e275e84eb3eb1020c40e02e89a39cdb07ef9
     name: python-unversioned-command
-    evr: 3.12.13-2.el10_2
-    sourcerpm: python3.12-3.12.13-2.el10_2.src.rpm
+    evr: 3.12.14-1.el10_2
+    sourcerpm: python3.12-3.12.14-1.el10_2.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/appstream/os/Packages/x/xkeyboard-config-2.41-3.el10.noarch.rpm
     repoid: rhel-10-for-s390x-appstream-rpms
     size: 1028145
@@ -207,27 +207,27 @@ arches:
     name: inih
     evr: 58-3.el10
     sourcerpm: inih-58-3.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/i/iscsi-initiator-utils-6.2.1.11-0.git4b3e853.el10.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/i/iscsi-initiator-utils-6.2.1.11-1.git4b3e853.el10_2.2.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 419453
-    checksum: sha256:e3760d99ba48fd47c0cccd12c79678cd2f6f7e97b0eccac7173d578f1004bc36
+    size: 426883
+    checksum: sha256:2a885a4c2bd3f329c2a8afcee724cd7e2f585eab44b1091bb36ebf15d1880ab1
     name: iscsi-initiator-utils
-    evr: 6.2.1.11-0.git4b3e853.el10
-    sourcerpm: iscsi-initiator-utils-6.2.1.11-0.git4b3e853.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/i/iscsi-initiator-utils-iscsiuio-6.2.1.11-0.git4b3e853.el10.s390x.rpm
+    evr: 6.2.1.11-1.git4b3e853.el10_2.2
+    sourcerpm: iscsi-initiator-utils-6.2.1.11-1.git4b3e853.el10_2.2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/i/iscsi-initiator-utils-iscsiuio-6.2.1.11-1.git4b3e853.el10_2.2.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 87050
-    checksum: sha256:91c7e08cb2a03fcacf7f1a1b0d1a7f296e9a98392eb75da9c51c17a65a7550ed
+    size: 91875
+    checksum: sha256:2bf42b1e6ead89265d86dfe605eadcb5f82de3d2d032599901fb8a3e5430ec2c
     name: iscsi-initiator-utils-iscsiuio
-    evr: 6.2.1.11-0.git4b3e853.el10
-    sourcerpm: iscsi-initiator-utils-6.2.1.11-0.git4b3e853.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/i/isns-utils-libs-0.103-1.el10.s390x.rpm
+    evr: 6.2.1.11-1.git4b3e853.el10_2.2
+    sourcerpm: iscsi-initiator-utils-6.2.1.11-1.git4b3e853.el10_2.2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/i/isns-utils-libs-0.103-1.el10_2.1.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 105919
-    checksum: sha256:df4a90e6fbc35b64e6ca4edf8b08fedfdd4bbe420093ad4ac3e9cd5e65c0c8fd
+    size: 110281
+    checksum: sha256:a905d9009037a2498ddf72cc36ac0c90e705ae3189a16bb0669580045424a13b
     name: isns-utils-libs
-    evr: 0.103-1.el10
-    sourcerpm: isns-utils-0.103-1.el10.src.rpm
+    evr: 0.103-1.el10_2.1
+    sourcerpm: isns-utils-0.103-1.el10_2.1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/k/keyutils-1.6.3-5.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
     size: 82461
@@ -410,27 +410,27 @@ arches:
     name: openldap
     evr: 2.6.10-1.el10
     sourcerpm: openldap-2.6.10-1.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/p/pam-1.6.1-9.el10.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/p/pam-1.6.1-9.el10_2.1.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 607853
-    checksum: sha256:cc2bced2afdbf1174698d92eb8ef291f41df0d7142068c4e813ac493622b9afc
+    size: 615615
+    checksum: sha256:2ae60c285cbb73027cc9e20eedc77ac3e6aa5a36e2c0da4d2ef0bf879faf9f83
     name: pam
-    evr: 1.6.1-9.el10
-    sourcerpm: pam-1.6.1-9.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/p/python3-3.12.13-2.el10_2.s390x.rpm
+    evr: 1.6.1-9.el10_2.1
+    sourcerpm: pam-1.6.1-9.el10_2.1.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/p/python3-3.12.14-1.el10_2.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 35274
-    checksum: sha256:4404d162e606234ae79a55a34d1b9c04e4172e177935522994d1e2138fd25d54
+    size: 34101
+    checksum: sha256:f90da1856649694bf25cbefc7090fb3de4694f52b26e23430eb8a0f2bd2d29f3
     name: python3
-    evr: 3.12.13-2.el10_2
-    sourcerpm: python3.12-3.12.13-2.el10_2.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/p/python3-libs-3.12.13-2.el10_2.s390x.rpm
+    evr: 3.12.14-1.el10_2
+    sourcerpm: python3.12-3.12.14-1.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/p/python3-libs-3.12.14-1.el10_2.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 9988223
-    checksum: sha256:e7fff3a5ddfb2243af79b2c5723f0470b7176b412794e1fb0e99582b61364c8d
+    size: 9971134
+    checksum: sha256:0c49ea5f3f7aa8e8ae2df89d395c0aab1a8e4ff25a840b187f906d257d143850
     name: python3-libs
-    evr: 3.12.13-2.el10_2
-    sourcerpm: python3.12-3.12.13-2.el10_2.src.rpm
+    evr: 3.12.14-1.el10_2
+    sourcerpm: python3.12-3.12.14-1.el10_2.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/p/python3-pip-wheel-23.3.2-11.el10_2.noarch.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
     size: 1549827
@@ -480,13 +480,13 @@ arches:
     name: systemd-pam
     evr: 257-23.el10_2.2
     sourcerpm: systemd-257-23.el10_2.2.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/t/tzdata-2026b-1.el10.noarch.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/t/tzdata-2026c-1.el10_2.noarch.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 933686
-    checksum: sha256:1e6f1ac37751defb3edec1a69e025d8226ae271e185a73d93ba236a42421417c
+    size: 933332
+    checksum: sha256:9d35b124b878932bdbd612337e58d883e011632831545049a75f76a4cec56859
     name: tzdata
-    evr: 2026b-1.el10
-    sourcerpm: tzdata-2026b-1.el10.src.rpm
+    evr: 2026c-1.el10_2
+    sourcerpm: tzdata-2026c-1.el10_2.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/u/userspace-rcu-0.14.0-7.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
     size: 127108
@@ -624,18 +624,18 @@ arches:
     checksum: sha256:cba14ceec6d845e288e6aeefacff7ffdc5c06c5541bc5a0b45ba5e729ebd053d
     name: inih
     evr: 58-3.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/i/iscsi-initiator-utils-6.2.1.11-0.git4b3e853.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/i/iscsi-initiator-utils-6.2.1.11-1.git4b3e853.el10_2.2.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 736596
-    checksum: sha256:136b9fcdb7a607366c501b6145784b2edf0bc3f3d57419062a987e19d7a94daa
+    size: 751701
+    checksum: sha256:25a322a27650eec5c5df2fdca92e9a07a7a832d335c9ff6ac5437b719e8dce23
     name: iscsi-initiator-utils
-    evr: 6.2.1.11-0.git4b3e853.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/i/isns-utils-0.103-1.el10.src.rpm
+    evr: 6.2.1.11-1.git4b3e853.el10_2.2
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/i/isns-utils-0.103-1.el10_2.1.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 279249
-    checksum: sha256:d087dac833a31cfa50ad902044eab935c874c3a97deb614788b775543b2ee6a7
+    size: 288053
+    checksum: sha256:b7301d930e10a3ff33d61883f63e0c8ee1ab1e5bb15316db72a301387b9d6b1c
     name: isns-utils
-    evr: 0.103-1.el10
+    evr: 0.103-1.el10_2.1
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/k/keyutils-1.6.3-5.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
     size: 165798
@@ -744,24 +744,24 @@ arches:
     checksum: sha256:14808cf2224c23002ecb0d3df48a474916d37230ba9b14dcc9d20f434eb351a9
     name: openldap
     evr: 2.6.10-1.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/p/pam-1.6.1-9.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/p/pam-1.6.1-9.el10_2.1.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 1238676
-    checksum: sha256:bebd129b8ad42d9c90d00a08ead01f05b5e97ea2a506333317fbe34631080fb6
+    size: 1248005
+    checksum: sha256:14861636db041fba5dd9882927effb32e89a446779dba7e127feb7dacf0b57ae
     name: pam
-    evr: 1.6.1-9.el10
+    evr: 1.6.1-9.el10_2.1
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/p/python-pip-23.3.2-11.el10_2.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
     size: 9453633
     checksum: sha256:0c84b3fe9b9d3f9b51d4d6f1a0bcc8b717448620b44cbb9e1af361dda5740b86
     name: python-pip
     evr: 23.3.2-11.el10_2
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/p/python3.12-3.12.13-2.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/p/python3.12-3.12.14-1.el10_2.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 20959623
-    checksum: sha256:34f1e01197926cf8545d30f7ace0e9006327f6d6c1e0e279d4652152ca67a30b
+    size: 20966174
+    checksum: sha256:6eef0d4db7631742f9bb1722d09e9ad58b8788b37e88de8405f992ad5d09c6d4
     name: python3.12
-    evr: 3.12.13-2.el10_2
+    evr: 3.12.14-1.el10_2
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/q/quota-4.09-10.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
     size: 598855
@@ -786,12 +786,12 @@ arches:
     checksum: sha256:db23c50419f16100e48563e0b8a0ba7066817a83486db5105962a73b9aa6ef99
     name: systemd
     evr: 257-23.el10_2.2
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/t/tzdata-2026b-1.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/t/tzdata-2026c-1.el10_2.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 928210
-    checksum: sha256:e658603408ed7091fa5d77ecbe1ef9a93d7a45b2c0d92f71fe462242d1169cf0
+    size: 931675
+    checksum: sha256:2636114017f38a2884138aa8d8df19af6ede7e98fd315b82be63c223c223b589
     name: tzdata
-    evr: 2026b-1.el10
+    evr: 2026c-1.el10_2
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/u/userspace-rcu-0.14.0-7.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
     size: 690743
@@ -820,13 +820,13 @@ arches:
     name: libxkbcommon
     evr: 1.7.0-4.el10
     sourcerpm: libxkbcommon-1.7.0-4.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/p/python-unversioned-command-3.12.13-2.el10_2.noarch.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/p/python-unversioned-command-3.12.14-1.el10_2.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 17852
-    checksum: sha256:8694819e4040b7542ed9f330e2aee5e8d77e2438535cc23bc6477aa94ebf7de2
+    size: 16735
+    checksum: sha256:7406223eae376d8219e52f183248e275e84eb3eb1020c40e02e89a39cdb07ef9
     name: python-unversioned-command
-    evr: 3.12.13-2.el10_2
-    sourcerpm: python3.12-3.12.13-2.el10_2.src.rpm
+    evr: 3.12.14-1.el10_2
+    sourcerpm: python3.12-3.12.14-1.el10_2.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/x/xkeyboard-config-2.41-3.el10.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 1028145
@@ -1016,27 +1016,27 @@ arches:
     name: inih
     evr: 58-3.el10
     sourcerpm: inih-58-3.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/i/iscsi-initiator-utils-6.2.1.11-0.git4b3e853.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/i/iscsi-initiator-utils-6.2.1.11-1.git4b3e853.el10_2.2.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 407301
-    checksum: sha256:0aeb8f4736a22e76efcdd3c8d4a84758e4e6999a968e765169bb91cc3389fe3c
+    size: 413806
+    checksum: sha256:dcf1219f25464141eb982d1075cd620c3fcc6e51b9baabe13ba2b68a18dbdd13
     name: iscsi-initiator-utils
-    evr: 6.2.1.11-0.git4b3e853.el10
-    sourcerpm: iscsi-initiator-utils-6.2.1.11-0.git4b3e853.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/i/iscsi-initiator-utils-iscsiuio-6.2.1.11-0.git4b3e853.el10.x86_64.rpm
+    evr: 6.2.1.11-1.git4b3e853.el10_2.2
+    sourcerpm: iscsi-initiator-utils-6.2.1.11-1.git4b3e853.el10_2.2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/i/iscsi-initiator-utils-iscsiuio-6.2.1.11-1.git4b3e853.el10_2.2.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 84460
-    checksum: sha256:8bdcc04aeee2ebae8ff8d321c9040d2638e62a46b75605bcde9acfe38e15a53c
+    size: 89323
+    checksum: sha256:84ddeee93c1dcc697739dc836405c8cf79321e599f041cfeb97b9d70f6b8a057
     name: iscsi-initiator-utils-iscsiuio
-    evr: 6.2.1.11-0.git4b3e853.el10
-    sourcerpm: iscsi-initiator-utils-6.2.1.11-0.git4b3e853.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/i/isns-utils-libs-0.103-1.el10.x86_64.rpm
+    evr: 6.2.1.11-1.git4b3e853.el10_2.2
+    sourcerpm: iscsi-initiator-utils-6.2.1.11-1.git4b3e853.el10_2.2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/i/isns-utils-libs-0.103-1.el10_2.1.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 103593
-    checksum: sha256:130bbc0ab2459242e400d6ca986a97f027c516dc68283d2c04a763b23f1ec9cb
+    size: 107891
+    checksum: sha256:24ec14c220514b05b1dc270103a6e7be8faf1e584248ea667829748ddf2909f4
     name: isns-utils-libs
-    evr: 0.103-1.el10
-    sourcerpm: isns-utils-0.103-1.el10.src.rpm
+    evr: 0.103-1.el10_2.1
+    sourcerpm: isns-utils-0.103-1.el10_2.1.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/k/keyutils-1.6.3-5.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 81724
@@ -1219,27 +1219,27 @@ arches:
     name: openldap
     evr: 2.6.10-1.el10
     sourcerpm: openldap-2.6.10-1.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/p/pam-1.6.1-9.el10.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/p/pam-1.6.1-9.el10_2.1.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 598152
-    checksum: sha256:28336af9346638057043101fc77776ef55766a2e64e5a45130ebac53b47efcbc
+    size: 606013
+    checksum: sha256:bb4410454b465a1fca90ffe22816b811c9b09f3bc451ea945332d8a4a5203823
     name: pam
-    evr: 1.6.1-9.el10
-    sourcerpm: pam-1.6.1-9.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/p/python3-3.12.13-2.el10_2.x86_64.rpm
+    evr: 1.6.1-9.el10_2.1
+    sourcerpm: pam-1.6.1-9.el10_2.1.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/p/python3-3.12.14-1.el10_2.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 35459
-    checksum: sha256:66a916d4e5d58bdebf73eaa36bc0c3d397d69734315f0f86b1150e13ec311ecb
+    size: 34316
+    checksum: sha256:e55e31c77708592bf764dedb3d2742431293dda94c4918c46f52c564489f7864
     name: python3
-    evr: 3.12.13-2.el10_2
-    sourcerpm: python3.12-3.12.13-2.el10_2.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/p/python3-libs-3.12.13-2.el10_2.x86_64.rpm
+    evr: 3.12.14-1.el10_2
+    sourcerpm: python3.12-3.12.14-1.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/p/python3-libs-3.12.14-1.el10_2.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 9915447
-    checksum: sha256:b85f69ba84855cb7288dbff6fc4dfe15a12c20cf93c5e49be711864affb87d39
+    size: 9918221
+    checksum: sha256:897a024b8cb94b346930ec2f134a57fdbe7f89255930d31913ca3701605b0cac
     name: python3-libs
-    evr: 3.12.13-2.el10_2
-    sourcerpm: python3.12-3.12.13-2.el10_2.src.rpm
+    evr: 3.12.14-1.el10_2
+    sourcerpm: python3.12-3.12.14-1.el10_2.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/p/python3-pip-wheel-23.3.2-11.el10_2.noarch.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 1549827
@@ -1289,13 +1289,13 @@ arches:
     name: systemd-pam
     evr: 257-23.el10_2.2
     sourcerpm: systemd-257-23.el10_2.2.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/t/tzdata-2026b-1.el10.noarch.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/t/tzdata-2026c-1.el10_2.noarch.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 933686
-    checksum: sha256:1e6f1ac37751defb3edec1a69e025d8226ae271e185a73d93ba236a42421417c
+    size: 933332
+    checksum: sha256:9d35b124b878932bdbd612337e58d883e011632831545049a75f76a4cec56859
     name: tzdata
-    evr: 2026b-1.el10
-    sourcerpm: tzdata-2026b-1.el10.src.rpm
+    evr: 2026c-1.el10_2
+    sourcerpm: tzdata-2026c-1.el10_2.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/u/userspace-rcu-0.14.0-7.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 122297
@@ -1433,18 +1433,18 @@ arches:
     checksum: sha256:cba14ceec6d845e288e6aeefacff7ffdc5c06c5541bc5a0b45ba5e729ebd053d
     name: inih
     evr: 58-3.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/i/iscsi-initiator-utils-6.2.1.11-0.git4b3e853.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/i/iscsi-initiator-utils-6.2.1.11-1.git4b3e853.el10_2.2.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 736596
-    checksum: sha256:136b9fcdb7a607366c501b6145784b2edf0bc3f3d57419062a987e19d7a94daa
+    size: 751701
+    checksum: sha256:25a322a27650eec5c5df2fdca92e9a07a7a832d335c9ff6ac5437b719e8dce23
     name: iscsi-initiator-utils
-    evr: 6.2.1.11-0.git4b3e853.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/i/isns-utils-0.103-1.el10.src.rpm
+    evr: 6.2.1.11-1.git4b3e853.el10_2.2
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/i/isns-utils-0.103-1.el10_2.1.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 279249
-    checksum: sha256:d087dac833a31cfa50ad902044eab935c874c3a97deb614788b775543b2ee6a7
+    size: 288053
+    checksum: sha256:b7301d930e10a3ff33d61883f63e0c8ee1ab1e5bb15316db72a301387b9d6b1c
     name: isns-utils
-    evr: 0.103-1.el10
+    evr: 0.103-1.el10_2.1
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/k/keyutils-1.6.3-5.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 165798
@@ -1553,24 +1553,24 @@ arches:
     checksum: sha256:14808cf2224c23002ecb0d3df48a474916d37230ba9b14dcc9d20f434eb351a9
     name: openldap
     evr: 2.6.10-1.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/p/pam-1.6.1-9.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/p/pam-1.6.1-9.el10_2.1.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 1238676
-    checksum: sha256:bebd129b8ad42d9c90d00a08ead01f05b5e97ea2a506333317fbe34631080fb6
+    size: 1248005
+    checksum: sha256:14861636db041fba5dd9882927effb32e89a446779dba7e127feb7dacf0b57ae
     name: pam
-    evr: 1.6.1-9.el10
+    evr: 1.6.1-9.el10_2.1
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/p/python-pip-23.3.2-11.el10_2.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 9453633
     checksum: sha256:0c84b3fe9b9d3f9b51d4d6f1a0bcc8b717448620b44cbb9e1af361dda5740b86
     name: python-pip
     evr: 23.3.2-11.el10_2
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/p/python3.12-3.12.13-2.el10_2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/p/python3.12-3.12.14-1.el10_2.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 20959623
-    checksum: sha256:34f1e01197926cf8545d30f7ace0e9006327f6d6c1e0e279d4652152ca67a30b
+    size: 20966174
+    checksum: sha256:6eef0d4db7631742f9bb1722d09e9ad58b8788b37e88de8405f992ad5d09c6d4
     name: python3.12
-    evr: 3.12.13-2.el10_2
+    evr: 3.12.14-1.el10_2
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/q/quota-4.09-10.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 598855
@@ -1595,12 +1595,12 @@ arches:
     checksum: sha256:db23c50419f16100e48563e0b8a0ba7066817a83486db5105962a73b9aa6ef99
     name: systemd
     evr: 257-23.el10_2.2
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/t/tzdata-2026b-1.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/t/tzdata-2026c-1.el10_2.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 928210
-    checksum: sha256:e658603408ed7091fa5d77ecbe1ef9a93d7a45b2c0d92f71fe462242d1169cf0
+    size: 931675
+    checksum: sha256:2636114017f38a2884138aa8d8df19af6ede7e98fd315b82be63c223c223b589
     name: tzdata
-    evr: 2026b-1.el10
+    evr: 2026c-1.el10_2
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/u/userspace-rcu-0.14.0-7.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 690743
