@@ -10,6 +10,8 @@ if [ -d /host ]; then \
     \cp /kata-initrds.tar.gz /host/kata-initrds-${KATA_VERSION}-nvidia-${NVIDIA_DRIVERS_VERSION}-kernel-${KERNEL_VERSION}-$(arch).tar.gz
     \cp /kata-osbuilder.tar.gz /host/kata-osbuilder-${KATA_VERSION}.tar.gz
     \cp /kata-logs.tar.gz /host/kata-logs-${KATA_VERSION}.tar.gz
+    \cp /kata-source.tar.gz /host/kata-containers-${KATA_VERSION}.tar.gz
+    \cp /kata-vendor.tar.gz /host/kata-containers-${KATA_VERSION}-rh-vendor.tar.gz
     echo "All done!"
 else
     echo "Error: /host directory not found."
