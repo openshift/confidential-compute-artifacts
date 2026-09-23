@@ -30,8 +30,8 @@ and then use the resulting image to run/test the `kata-osbuilder.sh` manually.
 ```
 podman build . --no-cache \
     --build-arg-file=./argfile.conf \
-    --secret id=org,src=org_secret.txt \
-    --secret id=key,src=key_secret.txt \
+    -v $PWD/org_secret.txt:/activation-key/org \
+    -v $PWD/key_secret.txt:/activation-key/activationkey \
     --target initrd-builder-setup \
     -t initrd-builder-setup:1.0
 podman run -ti -v $PWD:/host:z localhost/initrd-builder-setup:1.0 /bin/bash

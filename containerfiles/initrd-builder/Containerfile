@@ -52,9 +52,11 @@ RUN      set +x \
         nvidia-container-toolkit \
         zstd jq policycoreutils dbus-daemon rsync chrony rsyslog \
         iptables libtirpc git make gcc \
+        cargo golang \
         ${required_by_nvat} \
     && rm -f /usr/lib/dracut/dracut.conf.d/99-nvidia.conf \
-    && echo ${NVIDIA_DRIVERS_VERSION} > /NVIDIA-VERSION
+    && echo ${NVIDIA_DRIVERS_VERSION} > /NVIDIA-VERSION \
+    && echo ${KERNEL_UNAME%.*} > /KERNEL-VERSION
 
 # Copy pause bundle
 # TODO: fix podvm-payload to create a zst tarball as required by the rootfs.sh
@@ -177,12 +179,27 @@ RUN rm -rf initrds \
     && tar -czvf /kata-osbuilder.tar.gz osbuilder
 
 ###################################
-# Stage 3: Compose the final image
+# Stage 3: Provide source tarballs
+###################################
+
+FROM initrd-builder-setup AS source-builder
+
+WORKDIR /root/artifacts
+
+RUN cd kata-containers \
+    && curl -L https://github.com/kata-containers/kata-containers/archive/refs/tags/$(cat VERSION).tar.gz \
+            -o /kata-source.tar.gz \
+    && echo "Generate vendor tarball" \
+    && ./tools/packaging/release/generate_vendor.sh /kata-vendor.tar.gz
+
+###################################
+# Stage 4: Compose the final image
 ###################################
 
 FROM ${NVIDIA_DRIVERS_BASE_IMAGE} AS rhel10-kata-initrds
 
-COPY --from=initrd-builder /kata-initrds.tar.gz /kata-logs.tar.gz /kata-osbuilder.tar.gz /VERSION /NVIDIA-VERSION /
+COPY --from=initrd-builder /kata-initrds.tar.gz /kata-logs.tar.gz /kata-osbuilder.tar.gz /VERSION /NVIDIA-VERSION /KERNEL-VERSION /
+COPY --from=source-builder /kata-source.tar.gz /kata-vendor.tar.gz /
 
 COPY extract-artifacts.sh /usr/local/bin/extract-artifacts.sh
 ENTRYPOINT ["/usr/local/bin/extract-artifacts.sh"]
