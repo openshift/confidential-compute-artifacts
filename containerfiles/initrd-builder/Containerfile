@@ -36,10 +36,6 @@ RUN      set +x \
       --activationkey=$(cat /activation-key/activationkey) \
     && subscription-manager repos --enable=rhel-10-for-x86_64-supplementary-rpms \
     && subscription-manager repos --enable=rhel-10-for-x86_64-extensions-rpms \
-    && dnf config-manager --add-repo=https://developer.download.nvidia.com/compute/cuda/repos/rhel10/x86_64/cuda-rhel10.repo \
-    && dnf config-manager --setopt=cuda-rhel10-x86_64.priority=99 --save \
-    && dnf config-manager --setopt=rhel-10-for-x86_64-supplementary-rpms.priority=80 --save \
-    && dnf config-manager --setopt=rhel-10-for-x86_64-extensions-rpms.priority=80 --save \
     && dnf config-manager --best --nodocs --setopt=install_weak_deps=False --save \
     && required_by_nvat="xmlsec1-openssl" \
     && dnf install -y \
