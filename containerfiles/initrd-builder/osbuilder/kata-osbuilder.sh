@@ -305,7 +305,7 @@ copy_dynamic_libraries() {
         /usr/local/bin/confidential-data-hub \
         /usr/bin/kata-agent
     do
-        ldd ${DRACUT_ROOTFS}${exe} | perl -lne 'print $1 if /=>\s+\/lib64\/(\S+)/o' | xargs -i rsync -vaL /lib64/{} ${DRACUT_ROOTFS}/lib64/
+        ldd ${DRACUT_ROOTFS}${exe} | sed -nE 's|.*=>[[:space:]]+/lib64/([^[:space:]]+).*|\1|p' | xargs -r -I '{}' rsync -vaL /lib64/{} ${DRACUT_ROOTFS}/lib64/
     done
     unset LD_LIBRARY_PATH
 }
@@ -434,7 +434,7 @@ generate_rootfs()
     # Fixes KATA-4007
     info "Copying chrony files"
     rsync -a /usr/sbin/chronyd ${DRACUT_ROOTFS}/usr/sbin/
-    ldd /usr/sbin/chronyd | perl -lne 'print $1 if /=>\s+\/lib64\/(\S+)/o' | xargs -i rsync -aL /lib64/{} ${DRACUT_ROOTFS}/lib64/
+    ldd /usr/sbin/chronyd | sed -nE 's|.*=>[[:space:]]+/lib64/([^[:space:]]+).*|\1|p' | xargs -r -I '{}' rsync -aL /lib64/{} ${DRACUT_ROOTFS}/lib64/
     rsync -a /etc/sysconfig/chronyd ${DRACUT_ROOTFS}/etc/sysconfig/
     rsync -a /usr/lib/systemd/system/chronyd.service ${DRACUT_ROOTFS}/usr/lib/systemd/system/
     echo "WantedBy=kata-containers.target" >> ${DRACUT_ROOTFS}/usr/lib/systemd/system/chronyd.service
