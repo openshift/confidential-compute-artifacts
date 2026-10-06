@@ -7,7 +7,7 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/cancel-in-progress: "false"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "main" && ( "containerfiles/storage-helper/***".pathChanged() || ".tekton/osc-storage-helper-push.yaml".pathChanged() || ".tekton/build-pipeline.yaml".pathChanged() )
+    pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "main" && ( "containerfiles/storage-helper/***".pathChanged() || ".tekton/osc-storage-helper-push.yaml".pathChanged() )
   creationTimestamp:
   labels:
     appstudio.openshift.io/application: openshift-sandboxed-containers
@@ -34,7 +34,20 @@ spec:
   - name: prefetch-input
     value: '[{"type": "rpm", "path": "./containerfiles/storage-helper/"}]'
   pipelineRef:
-    name: build-pipeline
+    resolver: git
+    params:
+      - name: org
+        value: redhat
+      - name: scmType
+        value: github
+      - name: serverURL
+        value: https://github.com
+      - name: url
+        value: "https://github.com/openshift/sandboxed-containers-operator.git"
+      - name: revision
+        value: devel
+      - name: pathInRepo
+        value: ".tekton/build-pipeline.yaml"
   taskRunTemplate:
     serviceAccountName: build-pipeline-osc-storage-helper
   workspaces:
