@@ -113,7 +113,7 @@ RUN PODVM_DIR=$PWD/podvm-binaries \
     && cp -fv ${PODVM_DIR}/etc/ocicrypt_config.json etc/ \
     && echo "TODO: Drop these lines when we have libnvat in RHEL10" \
     && mkdir -p usr/lib64 \
-    && cp -Pfv ${PODVM_DIR}/usr/lib64/{libnvat.so.1.2.0,libnvat.so.1} usr/lib64/ \
+    && cp -Pfv ${PODVM_DIR}/usr/lib64/libnvat.so.* usr/lib64/ \
     && tar --zstd -cvf ../coco-guest-components.tar.zst .
 
 # Workaround: sudo
