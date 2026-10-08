@@ -34,6 +34,8 @@ spec:
     value: Containerfile
   - name: path-context
     value: containerfiles/initrd-builder
+  - name: build-args-file
+    value: 'containerfiles/initrd-builder/argfile.conf'
   pipelineSpec:
     description: |
       This pipeline is ideal for building multi-arch container images from a Containerfile while maintaining trust after pipeline customization.
@@ -82,7 +84,7 @@ spec:
       description: Build a source image.
       name: build-source-image
       type: string
-    - default: "true"
+    - default: "false"
       description: Add built image into an OCI image index
       name: build-image-index
       type: string
