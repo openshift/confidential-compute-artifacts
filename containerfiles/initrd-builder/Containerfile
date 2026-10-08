@@ -2,7 +2,7 @@
 ARG PODVM_PAYLOAD_IMAGE
 ARG NVIDIA_DRIVERS_BASE_IMAGE
 ARG NVIDIA_DRIVERS_VERSION
-ARG KERNEL_UNAME
+ARG KERNEL_VERSION
 ARG PRE_BUILD_INITRDS
 
 # RHEL 10 podvm-payload
@@ -20,7 +20,7 @@ FROM ${NVIDIA_DRIVERS_BASE_IMAGE} AS initrd-builder-setup
 ENV DRACUT_NO_XATTR=1
 # ------------------
 
-ARG KERNEL_UNAME
+ARG KERNEL_VERSION
 ARG NVIDIA_DRIVERS_VERSION
 
 WORKDIR /root/artifacts
@@ -30,12 +30,14 @@ WORKDIR /root/artifacts
 # Make sure the file /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
 # is removed, otherwise the nvidia drivers will not be added to
 # the initrd when running kata-osbuilder.sh
-RUN      set +x \
+RUN set +x \
+    && ARCH=$(uname -m) \
+    && KERNEL_UNAME="${KERNEL_VERSION}.${ARCH}" \
     && subscription-manager register \
       --org=$(cat /activation-key/org) \
       --activationkey=$(cat /activation-key/activationkey) \
-    && subscription-manager repos --enable=rhel-10-for-x86_64-supplementary-rpms \
-    && subscription-manager repos --enable=rhel-10-for-x86_64-extensions-rpms \
+    && subscription-manager repos --enable=rhel-10-for-${ARCH}-supplementary-rpms \
+    && subscription-manager repos --enable=rhel-10-for-${ARCH}-extensions-rpms \
     && dnf config-manager --best --nodocs --setopt=install_weak_deps=False --save \
     && required_by_nvat="xmlsec1-openssl" \
     && dnf install -y \
@@ -52,7 +54,7 @@ RUN      set +x \
         ${required_by_nvat} \
     && rm -f /usr/lib/dracut/dracut.conf.d/99-nvidia.conf \
     && echo ${NVIDIA_DRIVERS_VERSION} > /NVIDIA-VERSION \
-    && echo ${KERNEL_UNAME%.*} > /KERNEL-VERSION
+    && echo ${KERNEL_VERSION} > /KERNEL-VERSION
 
 # Copy pause bundle
 # TODO: fix podvm-payload to create a zst tarball as required by the rootfs.sh
@@ -131,7 +133,7 @@ RUN subscription-manager unregister \
 
 FROM initrd-builder-setup AS initrd-builder
 
-ARG KERNEL_UNAME
+ARG KERNEL_VERSION
 ARG PRE_BUILD_INITRDS
 
 WORKDIR /root/artifacts
@@ -139,6 +141,8 @@ WORKDIR /root/artifacts
 # Build the initrds
 RUN set -o pipefail; \
     set -e; \
+    ARCH=$(uname -m); \
+    KERNEL_UNAME="${KERNEL_VERSION}.${ARCH}"; \
     export \
         DEBUG=1 \
         AGENT_DIR="$PWD/agent" \

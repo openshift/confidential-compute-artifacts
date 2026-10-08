@@ -6,10 +6,11 @@
 echo <ORG_ID> > org_secret.txt
 echo <ACTIVATION_KEY> > key_secret.txt
 ```
-4. Pre-build initrds for the runtime classes defined in the step 1. 
-   The tarballs will be stored in both locations: within the container image and in $PWD
+3. Pre-build initrds for the runtime classes defined in step 1 (specify `--platform` e.g. `linux/amd64` or `linux/s390x`).
+   Tarballs are stored in both the container image and `$PWD`.
 ```
 podman build . --no-cache \
+    --platform linux/amd64 \
     -v $PWD:/host:z \
     --build-arg-file=./argfile.conf \
     -v $PWD/org_secret.txt:/activation-key/org \
@@ -17,9 +18,9 @@ podman build . --no-cache \
     -t kata-initrds:1.0
 ```
 
-5. Tarballs can also be extracted from the container image
+4. Tarballs can also be extracted from the container image
 ```
-podman run --rm -v $PWD:/host kata-initrds:1.0
+podman run --rm --platform linux/amd64 -v $PWD:/host:z kata-initrds:1.0
 ```
 
 ## Debugging the kata-osbuilder.sh script
@@ -29,11 +30,12 @@ and then use the resulting image to run/test the `kata-osbuilder.sh` manually.
 
 ```
 podman build . --no-cache \
+    --platform linux/amd64 \
     --build-arg-file=./argfile.conf \
     -v $PWD/org_secret.txt:/activation-key/org \
     -v $PWD/key_secret.txt:/activation-key/activationkey \
     --target initrd-builder-setup \
     -t initrd-builder-setup:1.0
-podman run -ti -v $PWD:/host:z localhost/initrd-builder-setup:1.0 /bin/bash
+podman run -ti --rm --platform linux/amd64 -v $PWD:/host:z localhost/initrd-builder-setup:1.0 /bin/bash
 # then run osbuilder/kata-osbuilder.sh as desired
 ```
