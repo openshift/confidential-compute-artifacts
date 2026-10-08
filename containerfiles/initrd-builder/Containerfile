@@ -2,7 +2,7 @@
 ARG PODVM_PAYLOAD_IMAGE
 ARG NVIDIA_DRIVERS_BASE_IMAGE
 ARG NVIDIA_DRIVERS_VERSION
-ARG KERNEL_UNAME
+ARG KERNEL_VERSION
 ARG PRE_BUILD_INITRDS
 
 # RHEL 10 podvm-payload
@@ -20,39 +20,57 @@ FROM ${NVIDIA_DRIVERS_BASE_IMAGE} AS initrd-builder-setup
 ENV DRACUT_NO_XATTR=1
 # ------------------
 
-ARG KERNEL_UNAME
+ARG KERNEL_VERSION
 ARG NVIDIA_DRIVERS_VERSION
+# TARGETARCH is injected automatically by buildx: "amd64" for x86_64, "s390x" for s390x
+ARG TARGETARCH
 
 WORKDIR /root/artifacts
 
-# Install nvidia drivers
-#
-# Make sure the file /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
-# is removed, otherwise the nvidia drivers will not be added to
-# the initrd when running kata-osbuilder.sh
-RUN      set +x \
+# Install kernel packages + NVIDIA stack (x86_64 only; skipped on s390x — no hardware/repo support).
+# 99-nvidia.conf is removed so kata-osbuilder.sh can inject NVIDIA drivers into the initrd.
+RUN set +x \
+    && if [ "${TARGETARCH}" != "amd64" ] && [ "${TARGETARCH}" != "s390x" ]; then \
+           echo "ERROR: Unsupported platform '${TARGETARCH}'. Supported platforms: linux/x86_64 (amd64), linux/s390x" >&2; \
+           exit 1; \
+       fi \
     && subscription-manager register \
-      --org=$(cat /activation-key/org) \
-      --activationkey=$(cat /activation-key/activationkey) \
-    && subscription-manager repos --enable=rhel-10-for-x86_64-supplementary-rpms \
-    && subscription-manager repos --enable=rhel-10-for-x86_64-extensions-rpms \
-    && dnf config-manager --best --nodocs --setopt=install_weak_deps=False --save \
-    && required_by_nvat="xmlsec1-openssl" \
-    && dnf install -y \
-        kernel-{core,modules,headers}-${KERNEL_UNAME} \
-        nvidia-driver-${NVIDIA_DRIVERS_VERSION} \
-        nvidia-driver-cuda-${NVIDIA_DRIVERS_VERSION} \
-        nvidia-driver-libs-${NVIDIA_DRIVERS_VERSION} \
-        nvidia-persistenced-${NVIDIA_DRIVERS_VERSION} \
-        nvidia-kmod-common-${NVIDIA_DRIVERS_VERSION} \
-        nvidia-container-toolkit \
-        zstd jq policycoreutils dbus-daemon rsync chrony rsyslog \
-        iptables libtirpc git make gcc \
-        cargo golang \
-        ${required_by_nvat} \
-    && rm -f /usr/lib/dracut/dracut.conf.d/99-nvidia.conf \
-    && echo ${NVIDIA_DRIVERS_VERSION} > /NVIDIA-VERSION \
-    && echo ${KERNEL_UNAME%.*} > /KERNEL-VERSION
+        --org=$(cat /activation-key/org) \
+        --activationkey=$(cat /activation-key/activationkey) \
+    && ARCH_SUFFIX=$([ "${TARGETARCH}" = "amd64" ] && echo "x86_64" || echo "${TARGETARCH}") \
+    && KERNEL_UNAME="${KERNEL_VERSION}.${ARCH_SUFFIX}" \
+    && echo "Building for TARGETARCH=${TARGETARCH}, kernel=${KERNEL_UNAME}" \
+    && if [ "${TARGETARCH}" = "s390x" ]; then \
+           subscription-manager repos --list \
+           && dnf install -y \
+               kernel-{core,modules,headers}-${KERNEL_UNAME} \
+               zstd jq policycoreutils dbus-daemon rsync chrony rsyslog \
+               git make gcc \
+               cargo golang \
+           && rm -f /usr/lib/dracut/dracut.conf.d/99-nvidia.conf || true; \
+       else \
+           subscription-manager repos \
+               --enable=rhel-10-for-x86_64-supplementary-rpms \
+               --enable=rhel-10-for-x86_64-extensions-rpms \
+           && dnf config-manager --best --nodocs --setopt=install_weak_deps=False --save \
+           && required_by_nvat="xmlsec1-openssl" \
+           && dnf install -y \
+               kernel-{core,modules,headers}-${KERNEL_UNAME} \
+               nvidia-driver-${NVIDIA_DRIVERS_VERSION} \
+               nvidia-driver-cuda-${NVIDIA_DRIVERS_VERSION} \
+               nvidia-driver-libs-${NVIDIA_DRIVERS_VERSION} \
+               nvidia-persistenced-${NVIDIA_DRIVERS_VERSION} \
+               nvidia-kmod-common-${NVIDIA_DRIVERS_VERSION} \
+               nvidia-container-toolkit \
+               zstd jq policycoreutils dbus-daemon rsync chrony rsyslog \
+               iptables libtirpc git make gcc \
+               cargo golang \
+               ${required_by_nvat} \
+           && rm -f /usr/lib/dracut/dracut.conf.d/99-nvidia.conf \
+           && echo ${NVIDIA_DRIVERS_VERSION} > /NVIDIA-VERSION; \
+       fi \
+    && echo ${KERNEL_UNAME%.*} > /KERNEL-VERSION \
+    && echo ${KERNEL_UNAME} > /KERNEL-UNAME
 
 # Copy pause bundle
 # TODO: fix podvm-payload to create a zst tarball as required by the rootfs.sh
@@ -112,8 +130,10 @@ RUN PODVM_DIR=$PWD/podvm-binaries \
     && cp -fv ${PODVM_DIR}/usr/local/bin/{api-server-rest,attestation-agent,confidential-data-hub,luks-encrypt-storage} usr/local/bin/ \
     && cp -fv ${PODVM_DIR}/etc/ocicrypt_config.json etc/ \
     && echo "TODO: Drop these lines when we have libnvat in RHEL10" \
-    && mkdir -p usr/lib64 \
-    && cp -Pfv ${PODVM_DIR}/usr/lib64/libnvat.so.* usr/lib64/ \
+    && if [ "$(uname -m)" != "s390x" ]; then \
+           mkdir -p usr/lib64 \
+           && cp -Pfv ${PODVM_DIR}/usr/lib64/libnvat.so.* usr/lib64/; \
+       fi \
     && tar --zstd -cvf ../coco-guest-components.tar.zst .
 
 # Workaround: sudo
@@ -131,14 +151,18 @@ RUN subscription-manager unregister \
 
 FROM initrd-builder-setup AS initrd-builder
 
-ARG KERNEL_UNAME
+ARG KERNEL_VERSION
 ARG PRE_BUILD_INITRDS
+ARG TARGETARCH
 
 WORKDIR /root/artifacts
 
-# Build the initrds
+# Build the initrds.
+# On s390x only kata-cc is supported; all other arches build the full PRE_BUILD_INITRDS list.
 RUN set -o pipefail; \
     set -e; \
+    KERNEL_UNAME=$(cat /KERNEL-UNAME); \
+    EFFECTIVE_CLASSES=$([ "${TARGETARCH}" = "s390x" ] && echo "kata-cc" || echo "${PRE_BUILD_INITRDS}"); \
     export \
         DEBUG=1 \
         AGENT_DIR="$PWD/agent" \
@@ -148,7 +172,7 @@ RUN set -o pipefail; \
         KATA_OSBUILDER_SH="$PWD/osbuilder/kata-osbuilder.sh"; \
     rm -rf logs; \
     mkdir -p logs; \
-    for class in ${PRE_BUILD_INITRDS}; do \
+    for class in ${EFFECTIVE_CLASSES}; do \
             echo "Generating initrd for $class"; \
             ${KATA_OSBUILDER_SH} \
                 -k "${KERNEL_UNAME}" \
@@ -164,11 +188,12 @@ RUN set -o pipefail; \
 # Remove sudo workaround
 RUN rm -f /bin/sudo
 
-# Create tarballs
+# Create tarballs.
 RUN rm -rf initrds \
     && mkdir -p initrds/usr/share/kata-containers \
     && cp -avP /usr/share/kata-containers/osbuilder-images initrds/usr/share/kata-containers/ \
     && cp -v kata-containers/VERSION / \
+    && [ -f /NVIDIA-VERSION ] || touch /NVIDIA-VERSION \
     && tar -czvf /kata-initrds.tar.gz -C initrds . \
     && tar -czvf /kata-logs.tar.gz -C logs . \
     && rm -f osbuilder/nsdax \
@@ -194,7 +219,7 @@ RUN cd kata-containers \
 
 FROM ${NVIDIA_DRIVERS_BASE_IMAGE} AS rhel10-kata-initrds
 
-COPY --from=initrd-builder /kata-initrds.tar.gz /kata-logs.tar.gz /kata-osbuilder.tar.gz /VERSION /NVIDIA-VERSION /KERNEL-VERSION /
+COPY --from=initrd-builder /kata-initrds.tar.gz /kata-logs.tar.gz /kata-osbuilder.tar.gz /VERSION /KERNEL-VERSION /KERNEL-UNAME /NVIDIA-VERSION /
 COPY --from=source-builder /kata-source.tar.gz /kata-vendor.tar.gz /
 
 COPY extract-artifacts.sh /usr/local/bin/extract-artifacts.sh
