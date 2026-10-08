@@ -7,7 +7,7 @@ WORKDIR /app
 COPY luks_main.go .
 RUN go mod init luks-helper && go build -o luks-helper .
 
-FROM registry.redhat.io/ubi9/ubi-minimal-pqc:9.8-1790840388
+FROM registry.redhat.io/ubi9/ubi-minimal-pqc:9.8-1791307453
 COPY --from=builder /app/luks-helper /usr/local/bin/luks-helper
 
 # Uncomment the below instructions when running the build from an 
