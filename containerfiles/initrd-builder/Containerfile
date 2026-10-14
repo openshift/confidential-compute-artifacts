@@ -2,8 +2,9 @@
 ARG PODVM_PAYLOAD_IMAGE
 ARG NVIDIA_DRIVERS_BASE_IMAGE
 ARG NVIDIA_DRIVERS_VERSION
-ARG KERNEL_UNAME
-ARG PRE_BUILD_INITRDS
+ARG KERNEL_VERSION
+ARG PRE_BUILD_INITRDS_x86_64
+ARG PRE_BUILD_INITRDS_s390x
 
 # RHEL 10 podvm-payload
 FROM ${PODVM_PAYLOAD_IMAGE} AS rhel10-podvm-payload
@@ -20,7 +21,7 @@ FROM ${NVIDIA_DRIVERS_BASE_IMAGE} AS initrd-builder-setup
 ENV DRACUT_NO_XATTR=1
 # ------------------
 
-ARG KERNEL_UNAME
+ARG KERNEL_VERSION
 ARG NVIDIA_DRIVERS_VERSION
 
 WORKDIR /root/artifacts
@@ -30,29 +31,40 @@ WORKDIR /root/artifacts
 # Make sure the file /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
 # is removed, otherwise the nvidia drivers will not be added to
 # the initrd when running kata-osbuilder.sh
-RUN      set +x \
+RUN set +x \
+    && ARCH=$(uname -m) \
+    && KERNEL_UNAME="${KERNEL_VERSION}.${ARCH}" \
     && subscription-manager register \
       --org=$(cat /activation-key/org) \
       --activationkey=$(cat /activation-key/activationkey) \
-    && subscription-manager repos --enable=rhel-10-for-x86_64-supplementary-rpms \
-    && subscription-manager repos --enable=rhel-10-for-x86_64-extensions-rpms \
-    && dnf config-manager --best --nodocs --setopt=install_weak_deps=False --save \
-    && required_by_nvat="xmlsec1-openssl" \
-    && dnf install -y \
-        kernel-{core,modules,headers}-${KERNEL_UNAME} \
-        nvidia-driver-${NVIDIA_DRIVERS_VERSION} \
-        nvidia-driver-cuda-${NVIDIA_DRIVERS_VERSION} \
-        nvidia-driver-libs-${NVIDIA_DRIVERS_VERSION} \
-        nvidia-persistenced-${NVIDIA_DRIVERS_VERSION} \
-        nvidia-kmod-common-${NVIDIA_DRIVERS_VERSION} \
-        nvidia-container-toolkit \
-        zstd jq policycoreutils dbus-daemon rsync chrony rsyslog \
-        iptables libtirpc git make gcc \
-        cargo golang \
-        ${required_by_nvat} \
-    && rm -f /usr/lib/dracut/dracut.conf.d/99-nvidia.conf \
-    && echo ${NVIDIA_DRIVERS_VERSION} > /NVIDIA-VERSION \
-    && echo ${KERNEL_UNAME%.*} > /KERNEL-VERSION
+    && if [ "${ARCH}" = "s390x" ]; then \
+        subscription-manager repos --list \
+        && dnf install -y \
+            kernel-{core,modules,headers}-${KERNEL_UNAME} \
+            zstd jq policycoreutils dbus-daemon rsync chrony rsyslog \
+            git make gcc \
+            cargo golang; \
+    else \
+        subscription-manager repos --enable=rhel-10-for-${ARCH}-supplementary-rpms \
+        && subscription-manager repos --enable=rhel-10-for-${ARCH}-extensions-rpms \
+        && dnf config-manager --best --nodocs --setopt=install_weak_deps=False --save \
+        && required_by_nvat="xmlsec1-openssl" \
+        && dnf install -y \
+            kernel-{core,modules,headers}-${KERNEL_UNAME} \
+            nvidia-driver-${NVIDIA_DRIVERS_VERSION} \
+            nvidia-driver-cuda-${NVIDIA_DRIVERS_VERSION} \
+            nvidia-driver-libs-${NVIDIA_DRIVERS_VERSION} \
+            nvidia-persistenced-${NVIDIA_DRIVERS_VERSION} \
+            nvidia-kmod-common-${NVIDIA_DRIVERS_VERSION} \
+            nvidia-container-toolkit \
+            zstd jq policycoreutils dbus-daemon rsync chrony rsyslog \
+            iptables libtirpc git make gcc \
+            cargo golang \
+            ${required_by_nvat} \
+        && rm -f /usr/lib/dracut/dracut.conf.d/99-nvidia.conf \
+        && echo ${NVIDIA_DRIVERS_VERSION} > /NVIDIA-VERSION; \
+    fi \
+    && echo ${KERNEL_VERSION} > /KERNEL-VERSION
 
 # Copy pause bundle
 # TODO: fix podvm-payload to create a zst tarball as required by the rootfs.sh
@@ -112,8 +124,11 @@ RUN PODVM_DIR=$PWD/podvm-binaries \
     && cp -fv ${PODVM_DIR}/usr/local/bin/{api-server-rest,attestation-agent,confidential-data-hub,luks-encrypt-storage} usr/local/bin/ \
     && cp -fv ${PODVM_DIR}/etc/ocicrypt_config.json etc/ \
     && echo "TODO: Drop these lines when we have libnvat in RHEL10" \
-    && mkdir -p usr/lib64 \
-    && cp -Pfv ${PODVM_DIR}/usr/lib64/libnvat.so.* usr/lib64/ \
+    && ARCH=$(uname -m) \
+    && if [ "${ARCH}" != "s390x" ]; then \
+        mkdir -p usr/lib64 \
+        && cp -Pfv ${PODVM_DIR}/usr/lib64/libnvat.so.* usr/lib64/; \
+    fi \
     && tar --zstd -cvf ../coco-guest-components.tar.zst .
 
 # Workaround: sudo
@@ -131,14 +146,18 @@ RUN subscription-manager unregister \
 
 FROM initrd-builder-setup AS initrd-builder
 
-ARG KERNEL_UNAME
-ARG PRE_BUILD_INITRDS
+ARG KERNEL_VERSION
+ARG PRE_BUILD_INITRDS_x86_64
+ARG PRE_BUILD_INITRDS_s390x
 
 WORKDIR /root/artifacts
 
 # Build the initrds
 RUN set -o pipefail; \
     set -e; \
+    ARCH=$(uname -m); \
+    eval "PRE_BUILD_INITRDS=\${PRE_BUILD_INITRDS_${ARCH}}"; \
+    KERNEL_UNAME="${KERNEL_VERSION}.${ARCH}"; \
     export \
         DEBUG=1 \
         AGENT_DIR="$PWD/agent" \
@@ -169,6 +188,7 @@ RUN rm -rf initrds \
     && mkdir -p initrds/usr/share/kata-containers \
     && cp -avP /usr/share/kata-containers/osbuilder-images initrds/usr/share/kata-containers/ \
     && cp -v kata-containers/VERSION / \
+    && [ -f /NVIDIA-VERSION ] || touch /NVIDIA-VERSION \
     && tar -czvf /kata-initrds.tar.gz -C initrds . \
     && tar -czvf /kata-logs.tar.gz -C logs . \
     && rm -f osbuilder/nsdax \
