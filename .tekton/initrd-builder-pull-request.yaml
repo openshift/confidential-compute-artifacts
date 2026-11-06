@@ -8,12 +8,12 @@ metadata:
     build.appstudio.redhat.com/target_branch: '{{target_branch}}'
     pipelinesascode.tekton.dev/cancel-in-progress: "true"
     pipelinesascode.tekton.dev/max-keep-runs: "3"
-    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch == "main" && ( "containerfiles/initrd-builder/***".pathChanged() || ".tekton/initrd-builder-pull-request.yaml".pathChanged() )
+    pipelinesascode.tekton.dev/on-cel-expression: event == "pull_request" && target_branch == "osc-release-v1.14" && ( "containerfiles/initrd-builder/***".pathChanged() || ".tekton/initrd-builder-pull-request.yaml".pathChanged() )
   labels:
-    appstudio.openshift.io/application: build-initrds
-    appstudio.openshift.io/component: initrd-builder
+    appstudio.openshift.io/application: build-initrds-v1-14
+    appstudio.openshift.io/component: initrd-builder-v1-14
     pipelines.appstudio.openshift.io/type: build
-  name: initrd-builder-on-pull-request
+  name: initrd-builder-v1-14-on-pull-request
   namespace: ose-osc-tenant
 spec:
   params:
@@ -22,7 +22,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/ose-osc-tenant/initrd-builder:on-pr-{{revision}}
+    value: quay.io/redhat-user-workloads/ose-osc-tenant/initrd-builder-v1-14:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
   - name: build-platforms
@@ -561,7 +561,7 @@ spec:
     - name: netrc
       optional: true
   taskRunTemplate:
-    serviceAccountName: build-pipeline-initrd-builder
+    serviceAccountName: build-pipeline-initrd-builder-v1-14
   workspaces:
   - name: git-auth
     secret:
