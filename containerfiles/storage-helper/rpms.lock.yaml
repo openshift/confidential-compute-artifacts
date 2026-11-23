@@ -18,13 +18,6 @@ arches:
     name: python-unversioned-command
     evr: 3.12.16-2.el10_3
     sourcerpm: python3.12-3.12.16-2.el10_3.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/appstream/os/Packages/r/rpm-plugin-syslog-4.19.1.1-25.el10.s390x.rpm
-    repoid: rhel-10-for-s390x-appstream-rpms
-    size: 24299
-    checksum: sha256:0a47358684cda6309f5993e800bc1ea94f8a66e6d09bd0772046cbff07baa5d4
-    name: rpm-plugin-syslog
-    evr: 4.19.1.1-25.el10
-    sourcerpm: rpm-4.19.1.1-25.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/appstream/os/Packages/x/xkeyboard-config-2.41-3.el10.noarch.rpm
     repoid: rhel-10-for-s390x-appstream-rpms
     size: 1028145
@@ -165,13 +158,13 @@ arches:
     name: elfutils-libs
     evr: 0.195-1.el10
     sourcerpm: elfutils-0.195-1.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/e/expat-2.7.3-2.el10_3.4.s390x.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/e/expat-2.7.3-2.el10_3.8.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
-    size: 136106
-    checksum: sha256:45b5afb9a3bc1c11c6548d95f047a0e35ec48db30339627b865f6686ee861daf
+    size: 140073
+    checksum: sha256:094bddeea922ef3d8e4cee8d8965944e81845639425cc78171f68a483e2dcd22
     name: expat
-    evr: 2.7.3-2.el10_3.4
-    sourcerpm: expat-2.7.3-2.el10_3.4.src.rpm
+    evr: 2.7.3-2.el10_3.8
+    sourcerpm: expat-2.7.3-2.el10_3.8.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/f/fuse3-libs-3.16.2-5.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
     size: 97943
@@ -466,6 +459,13 @@ arches:
     name: rpcbind
     evr: 1.2.9-0.el10_3.2
     sourcerpm: rpcbind-1.2.9-0.el10_3.2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/r/rpm-plugin-syslog-4.19.1.1-29.el10_3.s390x.rpm
+    repoid: rhel-10-for-s390x-baseos-rpms
+    size: 24104
+    checksum: sha256:1c48df887c75a52eaeb71ebd3dc044b3421703ffef8994fd5227e05a0f7927f7
+    name: rpm-plugin-syslog
+    evr: 4.19.1.1-29.el10_3
+    sourcerpm: rpm-4.19.1.1-29.el10_3.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/os/Packages/s/shadow-utils-4.15.0-13.el10.s390x.rpm
     repoid: rhel-10-for-s390x-baseos-rpms
     size: 1427859
@@ -595,12 +595,12 @@ arches:
     checksum: sha256:08e750e4ba0b04a9cac0803b545e75c26bd6a2fc5e9362a7484f295637d3a2d8
     name: elfutils
     evr: 0.195-1.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/e/expat-2.7.3-2.el10_3.4.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/e/expat-2.7.3-2.el10_3.8.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 885607
-    checksum: sha256:4e97cefa2dd835383d3faf79ec2f77827405e289031134711defe71dae62a062
+    size: 908065
+    checksum: sha256:a0549adbc7a67fb794b90da08ad568e9dd85c9f94ea0def17e8321662a8d267b
     name: expat
-    evr: 2.7.3-2.el10_3.4
+    evr: 2.7.3-2.el10_3.8
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/f/fuse3-3.16.2-5.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
     size: 14168039
@@ -781,12 +781,12 @@ arches:
     checksum: sha256:c9c3ad49e3ec6a7bed7e6401110d3d89ac9bad78bb7fc678f09f9e1c5eb49067
     name: rpcbind
     evr: 1.2.9-0.el10_3.2
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/r/rpm-4.19.1.1-25.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/r/rpm-4.19.1.1-29.el10_3.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
-    size: 6061051
-    checksum: sha256:31ab319b00e252038d709f65342f8ae14c8ba6cb244b4f04608fc97eb1eded2e
+    size: 6082017
+    checksum: sha256:2f3b33cceff785a825492ac0f8753aba1badf08a13cd8cd127c41ed815109464
     name: rpm
-    evr: 4.19.1.1-25.el10
+    evr: 4.19.1.1-29.el10_3
   - url: https://cdn.redhat.com/content/dist/rhel10/10/s390x/baseos/source/SRPMS/Packages/s/shadow-utils-4.15.0-13.el10.src.rpm
     repoid: rhel-10-for-s390x-baseos-source-rpms
     size: 1930087
@@ -840,13 +840,6 @@ arches:
     name: python-unversioned-command
     evr: 3.12.16-2.el10_3
     sourcerpm: python3.12-3.12.16-2.el10_3.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/r/rpm-plugin-syslog-4.19.1.1-25.el10.x86_64.rpm
-    repoid: rhel-10-for-x86_64-appstream-rpms
-    size: 24708
-    checksum: sha256:370809cd8a8f2c39d9bab183947f734ab04e24a85ef1f815b5c1f0fc873bd2e7
-    name: rpm-plugin-syslog
-    evr: 4.19.1.1-25.el10
-    sourcerpm: rpm-4.19.1.1-25.el10.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/appstream/os/Packages/x/xkeyboard-config-2.41-3.el10.noarch.rpm
     repoid: rhel-10-for-x86_64-appstream-rpms
     size: 1028145
@@ -987,13 +980,13 @@ arches:
     name: elfutils-libs
     evr: 0.195-1.el10
     sourcerpm: elfutils-0.195-1.el10.src.rpm
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/e/expat-2.7.3-2.el10_3.4.x86_64.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/e/expat-2.7.3-2.el10_3.8.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
-    size: 131158
-    checksum: sha256:1ec28f4e4bb1cced06f78c45385567e77e98b52dcaa1848b3eef873c1fe2d487
+    size: 134235
+    checksum: sha256:6986a1d442981bb2ab7c17478dc5ecfba71ec3f484799e7e27f316c07a03b1ec
     name: expat
-    evr: 2.7.3-2.el10_3.4
-    sourcerpm: expat-2.7.3-2.el10_3.4.src.rpm
+    evr: 2.7.3-2.el10_3.8
+    sourcerpm: expat-2.7.3-2.el10_3.8.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/f/fuse3-libs-3.16.2-5.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 99163
@@ -1288,6 +1281,13 @@ arches:
     name: rpcbind
     evr: 1.2.9-0.el10_3.2
     sourcerpm: rpcbind-1.2.9-0.el10_3.2.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/r/rpm-plugin-syslog-4.19.1.1-29.el10_3.x86_64.rpm
+    repoid: rhel-10-for-x86_64-baseos-rpms
+    size: 24498
+    checksum: sha256:0ffab481df84c18c280843cf2a30ce2b9507f25c0ec452e3de17f4b743c36898
+    name: rpm-plugin-syslog
+    evr: 4.19.1.1-29.el10_3
+    sourcerpm: rpm-4.19.1.1-29.el10_3.src.rpm
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/os/Packages/s/shadow-utils-4.15.0-13.el10.x86_64.rpm
     repoid: rhel-10-for-x86_64-baseos-rpms
     size: 1413886
@@ -1417,12 +1417,12 @@ arches:
     checksum: sha256:08e750e4ba0b04a9cac0803b545e75c26bd6a2fc5e9362a7484f295637d3a2d8
     name: elfutils
     evr: 0.195-1.el10
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/e/expat-2.7.3-2.el10_3.4.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/e/expat-2.7.3-2.el10_3.8.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 885607
-    checksum: sha256:4e97cefa2dd835383d3faf79ec2f77827405e289031134711defe71dae62a062
+    size: 908065
+    checksum: sha256:a0549adbc7a67fb794b90da08ad568e9dd85c9f94ea0def17e8321662a8d267b
     name: expat
-    evr: 2.7.3-2.el10_3.4
+    evr: 2.7.3-2.el10_3.8
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/f/fuse3-3.16.2-5.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 14168039
@@ -1603,12 +1603,12 @@ arches:
     checksum: sha256:c9c3ad49e3ec6a7bed7e6401110d3d89ac9bad78bb7fc678f09f9e1c5eb49067
     name: rpcbind
     evr: 1.2.9-0.el10_3.2
-  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/r/rpm-4.19.1.1-25.el10.src.rpm
+  - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/r/rpm-4.19.1.1-29.el10_3.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
-    size: 6061051
-    checksum: sha256:31ab319b00e252038d709f65342f8ae14c8ba6cb244b4f04608fc97eb1eded2e
+    size: 6082017
+    checksum: sha256:2f3b33cceff785a825492ac0f8753aba1badf08a13cd8cd127c41ed815109464
     name: rpm
-    evr: 4.19.1.1-25.el10
+    evr: 4.19.1.1-29.el10_3
   - url: https://cdn.redhat.com/content/dist/rhel10/10/x86_64/baseos/source/SRPMS/Packages/s/shadow-utils-4.15.0-13.el10.src.rpm
     repoid: rhel-10-for-x86_64-baseos-source-rpms
     size: 1930087
